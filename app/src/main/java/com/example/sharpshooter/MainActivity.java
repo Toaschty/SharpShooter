@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         setBottomNavVisibility(false, this);
 
+
     }
 
     public static void setBottomNavVisibility(boolean visibility, MainActivity view)
