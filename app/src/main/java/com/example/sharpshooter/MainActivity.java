@@ -3,6 +3,7 @@ package com.example.sharpshooter;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.sharpshooter.ui.dashboard.DashboardFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,13 +50,11 @@ public class MainActivity extends AppCompatActivity {
         navView.getMenu().findItem(R.id.navigation_dashboard).setVisible(visibility);
     }
 
-    /*public static void replaceFragment(Fragment fragment, MainActivity view)
+    public static void replaceFragment(MainActivity view)
     {
-        FragmentManager fragmentManager = view.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, fragment);
-        fragmentTransaction.commit();
-    }*/
+        BottomNavigationView navigationView = view.findViewById(R.id.nav_view);
+        navigationView.setSelectedItemId(R.id.navigation_dashboard);
+    }
 
 
 }

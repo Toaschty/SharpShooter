@@ -51,6 +51,7 @@ public class HomeFragment extends Fragment {
         Button startBtn = dialog.findViewById(R.id.startBtn);
         startBtn.setOnClickListener(view -> {
             MainActivity.setBottomNavVisibility(true, (MainActivity) getActivity());
+            MainActivity.replaceFragment( (MainActivity) getActivity());
             dialog.dismiss();
         });
 
