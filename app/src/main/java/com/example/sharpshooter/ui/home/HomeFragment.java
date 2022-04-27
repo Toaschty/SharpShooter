@@ -51,13 +51,13 @@ public class HomeFragment extends Fragment {
 
         // dummy data.
         lastGameModelArrayList = new ArrayList<>();
-        lastGameModelArrayList.add(new LastGameModel("DSA in Java"));
-        lastGameModelArrayList.add(new LastGameModel("Java Course"));
-        lastGameModelArrayList.add(new LastGameModel("C++ COurse"));
-        lastGameModelArrayList.add(new LastGameModel("DSA in C++"));
-        lastGameModelArrayList.add(new LastGameModel("Kotlin for Android"));
-        lastGameModelArrayList.add(new LastGameModel("Java for Android"));
-        lastGameModelArrayList.add(new LastGameModel("HTML and CSS"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game1"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game2"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game3"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game4"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game5"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game6"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game7"));
 
         // we are initializing our adapter class and passing our arraylist to it.
         LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList);
@@ -74,9 +74,6 @@ public class HomeFragment extends Fragment {
 
         final Button newGameBtn = binding.newGameBtn;
         homeViewModel.getBtnName().observe(getViewLifecycleOwner(), newGameBtn::setText);
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
 
         final Button btnNewGameDialog = binding.newGameBtn;
