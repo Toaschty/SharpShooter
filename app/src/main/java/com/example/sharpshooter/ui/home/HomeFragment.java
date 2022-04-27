@@ -10,18 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharpshooter.CourseAdapter;
-import com.example.sharpshooter.CourseModel;
+import com.example.sharpshooter.LastGameAdapter;
+import com.example.sharpshooter.LastGameModel;
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.databinding.FragmentDashboardBinding;
 import com.example.sharpshooter.databinding.FragmentHomeBinding;
 import com.example.sharpshooter.MainActivity;
-import com.example.sharpshooter.ui.dashboard.DashboardFragment;
 
 import java.util.ArrayList;
 
@@ -29,9 +26,9 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
 
-    private RecyclerView courseRV;
+    private RecyclerView lastGameRV;
 
-    private ArrayList<CourseModel> courseModelArrayList;
+    private ArrayList<LastGameModel> lastGameModelArrayList;
 
 
 
@@ -50,28 +47,28 @@ public class HomeFragment extends Fragment {
 
         // Card with Recycler view
 
-        courseRV = root.findViewById(R.id.lastGameRecyclerView);
+        lastGameRV = root.findViewById(R.id.lastGameRecyclerView);
 
-        // here we have created new array list and added data to it.
-        courseModelArrayList = new ArrayList<>();
-        courseModelArrayList.add(new CourseModel("DSA in Java", 4));
-        courseModelArrayList.add(new CourseModel("Java Course", 3));
-        courseModelArrayList.add(new CourseModel("C++ COurse", 4));
-        courseModelArrayList.add(new CourseModel("DSA in C++", 4));
-        courseModelArrayList.add(new CourseModel("Kotlin for Android", 4));
-        courseModelArrayList.add(new CourseModel("Java for Android", 4));
-        courseModelArrayList.add(new CourseModel("HTML and CSS", 4));
+        // dummy data.
+        lastGameModelArrayList = new ArrayList<>();
+        lastGameModelArrayList.add(new LastGameModel("DSA in Java"));
+        lastGameModelArrayList.add(new LastGameModel("Java Course"));
+        lastGameModelArrayList.add(new LastGameModel("C++ COurse"));
+        lastGameModelArrayList.add(new LastGameModel("DSA in C++"));
+        lastGameModelArrayList.add(new LastGameModel("Kotlin for Android"));
+        lastGameModelArrayList.add(new LastGameModel("Java for Android"));
+        lastGameModelArrayList.add(new LastGameModel("HTML and CSS"));
 
         // we are initializing our adapter class and passing our arraylist to it.
-        CourseAdapter courseAdapter = new CourseAdapter(root.getContext(), courseModelArrayList);
+        LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
 
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
-        courseRV.setLayoutManager(linearLayoutManager);
-        courseRV.setAdapter(courseAdapter);
+        lastGameRV.setLayoutManager(linearLayoutManager);
+        lastGameRV.setAdapter(lastGameAdapter);
 
 
 

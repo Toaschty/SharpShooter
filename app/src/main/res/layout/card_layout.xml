@@ -17,9 +17,9 @@
         android:layout_height="wrap_content">
 
 
-        <!--Text View to display Course Name-->
+        <!--Text View to display LastGame Name-->
         <TextView
-            android:id="@+id/idTVCourseName"
+            android:id="@+id/idLastGameName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -29,16 +29,5 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!--Text VIew to display COurse Rating-->
-        <!--Image used in present in drawable folder-->
-        <TextView
-            android:id="@+id/idTVCourseRating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idTVCourseName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:drawablePadding="2dp"
-            android:text="test"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
