@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public static void setBottomNavVisibility(boolean visibility, MainActivity view)
     {
         BottomNavigationView navView = view.findViewById(R.id.nav_view);

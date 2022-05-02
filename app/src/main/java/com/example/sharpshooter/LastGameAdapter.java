@@ -1,11 +1,14 @@
 package com.example.sharpshooter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
@@ -45,10 +48,29 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
     // your views such as TextView.
     public class Viewholder extends RecyclerView.ViewHolder {
         private TextView lastGameName;
+        private CardView cv;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             lastGameName = itemView.findViewById(R.id.idLastGameName);
+            cv = (CardView) itemView.findViewById(R.id.lastGameCV);
+
+            cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Dialog dialog = new Dialog(view.getContext());
+                    dialog.setContentView(R.layout.layout_newgame_dialog);
+                    Button startBtn = dialog.findViewById(R.id.startBtn);
+                    startBtn.setOnClickListener(viewDialog -> {
+                        MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
+                        MainActivity.replaceFragment( (MainActivity) view.getContext());
+                        dialog.dismiss();
+                    });
+
+                    dialog.show();
+                }
+            });
+
         }
     }
 }
