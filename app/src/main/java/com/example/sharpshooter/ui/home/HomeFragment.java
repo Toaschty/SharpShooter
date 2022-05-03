@@ -25,12 +25,9 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-
     private RecyclerView lastGameRV;
 
     private ArrayList<LastGameModel> lastGameModelArrayList;
-
-
 
     private FragmentHomeBinding binding;
 
@@ -43,21 +40,19 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
         // Card with Recycler view
-
         lastGameRV = root.findViewById(R.id.lastGameRecyclerView);
 
         // dummy data.
         lastGameModelArrayList = new ArrayList<>();
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game1"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game2"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game3"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game4"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game5"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game6"));
-        lastGameModelArrayList.add(new LastGameModel("Dummy Game7"));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 1", "01.01.2022", 3, 13));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 2", "02.01.2022", 1, 8));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 3", "02.02.2022", 6, 7));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 4", "01.04.2022", 3, 21));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 5", "12.04.2022", 2, 12));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 6", "01.05.2022", 2, 10));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 7", "02.05.2022", 1, 6));
+        lastGameModelArrayList.add(new LastGameModel("Dummy Game 8", "03.05.2022", 3, 16));
 
         // we are initializing our adapter class and passing our arraylist to it.
         LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList);
@@ -70,11 +65,8 @@ public class HomeFragment extends Fragment {
         lastGameRV.setLayoutManager(linearLayoutManager);
         lastGameRV.setAdapter(lastGameAdapter);
 
-
-
         final Button newGameBtn = binding.newGameBtn;
         homeViewModel.getBtnName().observe(getViewLifecycleOwner(), newGameBtn::setText);
-
 
         final Button btnNewGameDialog = binding.newGameBtn;
         btnNewGameDialog.setOnClickListener(viewDialog -> showDialog());
@@ -94,8 +86,6 @@ public class HomeFragment extends Fragment {
 
         dialog.show();
     }
-
-
 
     @Override
     public void onDestroyView() {

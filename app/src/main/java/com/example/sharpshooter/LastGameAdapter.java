@@ -34,7 +34,10 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
     public void onBindViewHolder(@NonNull LastGameAdapter.Viewholder holder, int position) {
         // to set data to textview of each card layout
         LastGameModel model = lastGameModelArrayList.get(position);
-        holder.lastGameName.setText(model.getLastGame_name());
+        holder.lastGameName.setText( model.getLastGame_name() );
+        holder.lastGameDate.setText( model.getLastGame_date() );
+        holder.lastGamePlayerCount.setText(String.valueOf( model.getLastGame_playerCount()) );
+        holder.lastGameTargetCount.setText(String.valueOf( model.getLastGame_targetCount()) );
     }
 
     @Override
@@ -48,11 +51,18 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
     // your views such as TextView.
     public class Viewholder extends RecyclerView.ViewHolder {
         private TextView lastGameName;
+        private TextView lastGameDate;
+        private TextView lastGamePlayerCount;
+        private TextView lastGameTargetCount;
+
         private CardView cv;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             lastGameName = itemView.findViewById(R.id.idLastGameName);
+            lastGameDate = itemView.findViewById(R.id.idLastGameDate);
+            lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
+            lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
             cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
             cv.setOnClickListener(new View.OnClickListener() {

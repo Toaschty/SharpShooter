@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     private ActivityMainBinding binding;
 
     @Override
@@ -33,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -47,10 +42,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         setBottomNavVisibility(false, this);
-
-
     }
-
 
     public static void setBottomNavVisibility(boolean visibility, MainActivity view)
     {
@@ -63,6 +55,4 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigationView = view.findViewById(R.id.nav_view);
         navigationView.setSelectedItemId(R.id.navigation_dashboard);
     }
-
-
 }
