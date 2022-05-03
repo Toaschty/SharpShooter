@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharpshooter.LastGameAdapter;
-import com.example.sharpshooter.LastGameModel;
+import com.example.sharpshooter.ui.card.LastGameAdapter;
+import com.example.sharpshooter.ui.card.LastGameModel;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentHomeBinding;
 import com.example.sharpshooter.MainActivity;

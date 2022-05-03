@@ -1,4 +1,4 @@
-package com.example.sharpshooter;
+package com.example.sharpshooter.ui.card;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sharpshooter.MainActivity;
+import com.example.sharpshooter.R;
+
 import java.util.ArrayList;
 
 public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewholder> {
