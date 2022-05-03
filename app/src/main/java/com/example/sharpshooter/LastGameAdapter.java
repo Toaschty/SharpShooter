@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -38,6 +39,8 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
         holder.lastGameDate.setText( model.getLastGame_date() );
         holder.lastGamePlayerCount.setText(String.valueOf( model.getLastGame_playerCount()) );
         holder.lastGameTargetCount.setText(String.valueOf( model.getLastGame_targetCount()) );
+        holder.lastGameIV.setImageResource(model.getLastGame_image());
+
     }
 
     @Override
@@ -54,6 +57,8 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
         private TextView lastGameDate;
         private TextView lastGamePlayerCount;
         private TextView lastGameTargetCount;
+        private ImageView lastGameIV;
+
 
         private CardView cv;
 
@@ -64,6 +69,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
             lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
             cv = (CardView) itemView.findViewById(R.id.lastGameCV);
+            lastGameIV = itemView.findViewById(R.id.idLastGameImage);
 
             cv.setOnClickListener(new View.OnClickListener() {
                 @Override
