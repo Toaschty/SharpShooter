@@ -1,4 +1,4 @@
-package com.example.sharpshooter;
+package com.example.sharpshooter.ui.card;
 
 public class LastGameModel {
 

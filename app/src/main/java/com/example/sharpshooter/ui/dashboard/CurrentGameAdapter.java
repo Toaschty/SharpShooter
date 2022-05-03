@@ -1,12 +1,10 @@
-package com.example.sharpshooter.ui;
+package com.example.sharpshooter.ui.dashboard;
 
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.sharpshooter.ui.dashboard.CurrentGame;
-import com.example.sharpshooter.ui.dashboard.CurrentGameModel;
 
 import java.util.ArrayList;
 
