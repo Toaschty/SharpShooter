@@ -17,39 +17,25 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/newParkourText"
+            android:id="@+id/newParkourText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/julius_sans_one"
-            android:text="@string/home_newGame"
+            android:text="@string/newGame_newParkour"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/newGame_newParkour"
-
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_button_design"
-
-            android:fontFamily="@font/julius_sans_one"
-            android:text="@string/newGame_newParkour"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:backgroundTint="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/newGameText" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPlayerNames"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <Button
-            android:id="@+id/newParkour_continue"
+            android:id="@+id/newParkour_start"
 
             android:layout_width="300dp"
             android:layout_height="50dp"
@@ -58,7 +44,7 @@
 
             android:background="@drawable/custom_button_design"
             android:fontFamily="@font/julius_sans_one"
-            android:text="@string/newGame_loadParkour"
+            android:text="@string/newParkour_start"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:backgroundTint="@color/black"
