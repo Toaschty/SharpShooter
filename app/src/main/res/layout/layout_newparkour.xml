@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_vg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/newParkourText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newGame_newParkour"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/newParkourName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newParkour_name"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/newParkourNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/edittext"
+            android:ems="10"
+            android:fontFamily="@font/julius_sans_one"
+            android:hint="@string/newParkour_name_hint"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/newParkourPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newParkour_playerCount"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/newParkourPlayersGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/newParkourPlayerButton1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/newParkourPlayerButton2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/newParkourPlayerButton3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/newParkourPlayersCount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_radio_button_right"
+                android:ems="10"
+                android:fontFamily="@font/julius_sans_one"
+                android:hint="@string/newParkour_playerCountCustom"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/newParkourTargets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newParkour_targetCount"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/newParkourTargetGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/newParkourTargetButton1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/newParkourTargetButton2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/newParkourTargetButton3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="15"
+                android:textColor="@color/radio_button_selector"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/newParkourTargetCount"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_radio_button_right"
+                android:ems="10"
+                android:fontFamily="@font/julius_sans_one"
+                android:hint="@string/newParkour_playerCountCustom"
+                android:inputType="number"
+                android:maxLength="3"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/newParkour_continue"
+
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+
+            android:background="@drawable/custom_button_design"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/continue_text"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newGame_newParkour" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

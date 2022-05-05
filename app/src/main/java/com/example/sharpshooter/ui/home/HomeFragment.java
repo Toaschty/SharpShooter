@@ -17,7 +17,6 @@ import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentHomeBinding;
-import com.example.sharpshooter.MainActivity;
 
 import java.util.ArrayList;
 
@@ -79,8 +78,24 @@ public class HomeFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
         Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
         startBtn.setOnClickListener(view -> {
-            MainActivity.setBottomNavVisibility(true, (MainActivity) getActivity());
-            MainActivity.replaceFragment( (MainActivity) getActivity());
+            Dialog newParkourDialog = new Dialog(getActivity());
+            newParkourDialog.setContentView(R.layout.layout_newparkour);
+            newParkourDialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+
+            Button continueBtn = newParkourDialog.findViewById(R.id.newParkour_continue);
+            continueBtn.setOnClickListener(view2 -> {
+                Dialog newParkourPlayerNames = new Dialog(getActivity());
+                newParkourPlayerNames.setContentView(R.layout.layout_newparkour_playernames);
+                newParkourPlayerNames.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+
+                newParkourPlayerNames.show();
+
+                newParkourDialog.dismiss();
+            });
+
+            newParkourDialog.show();
+            // MainActivity.setBottomNavVisibility(true, (MainActivity) getActivity());
+            // MainActivity.replaceFragment( (MainActivity) getActivity());
             dialog.dismiss();
         });
 

@@ -18,19 +18,34 @@
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/custom_cardview.xml" value="0.2725" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/custom_dialog_background.xml" value="0.2745" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/custom_dialog_theme.xml" value="0.2715" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/edittext_radio_button_right.xml" value="0.2745" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_account_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_baseline_adjust_24.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3425" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_center_checked.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_center_selector.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_center_unchecked.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_left_checked.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_left_selector.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_left_unchecked.xml" value="0.25" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_right_checked.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_right_selector.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/radio_button_right_unchecked.xml" value="0.2745" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/textfield.xml" value="0.2745" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/card_layout.xml" value="0.5" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/card_playername.xml" value="0.75" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account.xml" value="0.2653985507246377" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_current_game.xml" value="0.25" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_dashboard.xml" value="0.2890625" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_dialog.xml" value="0.5" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_newParkour.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_newparkour.xml" value="0.67" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newparkour_playernames.xml" value="0.67" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
