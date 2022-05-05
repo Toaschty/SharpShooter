@@ -80,7 +80,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
                 public void onClick(View view) {
                     Dialog dialog = new Dialog(view.getContext());
                     dialog.setContentView(R.layout.layout_newgame_dialog);
-                    Button startBtn = dialog.findViewById(R.id.startBtn);
+                    Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
                     startBtn.setOnClickListener(viewDialog -> {
                         MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
                         MainActivity.replaceFragment( (MainActivity) view.getContext());

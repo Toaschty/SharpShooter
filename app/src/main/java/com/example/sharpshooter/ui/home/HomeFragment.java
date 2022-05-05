@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
     private void showDialog(){
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_newgame_dialog);
-        Button startBtn = dialog.findViewById(R.id.startBtn);
+        Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
         startBtn.setOnClickListener(view -> {
             MainActivity.setBottomNavVisibility(true, (MainActivity) getActivity());
             MainActivity.replaceFragment( (MainActivity) getActivity());

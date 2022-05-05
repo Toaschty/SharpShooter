@@ -7,4 +7,7 @@
     <string name="app_logo_description">SharpShooter App Logo</string>
     <string name="home_newGame">New Game</string>
     <string name="home_lastGames">Last Games</string>
+
+    <string name="newGame_newParkour">New Parkour</string>
+    <string name="newGame_loadParkour">Load Parkour</string>
 </resources>
