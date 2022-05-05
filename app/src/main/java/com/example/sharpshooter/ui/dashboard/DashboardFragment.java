@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentDashboardBinding;
 
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
-
     private FragmentDashboardBinding binding;
     private ViewPager2 currentGameViewPager;
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
@@ -39,7 +39,6 @@ public class DashboardFragment extends Fragment {
         CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(this, currentGameModelArrayList);
 
         currentGameViewPager.setAdapter(currentGameAdapter);
-
         return root;
     }
 

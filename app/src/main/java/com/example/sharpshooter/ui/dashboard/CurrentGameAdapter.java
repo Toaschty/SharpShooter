@@ -19,6 +19,7 @@ public class CurrentGameAdapter extends FragmentStateAdapter {
         this.currentGameModelArrayList = currentGameModelArrayList;
     }
 
+
     @NonNull
     @Override
     public Fragment createFragment(int position) {
