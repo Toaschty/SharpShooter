@@ -16,6 +16,6 @@ public class HomeViewModel extends ViewModel {
         newGameBtn.setValue("Neues Spiel");
     }
 
-    public LiveData<String> getBtnName(){return newGameBtn;}
+    public LiveData<String> getBtnName(){ return newGameBtn; }
 
 }

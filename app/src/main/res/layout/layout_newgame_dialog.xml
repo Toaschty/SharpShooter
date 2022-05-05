@@ -1,37 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_vg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_vg">
+    android:clipToPadding="false">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <View
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/newGameText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test" />
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/home_newGame"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/startBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="277dp"
-            android:text="Button" />
+            android:id="@+id/newGame_newParkour"
 
+            android:layout_width="300dp"
+            android:layout_height="50dp"
 
-    </RelativeLayout>
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button_design"
+
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newGame_newParkour"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newGameText" />
+
+        <Button
+            android:id="@+id/newGame_loadParkour"
+
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+
+            android:layout_marginTop="10dp"
+
+            android:background="@drawable/custom_button_design"
+            android:fontFamily="@font/julius_sans_one"
+            android:text="@string/newGame_loadParkour"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:backgroundTint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/newGame_newParkour" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

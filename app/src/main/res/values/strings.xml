@@ -3,6 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Current Game</string>
     <string name="title_account">Account</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="app_logo_description">SharpShooter App Logo</string>
+    <string name="home_newGame">New Game</string>
+    <string name="home_lastGames">Last Games</string>
+
+    <string name="newGame_newParkour">New Parkour</string>
+    <string name="newGame_loadParkour">Load Parkour</string>
 </resources>
