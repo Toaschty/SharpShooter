@@ -22,6 +22,7 @@
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_account_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_baseline_adjust_24.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3425" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_broken_arrow.xml" value="0.274" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3425" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3425" />
@@ -39,13 +40,15 @@
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/card_layout.xml" value="0.5" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/card_playername.xml" value="0.75" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/card_playerstats.xml" value="0.6298619824341279" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account.xml" value="0.2653985507246377" />
-        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_current_game.xml" value="0.25" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_current_game.xml" value="0.33" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_dashboard.xml" value="0.2890625" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_dialog.xml" value="0.5" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_newParkour.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newgame_newparkour.xml" value="0.67" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newparkour.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/layout_newparkour_playernames.xml" value="0.67" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2745" />

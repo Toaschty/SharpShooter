@@ -38,7 +38,7 @@ public class CurrentGame extends Fragment {
             title = savedInstanceState.getString("TITLE");
         }
 
-        TextView currentGameTextView = root.findViewById(R.id.currentGameTextView);
+        TextView currentGameTextView = root.findViewById(R.id.currentGameTitle);
         currentGameTextView.setText(title);
 
         // Inflate the layout for this fragment
