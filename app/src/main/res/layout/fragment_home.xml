@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/newGameBtn"
 
@@ -24,24 +25,21 @@
         android:layout_height="50dp"
 
         android:layout_marginTop="40dp"
-
-        android:background="@drawable/custom_button_design"
+        android:background="@drawable/button_selector"
         android:fontFamily="@font/julius_sans_one"
-
         android:text="@string/home_newGame"
-        android:textColor="@color/black"
+        android:textColor="@color/button_selector"
         android:textSize="24sp"
         app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitleIcon" />
 
-
     <TextView
         android:id="@+id/lastGameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/julius_sans_one"
         android:text="@string/home_lastGames"
         android:textColor="@color/black"
