@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "689212357254",
+    "project_id": "sharpshooter-3c2d7",
+    "storage_bucket": "sharpshooter-3c2d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689212357254:android:18e111ba2103c8552e2f07",
+        "android_client_info": {
+          "package_name": "com.example.sharpshooter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689212357254-20uaaugsf7kg0ipa34t71n7klleqs31l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMEffQxA-sqQ9T6j5Z-KR9v_e3iD-HPxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689212357254-20uaaugsf7kg0ipa34t71n7klleqs31l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
