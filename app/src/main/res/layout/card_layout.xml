@@ -5,7 +5,7 @@
     android:id="@+id/lastGameCV"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/lightGray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
@@ -15,7 +15,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_selector">
 
         <!--Text View to display LastGame Name-->
         <TextView
@@ -26,7 +27,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/julius_sans_one"
             android:text="Waldspiel #14"
-            android:textColor="@color/black"
+            android:textColor="@color/button_selector"
             android:textSize="18sp"
             android:textStyle="normal|bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/julius_sans_one"
             android:text="3.4.2022"
-            android:textColor="@color/black"
+            android:textColor="@color/button_selector"
             android:textSize="18sp"
             android:textStyle="normal|bold"
             app:layout_constraintEnd_toStartOf="@+id/idLastGameImage"
@@ -71,7 +72,7 @@
             android:includeFontPadding="false"
             android:text="3"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/button_selector"
             android:textSize="20sp"
             android:textStyle="normal|bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,6 +86,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginBottom="11dp"
             android:background="@drawable/ic_baseline_person_24"
+            android:backgroundTint="@color/button_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/idLastGamePlayerCount" />
 
@@ -98,7 +100,7 @@
             android:gravity="center_vertical"
             android:text="14"
             android:textAlignment="textEnd"
-            android:textColor="@color/black"
+            android:textColor="@color/button_selector"
             android:textSize="20sp"
             android:textStyle="normal|bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,6 +113,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginBottom="11dp"
             android:background="@drawable/ic_baseline_adjust_24"
+            android:backgroundTint="@color/button_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/idLastGameTargetCount" />
 

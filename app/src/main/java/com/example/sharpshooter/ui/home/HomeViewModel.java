@@ -11,9 +11,6 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         newGameBtn = new MutableLiveData<>();
-
-        //Language can be changed
-        newGameBtn.setValue("Neues Spiel");
     }
 
     public LiveData<String> getBtnName(){ return newGameBtn; }

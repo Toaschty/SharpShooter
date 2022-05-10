@@ -5,7 +5,7 @@
     android:id="@+id/lastGameCV"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/lightGray"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="0dp"
     app:cardMaxElevation="0dp"
@@ -47,7 +47,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="20"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -60,7 +60,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="16"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -73,7 +73,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="14"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -86,7 +86,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="10"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -99,7 +99,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="8"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="4"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
         </RadioGroup>
@@ -133,9 +133,8 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:foreground="@drawable/ic_broken_arrow"
                 android:foregroundGravity="center"
-                android:foregroundTint="#000000"
+                android:foregroundTint="@color/box_selector"
                 android:gravity="center"
-                android:textColor="@color/radio_button_selector"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -148,8 +147,8 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:foreground="@drawable/ic_broken_arrow"
                 android:foregroundGravity="center"
+                android:foregroundTint="@color/box_selector"
                 android:gravity="center"
-                android:textColor="@color/radio_button_selector"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -162,8 +161,8 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:foreground="@drawable/ic_broken_arrow"
                 android:foregroundGravity="center"
+                android:foregroundTint="@color/box_selector"
                 android:gravity="center"
-                android:textColor="@color/radio_button_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -176,7 +175,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <TextView
@@ -189,7 +188,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="_"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </RadioGroup>

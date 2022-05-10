@@ -63,10 +63,10 @@ public class HomeFragment extends Fragment {
         lastGameRV.setLayoutManager(linearLayoutManager);
         lastGameRV.setAdapter(lastGameAdapter);
 
-        final Button newGameBtn = binding.newGameBtn;
+        final Button newGameBtn = binding.btnStartGame;
         homeViewModel.getBtnName().observe(getViewLifecycleOwner(), newGameBtn::setText);
 
-        final Button btnNewGameDialog = binding.newGameBtn;
+        final Button btnNewGameDialog = binding.btnStartGame;
         btnNewGameDialog.setOnClickListener(viewDialog -> showDialog());
 
         return root;
