@@ -19,4 +19,10 @@
     <string name="newParkour_start">Start</string>
 
     <string name="continue_text">Continue</string>
+
+    <string name="welcome_login">Login</string>
+    <string name="welcome_register">Register</string>
+    <string name="login_email_text">Email</string>
+    <string name="login_password_text">Password</string>
+    <string name="repeat_password_text">Repeat Password</string>
 </resources>

@@ -30,11 +30,11 @@
 
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/custom_button_design"
+        android:background="@drawable/button_selector"
         android:fontFamily="@font/julius_sans_one"
         android:text="?"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/button_selector"
         android:textSize="18sp"
         app:backgroundTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

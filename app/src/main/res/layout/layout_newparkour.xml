@@ -83,7 +83,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="1"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -96,7 +96,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="2"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -109,7 +109,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="3"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <EditText
@@ -156,7 +156,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="5"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -169,7 +169,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="10"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -182,7 +182,7 @@
                 android:fontFamily="@font/julius_sans_one"
                 android:gravity="center"
                 android:text="15"
-                android:textColor="@color/radio_button_selector"
+                android:textColor="@color/box_selector"
                 android:textSize="20sp" />
 
             <EditText
@@ -208,10 +208,10 @@
 
             android:layout_marginTop="10dp"
 
-            android:background="@drawable/custom_button_design"
+            android:background="@drawable/button_selector"
             android:fontFamily="@font/julius_sans_one"
             android:text="@string/continue_text"
-            android:textColor="@color/black"
+            android:textColor="@color/button_selector"
             android:textSize="24sp"
             app:backgroundTint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"

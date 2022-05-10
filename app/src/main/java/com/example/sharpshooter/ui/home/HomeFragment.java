@@ -63,10 +63,10 @@ public class HomeFragment extends Fragment {
         lastGameRV.setLayoutManager(linearLayoutManager);
         lastGameRV.setAdapter(lastGameAdapter);
 
-        final Button newGameBtn = binding.newGameBtn;
+        final Button newGameBtn = binding.btnStartGame;
         homeViewModel.getBtnName().observe(getViewLifecycleOwner(), newGameBtn::setText);
 
-        final Button btnNewGameDialog = binding.newGameBtn;
+        final Button btnNewGameDialog = binding.btnStartGame;
         btnNewGameDialog.setOnClickListener(viewDialog -> showDialog());
 
         return root;
@@ -75,18 +75,18 @@ public class HomeFragment extends Fragment {
     private void showDialog(){
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_newgame_dialog);
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
         Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
         startBtn.setOnClickListener(view -> {
             Dialog newParkourDialog = new Dialog(getActivity());
             newParkourDialog.setContentView(R.layout.layout_newparkour);
-            newParkourDialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+            newParkourDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
             Button continueBtn = newParkourDialog.findViewById(R.id.newParkour_continue);
             continueBtn.setOnClickListener(view2 -> {
                 Dialog newParkourPlayerNames = new Dialog(getActivity());
                 newParkourPlayerNames.setContentView(R.layout.layout_newparkour_playernames);
-                newParkourPlayerNames.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+                newParkourPlayerNames.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
                 newParkourPlayerNames.show();
 
