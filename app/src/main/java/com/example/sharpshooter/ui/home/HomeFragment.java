@@ -89,6 +89,13 @@ public class HomeFragment extends Fragment {
                 newParkourPlayerNames.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
                 newParkourPlayerNames.show();
+/*
+                playerNameDialogRV = view2.findViewById(R.id.recyclerViewPlayerNames);
+                PlayerNameDialogAdapter playerNameDialogAdapter = new PlayerNameDialogAdapter(view2.getContext());
+                System.out.println(playerNameDialogAdapter.getItemCount());
+                playerNameDialogRV.setAdapter(playerNameDialogAdapter);
+
+*/
 
                 newParkourDialog.dismiss();
             });

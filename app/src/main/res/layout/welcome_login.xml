@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tv_email"
-        android:layout_width="0"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
@@ -32,14 +32,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitleIcon" />
 
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
     <EditText
         android:id="@+id/email"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/edittext"
         android:ems="10"
-        android:fontFamily="@font/julius_sans_one"
+        android:fontFamily="sans-serif-light"
         android:hint="@string/login_email_text"
         android:inputType="textWebEmailAddress"
         android:paddingLeft="10dp"
@@ -50,6 +68,7 @@
 
     <TextView
         android:id="@+id/tv_password"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="10dp"
@@ -65,12 +84,13 @@
 
     <EditText
         android:id="@+id/password"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/edittext"
         android:ems="10"
-        android:fontFamily="@font/julius_sans_one"
+        android:fontFamily="sans-serif-light"
         android:hint="@string/login_password_text"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
@@ -83,6 +103,7 @@
     <Button
         android:id="@+id/btn_login"
 
+        android:layout_width="0dp"
         android:layout_height="50dp"
 
         android:layout_marginStart="50dp"
