@@ -10,16 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sharpshooter.template.UserTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.sql.SQLOutput;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity
 {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
     private EditText name_input;
     private EditText email_input;
@@ -91,6 +97,27 @@ public class RegisterActivity extends AppCompatActivity
                 if (task.isSuccessful()) {
                     // Get User
                     FirebaseUser user = mAuth.getCurrentUser();
+
+
+                    UserTemplate userTemplate = new UserTemplate(0,0,0,0,0,0,0,0);
+
+                    db.collection("users").document(Objects.requireNonNull(mAuth.getUid()))
+                            .set(userTemplate).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    System.out.println("Success");
+                                }
+                            });
+
+                    /*
+                    db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").document().set(userTemplate).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            System.out.println("65a4sd35a4s3d465as465d45");
+                        }
+                    });
+
+                     */
 
                     // Start main activity
                     Intent main_intent = new Intent(RegisterActivity.this, MainActivity.class);
