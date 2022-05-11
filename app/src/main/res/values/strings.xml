@@ -20,6 +20,8 @@
 
     <string name="continue_text">Continue</string>
 
+    <string name="current_game_leaderboard">Leaderboard</string>
+
     <string name="welcome_login">Login</string>
     <string name="welcome_register">Register</string>
     <string name="login_email_text">Email</string>
