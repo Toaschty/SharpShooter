@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameBinding;
 import com.example.sharpshooter.databinding.FragmentDashboardBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -56,6 +57,7 @@ public class CurrentGame extends Fragment {
         card_PlayerstatRV.setLayoutManager(linearLayoutManager);
         card_PlayerstatRV.setAdapter(currentGameCardAdapter);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
 
