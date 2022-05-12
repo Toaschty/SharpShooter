@@ -16,8 +16,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.sql.SQLOutput;
-
 public class RegisterActivity extends AppCompatActivity
 {
     private FirebaseAuth mAuth;
@@ -30,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome_register);
+        setContentView(R.layout.activity_welcome_register);
 
         // Authentication setup
         mAuth = FirebaseAuth.getInstance();

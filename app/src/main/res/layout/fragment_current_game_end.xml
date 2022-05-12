@@ -10,12 +10,12 @@
     tools:context=".ui.dashboard.CurrentGame">
 
     <TextView
-        android:id="@+id/currentGameLeaderboard"
+        android:id="@+id/currentGamePlayerStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/julius_sans_one"
-        android:text="@string/current_game_leaderboard"
+        android:text="@string/current_game_player_stats"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,16 +23,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/currentGameLeaderboardRecyclerView"
+        android:id="@+id/currentGameStatsButtons"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentGameLeaderboard" />
+        app:layout_constraintTop_toBottomOf="@+id/currentGamePlayerStatistic" />
+
+    <Button
+        android:id="@+id/btn_done"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_selector"
+        android:fontFamily="@font/julius_sans_one"
+        android:text="@string/current_game_end_parkour"
+        android:textColor="@color/button_selector"
+        android:textSize="24sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
