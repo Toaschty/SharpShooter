@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sharpshooter.MainActivity;
+import com.example.sharpshooter.R;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +32,9 @@ public class AccountFragment extends Fragment {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Button btn_logout = binding.button;
+        // Get button references
+        Button btn_logout = binding.btnLogout;
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

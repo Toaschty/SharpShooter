@@ -210,7 +210,7 @@
 
             android:background="@drawable/button_selector"
             android:fontFamily="@font/julius_sans_one"
-            android:text="@string/continue_text"
+            android:text="@string/newParkour_continue"
             android:textColor="@color/button_selector"
             android:textSize="24sp"
             app:backgroundTint="@color/black"
