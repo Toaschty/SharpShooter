@@ -12,12 +12,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.databinding.FragmentDashboardBinding;
+import com.example.sharpshooter.databinding.FragmentCurrentGameSliderBinding;
 
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment {
-    private FragmentDashboardBinding binding;
+    private FragmentCurrentGameSliderBinding binding;
     private ViewPager2 currentGameViewPager;
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
 
@@ -26,7 +26,7 @@ public class DashboardFragment extends Fragment {
         DashboardViewModel dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentCurrentGameSliderBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         currentGameViewPager = root.findViewById(R.id.currentGameViewPager);

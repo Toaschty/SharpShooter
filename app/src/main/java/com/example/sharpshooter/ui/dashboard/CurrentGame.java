@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
-import com.example.sharpshooter.databinding.FragmentDashboardBinding;
+import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 
 import java.util.ArrayList;
 
