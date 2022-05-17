@@ -15,12 +15,29 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.template.GameTemplate;
+import com.google.errorprone.annotations.Var;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCardAdapter.Viewholder> {
     private Context context;
     private ArrayList<CurrentGameCardModel> currentGameCardModelArrayList;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public CurrentGameCardAdapter(Context context, ArrayList<CurrentGameCardModel> currentGameCardModelArrayList){
         this.context = context;
@@ -39,7 +56,35 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, int position) {
             CurrentGameCardModel model = currentGameCardModelArrayList.get(position);
             holder.playername.setText(model.getPlayer_name());
-            holder.score.setText(Integer.toString(model.getScore()));
+        final Query docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true);
+        docRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@androidx.annotation.Nullable QuerySnapshot value, @androidx.annotation.Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    System.out.println("Listen failed." + e);
+                    return;
+                }
+
+                HashMap<String, HashMap<String ,Var >> player = null;
+
+                for (QueryDocumentSnapshot doc : value){
+                    if (doc.get("player") != null)
+                    {
+                        player = (HashMap<String, HashMap<String , Var>>) doc.get("player");
+                    }
+                }
+                System.out.println(player.get("player").get("playerName"));
+                System.out.println(player.get("player").get("totalScore"));
+                System.out.println(player.get("player").get("targetScore"));
+                ArrayList<Long> t = (ArrayList<Long>) player.get("player").get("targetScore");
+                System.out.println(t.get(0));
+                System.out.println(player);
+                holder.score.setText(t.get(0).toString());
+
+            }
+
+
+        });
     }
 
     @Override
