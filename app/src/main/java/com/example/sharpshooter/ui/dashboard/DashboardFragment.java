@@ -44,24 +44,21 @@ public class DashboardFragment extends Fragment {
 
         currentGameViewPager = root.findViewById(R.id.currentGameViewPager);
         final Object[] targetCountTemp = new Object[1];
-        db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        System.out.println(document.getId() + " => " + document.getData().get("targetCount"));
-                        targetCountTemp[0] = document.getData().get("targetCount");
-                    }
-                    long targetCount = (Long) targetCountTemp[0];
-                    for (int i = 0; i < targetCount; i++) {
-                        currentGameModelArrayList.add(new CurrentGameModel(String.valueOf(i)));
-                    }
-                    CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
-                    currentGameViewPager.setAdapter(currentGameAdapter);
-                } else {
-                    System.out.println(task.getException());
-
+        db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    System.out.println(document.getId() + " => " + document.getData().get("targetCount"));
+                    targetCountTemp[0] = document.getData().get("targetCount");
                 }
+                long targetCount = (Long) targetCountTemp[0];
+                for (int i = 0; i < targetCount; i++) {
+                    currentGameModelArrayList.add(new CurrentGameModel("Target" + i));
+                }
+                CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
+                currentGameViewPager.setAdapter(currentGameAdapter);
+            } else {
+                System.out.println(task.getException());
+
             }
         });
 
