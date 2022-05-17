@@ -1,6 +1,7 @@
 package com.example.sharpshooter.template;
 
 public class UserTemplate {
+    private String name;
     private int broken;
     private int totalGames;
     private int hits;
@@ -11,8 +12,9 @@ public class UserTemplate {
     private int shots;
 
     // Constructor
-    public UserTemplate(int broken, int totalGames, int hits, int kills, double kd, int misses, int points, int shots) {
-        this.broken = broken ;
+    public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double kd, int misses, int points, int shots) {
+        this.name = name;
+        this.broken = broken;
         this.totalGames = totalGames;
         this.hits = hits;
         this.kills = kills;
@@ -21,6 +23,8 @@ public class UserTemplate {
         this.points = points;
         this.shots = shots;
     }
+
+    public String getName() { return name; }
 
     public int getBroken() {
         return broken;

@@ -6,10 +6,6 @@ public class GameTemplate {
     private String gameName;
     private String[] playerNames;
 
-
-
-
-
     public GameTemplate(boolean active, String gameName, String[] playerNames){
         this.active = active;
         this.gameName = gameName;

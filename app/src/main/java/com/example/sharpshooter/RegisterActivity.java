@@ -98,32 +98,12 @@ public class RegisterActivity extends AppCompatActivity
                     // Get User
                     FirebaseUser user = mAuth.getCurrentUser();
 
-
-                    UserTemplate userTemplate = new UserTemplate(0,0,0,0,0,0,0,0);
-
-                    db.collection("users").document(Objects.requireNonNull(mAuth.getUid()))
-                            .set(userTemplate).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    System.out.println("Success");
-                                }
-                            });
-
-                    /*
-                    db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").document().set(userTemplate).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            System.out.println("65a4sd35a4s3d465as465d45");
-                        }
-                    });
-                    */
-
+                    // Create new userdata in db
+                    UserTemplate userTemplate = new UserTemplate(name,0,0,0,0,0,0,0,0);
+                    FirebaseUtil.getInstance().createNewUserData(userTemplate);
 
                     // Start main activity
                     Intent main_intent = new Intent(RegisterActivity.this, MainActivity.class);
-
-                    // TODO -> Initialise Firebase Structure
-
                     startActivity(main_intent);
 
                     // Close all previous intents
