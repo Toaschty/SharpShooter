@@ -18,9 +18,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.R;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,6 +39,7 @@ public class AccountFragment extends Fragment {
     private TextView playerName;
     private ImageView playerImage;
     private Button btn_logout;
+    private Button btn_statistics;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AccountViewModel accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
@@ -44,37 +47,35 @@ public class AccountFragment extends Fragment {
         binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Get references
         playerName = binding.accountName;
         playerImage = binding.accountPicture;
         btn_logout = binding.btnLogout;
+        btn_statistics = binding.btnStatistics;
 
         // Load user name
-        FirebaseUtil.getInstance().database.collection("users")
-                .document(Objects.requireNonNull(FirebaseUtil.getInstance().authentication.getUid())).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                playerName.setText(documentSnapshot.get("name").toString());
-            }
-        });
+        playerName.setText(FirebaseUtil.getInstance().userInstance.getName());
 
-        // Load user image
-        StorageReference photoReference = FirebaseUtil.getInstance().storage.child("users/" + FirebaseUtil.getInstance().authentication.getUid());
-        photoReference.getBytes(8000000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Save loaded bytes in Bitmap
-                Bitmap bmp_image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                playerImage.setImageBitmap(bmp_image);
-            }
-        });
+        // Load account image
+        playerImage.setImageBitmap(FirebaseUtil.getInstance().userProfilePicture);
 
-        // Image Picker
+        // Image Picker Button
         playerImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Start Image Picker Intent
-                Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                startActivityForResult(gallery, 6969);
+                Intent gallery = new Intent();
+                gallery.setType("image/*");
+                gallery.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
+            }
+        });
+
+        // Statistics Button
+        btn_statistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO REPLACE
             }
         });
 
@@ -103,7 +104,6 @@ public class AccountFragment extends Fragment {
 
         // If Image Picker was "successful"
         if (resultCode == RESULT_OK && requestCode == 6969) {
-
             // Set selected image
             Uri img = data.getData();
             playerImage.setImageURI(img);

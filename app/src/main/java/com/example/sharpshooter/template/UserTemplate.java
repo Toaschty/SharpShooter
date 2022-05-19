@@ -24,37 +24,57 @@ public class UserTemplate {
         this.shots = shots;
     }
 
+    public UserTemplate() { }
+
     public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public int getBroken() {
         return broken;
     }
 
+    public void setBroken(int broken) { this.broken = broken; }
+
     public int getTotalGames() {
         return totalGames;
     }
+
+    public void setTotalGames(int totalGames) { this.totalGames = totalGames; }
 
     public int getHits() {
         return hits;
     }
 
+    public void setHits(int hits) { this.hits = hits; }
+
     public int getKills() {
         return kills;
     }
+
+    public void setKills(int kills) { this.kills = kills; }
 
     public double getKd() {
         return kd;
     }
 
+    public void setKd(double kd) { this.kd = kd; }
+
     public int getMisses() {
         return misses;
     }
+
+    public void setMisses(int misses) { this.misses = misses; }
 
     public int getPoints() {
         return points;
     }
 
+    public void setPoints(int points) { this.points = points; }
+
     public int getShots() {
         return shots;
     }
+
+    public void setShots(int shots) { this.shots = shots; }
 }
