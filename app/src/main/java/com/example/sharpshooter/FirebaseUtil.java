@@ -5,17 +5,21 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.sharpshooter.template.UserTemplate;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class FirebaseUtil
@@ -29,12 +33,14 @@ public class FirebaseUtil
 
     // Account
     public UserTemplate userInstance;
+    // TODO CURRENT GAME
     public Bitmap userProfilePicture;
 
     public static FirebaseUtil getInstance()
     {
         if (instance == null)
         {
+            // Initialize class
             instance = new FirebaseUtil();
             instance.database = FirebaseFirestore.getInstance();
             instance.authentication = FirebaseAuth.getInstance();
@@ -42,6 +48,14 @@ public class FirebaseUtil
 
             // Read existing user from database
             instance.readUserFromDatabase();
+
+            // Add SnapshotListener which waits for database updates
+            instance.database.collection("users").document(instance.authentication.getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    instance.updateUserInstance(value);
+                }
+            });
         }
 
         return instance;
@@ -85,26 +99,42 @@ public class FirebaseUtil
         UploadTask uploadTask = imgStorage.putFile(img);
     }
 
-    // // Update functions
-    public void updateData(String field, int data)
+    // Update user instance
+    private void updateUserInstance(DocumentSnapshot update)
     {
-        switch (field) {
-            case "broken":      userInstance.setBroken(data);
-            case "totalGames":  userInstance.setTotalGames(data);
-            case "hits":        userInstance.setHits(data);
-            case "kills":       userInstance.setKills(data);
-            case "misses":      userInstance.setMisses(data);
-            case "points":      userInstance.setPoints(data);
-            case "shots":       userInstance.setShots(data);
-        }
+        // Get updated Object from snapshot
+        UserTemplate updateObject = update.toObject(UserTemplate.class);
 
-        database.collection("users").document(authentication.getUid()).update(field, data);
+        try
+        {
+            // Go trough all members of class
+            for (Field field : updateObject.getClass().getDeclaredFields())
+            {
+                // Make private fields public
+                field.setAccessible(true);
+
+                // Get values of current field from booth objects
+                Object value1 = field.get(updateObject);
+                Object value2 = field.get(userInstance);
+
+                // Check if values differ
+                if (!Objects.equals(value1, value2))
+                {
+                    // Set new value in userInstance
+                    field.set(userInstance, value1);
+                }
+
+                // Make public fields private again
+                field.setAccessible(false);
+            }
+        }
+        catch (Exception ignored) {}
     }
 
-    public void updateData(String field, double data)
+    // // Update functions
+    public void updateData(String field, Object data)
     {
-        userInstance.setKd(data);
-
+        // Update field with data in database
         database.collection("users").document(authentication.getUid()).update(field, data);
     }
 }

@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 
+import java.sql.SQLOutput;
 import java.util.Objects;
 
 public class AccountFragment extends Fragment {
@@ -58,6 +59,9 @@ public class AccountFragment extends Fragment {
 
         // Load account image
         playerImage.setImageBitmap(FirebaseUtil.getInstance().userProfilePicture);
+
+        System.out.println("VIEW HERE");
+        System.out.println(FirebaseUtil.getInstance().userInstance.getName());
 
         // Image Picker Button
         playerImage.setOnClickListener(new View.OnClickListener() {
