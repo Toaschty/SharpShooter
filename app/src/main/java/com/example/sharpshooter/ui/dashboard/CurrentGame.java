@@ -16,23 +16,12 @@ import android.widget.TextView;
 
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.errorprone.annotations.Var;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Document;
+import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class CurrentGame extends Fragment {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private String title;
     private FragmentCurrentGameStatsBinding binding;
@@ -57,33 +46,15 @@ public class CurrentGame extends Fragment {
 
         card_PlayerstatRV = root.findViewById(R.id.currentGameRecyclerView);
         currentGameCardModelArrayList = new ArrayList<>();
-        db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        System.out.println(document.getId() + " => " + document.getData().get("playerNames"));
-                        ArrayList<String> playerNames = (ArrayList<String>) document.getData().get("playerNames");
-                        playerNames.forEach((n) -> currentGameCardModelArrayList.add(new CurrentGameCardModel(n, 0)));
-                        CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
+        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player1", 10));
+        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player2", 10));
+        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player3", 10));
 
-                        card_PlayerstatRV.setLayoutManager(linearLayoutManager);
-                        card_PlayerstatRV.setAdapter(currentGameCardAdapter);
+        CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
 
-                    }
-
-
-                } else {
-                    System.out.println(task.getException());
-
-                }
-            }
-        });
-
-
-
-
+        card_PlayerstatRV.setLayoutManager(linearLayoutManager);
+        card_PlayerstatRV.setAdapter(currentGameCardAdapter);
 
 
 
