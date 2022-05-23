@@ -31,7 +31,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
     @Override
     public LastGameAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // to inflate the layout for each item of recycler view.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_last_game, parent, false);
         return new Viewholder(view);
     }
 
@@ -79,7 +79,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
                 @Override
                 public void onClick(View view) {
                     Dialog dialog = new Dialog(view.getContext());
-                    dialog.setContentView(R.layout.layout_newgame_dialog);
+                    dialog.setContentView(R.layout.dialog_newgame);
                     dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
                     Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
                     startBtn.setOnClickListener(viewDialog -> {

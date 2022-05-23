@@ -1,27 +1,54 @@
 <resources>
+    <!-- Bottom Navigation -->
     <string name="app_name">SharpShooter</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Current Game</string>
     <string name="title_account">Account</string>
 
+    <!-- Home Fragment -->
     <string name="app_logo_description">SharpShooter App Logo</string>
     <string name="home_newGame">New Game</string>
     <string name="home_lastGames">Last Games</string>
 
+    <!-- New Game -->
     <string name="newGame_newParkour">New Parkour</string>
     <string name="newGame_loadParkour">Load Parkour</string>
 
+    <!-- New Parkour Dialog -->
     <string name="newParkour_name">Name</string>
     <string name="newParkour_name_hint">Name</string>
     <string name="newParkour_playerCount">Players</string>
     <string name="newParkour_playerCountCustom">+</string>
     <string name="newParkour_targetCount">Targets</string>
+    <string name="newParkour_continue">Continue</string>
     <string name="newParkour_start">Start</string>
 
-    <string name="continue_text">Continue</string>
-
+    <!-- Current Game -->
     <string name="current_game_leaderboard">Leaderboard</string>
+    <string name="current_game_player_stats">Statistics</string>
+    <string name="current_game_end_parkour">End parkour</string>
 
+    <!-- Played Game -->
+    <string name="played_game_close">Close</string>
+
+    <!-- Player Statistics -->
+    <string name="player_stat_games">Games</string>
+    <string name="player_stat_points">Points</string>
+    <string name="player_stat_shots">Shots</string>
+    <string name="player_stat_kills">Kills</string>
+    <string name="player_stat_hits">Hits</string>
+    <string name="player_stat_misses">Misses</string>
+    <string name="player_stat_killsPerShot">Kills per Shot</string>
+    <string name="player_stat_broken">Broken</string>
+    <string name="player_stat_done">Close</string>
+
+    <!-- Account -->
+    <string name="account_statistics">Statistics</string>
+    <string name="account_last_games">Played Games</string>
+    <string name="account_saved_parkours">Saved Parkours</string>
+    <string name="account_logout">Log Out</string>
+
+    <!-- Welcome / Login / Register -->
     <string name="welcome_login">Login</string>
     <string name="welcome_register">Register</string>
     <string name="login_email_text">Email</string>

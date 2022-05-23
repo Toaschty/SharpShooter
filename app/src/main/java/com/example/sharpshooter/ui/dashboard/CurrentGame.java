@@ -15,9 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.databinding.FragmentCurrentGameBinding;
-import com.example.sharpshooter.databinding.FragmentDashboardBinding;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
+import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 public class CurrentGame extends Fragment {
 
     private String title;
-    private FragmentCurrentGameBinding binding;
+    private FragmentCurrentGameStatsBinding binding;
 
     private RecyclerView card_PlayerstatRV;
     private ArrayList<CurrentGameCardModel> currentGameCardModelArrayList;
@@ -42,14 +41,12 @@ public class CurrentGame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentCurrentGameBinding.inflate(inflater, container, false);
+        binding = FragmentCurrentGameStatsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         card_PlayerstatRV = root.findViewById(R.id.currentGameRecyclerView);
         currentGameCardModelArrayList = new ArrayList<>();
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player1", 10));
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player2", 10));
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player3", 10));
+        currentGameCardModelArrayList.add(new CurrentGameCardModel("TestPlayer1", 10));
 
         CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -57,7 +54,6 @@ public class CurrentGame extends Fragment {
         card_PlayerstatRV.setLayoutManager(linearLayoutManager);
         card_PlayerstatRV.setAdapter(currentGameCardAdapter);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
 
