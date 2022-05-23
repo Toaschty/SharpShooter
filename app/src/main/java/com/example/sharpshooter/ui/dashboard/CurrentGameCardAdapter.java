@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
@@ -44,6 +45,7 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private int targetId = 0;
+    private CurrentGameCardModel model;
 
 
 
@@ -64,8 +66,25 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
 
     @Override
     public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, int position) {
-            CurrentGameCardModel model = currentGameCardModelArrayList.get(position);
-            holder.playername.setText(model.getPlayer_name());
+        model = currentGameCardModelArrayList.get(position);
+        holder.playername.setText(model.getPlayer_name());
+        FirebaseUtil.getInstance().updateActiveGame();
+        FirebaseUtil.getInstance().readCurrentGameFromDatabase();
+        FirebaseUtil.getInstance().gameInstance.getTargetScore();
+
+        holder.score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
+        System.out.println(FirebaseUtil.getInstance().gameInstance.getPlayerTargetScoreWithId(model.getPlayer_name(), targetId));
+        switch (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScoreWithId(model.getPlayer_name(), targetId))
+        {
+            case 20: holder.rg.check(R.id.currentGamePlayerPoint20); break;
+            case 16: holder.rg.check(R.id.currentGamePlayerPoint16); break;
+            case 14: holder.rg.check(R.id.currentGamePlayerPoint14); break;
+            case 10: holder.rg.check(R.id.currentGamePlayerPoint10); break;
+            case 8: holder.rg.check(R.id.currentGamePlayerPoint8); break;
+            case 4: holder.rg.check(R.id.currentGamePlayerPoint4); break;
+            case 0: holder.zeroButton.setChecked(true); break;
+        }
+/*
         final Query docRef = db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true);
         docRef.addSnapshotListener((value, e) -> {
             if (e != null) {
@@ -99,6 +118,8 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             }
 
         });
+
+ */
     }
 
     @Override
@@ -125,12 +146,16 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             rg.setOnCheckedChangeListener((radioGroup, i) -> {
                 RadioButton radioButton = itemView.findViewById(i);
                 if(radioButton != null){
-                    System.out.println(db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
-                        DocumentSnapshot t = task.getResult().getDocuments().get(0);
 
-                        db.collection("users").document(Objects.requireNonNull(mAuth.getUid()))
-                                .collection("games").document(t.getId()).update("totalScore", FieldValue.increment(Integer.parseInt(radioButton.getText().toString())));
-                    }));
+                    FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(model.getPlayer_name(), targetId,  Integer.parseInt(radioButton.getText().toString()));
+                    int totalScore = 0;
+                    for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(model.getPlayer_name()).size(); j++) {
+                        totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(model.getPlayer_name()).get(j);
+                    }
+                    FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(model.getPlayer_name(), totalScore);
+                    FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
+
+                    score.setText(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name()));
 
 
                     final CheckBox checkBox = (CheckBox) itemView.findViewById(R.id.currentGamePlayerPoint0);
@@ -144,8 +169,17 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             zeroButton.setOnClickListener(view -> {
                 RadioGroup radioGroup = itemView.findViewById(R.id.currentGamePlayerPoints);
                 radioGroup.clearCheck();
-                zeroButton.setChecked(true);
+                FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(model.getPlayer_name(), targetId,  0);
+                int totalScore = 0;
+                for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(model.getPlayer_name()).size(); j++) {
+                    totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(model.getPlayer_name()).get(j);
+                }
+                FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(model.getPlayer_name(), totalScore);
+                FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
+                score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
 
+
+                zeroButton.setChecked(true);
             });
 
 

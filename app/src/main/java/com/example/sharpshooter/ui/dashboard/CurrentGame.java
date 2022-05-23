@@ -46,9 +46,7 @@ public class CurrentGame extends Fragment {
 
         card_PlayerstatRV = root.findViewById(R.id.currentGameRecyclerView);
         currentGameCardModelArrayList = new ArrayList<>();
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player1", 10));
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player2", 10));
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("Player3", 10));
+        currentGameCardModelArrayList.add(new CurrentGameCardModel("TestPlayer1", 10));
 
         CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);

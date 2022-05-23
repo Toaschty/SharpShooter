@@ -31,6 +31,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.StorageReference;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 
 public class AccountFragment extends Fragment {
@@ -60,6 +63,7 @@ public class AccountFragment extends Fragment {
         // Load account image
         playerImage.setImageBitmap(FirebaseUtil.getInstance().userProfilePicture);
 
+
         System.out.println("VIEW HERE");
         System.out.println(FirebaseUtil.getInstance().userInstance.getName());
 
@@ -88,8 +92,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Sign out current user
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
+                FirebaseUtil.getInstance().authentication.signOut();
 
                 // "Restart" application by loading welcome page
                 Intent welcome_intent = new Intent(getActivity(), WelcomeActivity.class);
