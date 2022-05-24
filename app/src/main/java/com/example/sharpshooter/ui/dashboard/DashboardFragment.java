@@ -34,7 +34,6 @@ public class DashboardFragment extends Fragment {
     private FragmentCurrentGameSliderBinding binding;
     public static ViewPager2 currentGameViewPager;
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
-    private PageListener pageListener;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,15 +45,12 @@ public class DashboardFragment extends Fragment {
         currentGameModelArrayList = new ArrayList<>();
 
         currentGameViewPager = root.findViewById(R.id.currentGameViewPager);
-        pageListener = new PageListener();
-        currentGameViewPager.registerOnPageChangeCallback(pageListener);
 
         for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getTargetCount(); i++) {
             currentGameModelArrayList.add(new CurrentGameModel("Target" + i, i));
         }
         CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
         currentGameViewPager.setAdapter(currentGameAdapter);
-
 
         return root;
     }
@@ -64,16 +60,4 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
-    private static class PageListener extends ViewPager2.OnPageChangeCallback {
-
-        public void onPageSelected(int position) {
-            Log.i("ViewPager", "page selected " + position);
-            FirebaseUtil.getInstance().setTargetId(position);
-        }
-    }
-
-
-
 }
