@@ -26,6 +26,8 @@ import java.util.Objects;
 public class FirebaseUtil
 {
     private static FirebaseUtil instance = null;
+    private int targetId;
+
 
     // Firebase
     public FirebaseFirestore database;
@@ -206,15 +208,11 @@ public class FirebaseUtil
     }
 
 
+    public void setTargetId(int targetId) {
+        this.targetId = targetId;
+    }
 
-
-
-
-
-
-
-
-
-
-
+    public int getTargetId() {
+        return targetId;
+    }
 }
