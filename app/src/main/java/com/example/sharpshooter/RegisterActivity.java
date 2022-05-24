@@ -25,7 +25,6 @@ import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity
 {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth;
     private EditText name_input;
     private EditText email_input;

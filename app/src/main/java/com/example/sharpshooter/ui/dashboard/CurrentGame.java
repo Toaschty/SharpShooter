@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class CurrentGame extends Fragment {
 
     private String title;
+    private int targetId;
     private FragmentCurrentGameStatsBinding binding;
 
     private RecyclerView card_PlayerstatRV;
@@ -32,13 +34,14 @@ public class CurrentGame extends Fragment {
     public CurrentGame() {
     }
 
-    public CurrentGame(String title) {
+    public CurrentGame(String title, int targetId) {
         this.title = title;
+        this.targetId = targetId;
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentCurrentGameStatsBinding.inflate(inflater, container, false);
@@ -46,7 +49,9 @@ public class CurrentGame extends Fragment {
 
         card_PlayerstatRV = root.findViewById(R.id.currentGameRecyclerView);
         currentGameCardModelArrayList = new ArrayList<>();
-        currentGameCardModelArrayList.add(new CurrentGameCardModel("TestPlayer1", 10));
+        for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getPlayerNames().size(); i++) {
+            currentGameCardModelArrayList.add(new CurrentGameCardModel(FirebaseUtil.getInstance().gameInstance.getPlayerNames().get(i), 0, targetId));
+        }
 
         CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
