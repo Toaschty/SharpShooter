@@ -26,8 +26,6 @@ import java.util.Objects;
 public class FirebaseUtil
 {
     private static FirebaseUtil instance = null;
-    private int targetId;
-
 
     // Firebase
     public FirebaseFirestore database;
@@ -54,12 +52,13 @@ public class FirebaseUtil
             instance.authentication = FirebaseAuth.getInstance();
             instance.storage = FirebaseStorage.getInstance().getReference();
 
-
             // Read existing user from database
             instance.readUserFromDatabase();
 
-
             instance.database.collection("users").document(instance.authentication.getUid()).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
+                if (task.getResult().getDocuments().isEmpty())
+                    return;
+
                 instance.activeGame = task.getResult().getDocuments().get(0).getId().toString();
                 //Read existing active game from database
                 instance.readCurrentGameFromDatabase();
@@ -76,8 +75,6 @@ public class FirebaseUtil
                 instance.updateUserInstance(value);
                     }
             );
-
-
         }
 
         return instance;
@@ -207,12 +204,8 @@ public class FirebaseUtil
         catch (Exception ignored) {}
     }
 
-
-    public void setTargetId(int targetId) {
-        this.targetId = targetId;
-    }
-
-    public int getTargetId() {
-        return targetId;
+    public void destroyInstance()
+    {
+        instance = null;
     }
 }

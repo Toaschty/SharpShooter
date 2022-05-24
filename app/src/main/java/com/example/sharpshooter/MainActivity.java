@@ -2,16 +2,20 @@ package com.example.sharpshooter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.sharpshooter.ui.dashboard.DashboardFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -19,12 +23,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.databinding.ActivityMainBinding;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private BottomNavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,30 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUtil.getInstance();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        // NavigationUI.setupWithNavController(binding.navView, navController);
+
+        navView = binding.navView;
+        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                navController.popBackStack(item.getItemId(), false);
+
+                switch (item.getItemId())
+                {
+                    case R.id.navigation_home:
+                        navController.navigate(R.id.navigation_home);
+                        return true;
+                    case R.id.navigation_dashboard:
+                        navController.navigate(R.id.navigation_dashboard);
+                        return true;
+                    case R.id.navigation_account:
+                        navController.navigate(R.id.navigation_account);
+                        return true;
+                }
+
+                return false;
+            }
+        });
 
         setBottomNavVisibility(false, this);
     }

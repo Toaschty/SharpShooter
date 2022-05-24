@@ -21,5 +21,13 @@
         android:id="@+id/navigation_account"
         android:name="com.example.sharpshooter.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigation_account_to_accountFragmentStatistics"
+            app:destination="@id/accountFragmentStatistics" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragmentStatistics"
+        android:name="com.example.sharpshooter.ui.account.AccountFragmentStatistics"
+        android:label="AccountFragmentStatistics" />
 </navigation>

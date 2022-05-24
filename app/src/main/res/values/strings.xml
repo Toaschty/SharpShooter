@@ -38,7 +38,7 @@
     <string name="player_stat_kills">Kills</string>
     <string name="player_stat_hits">Hits</string>
     <string name="player_stat_misses">Misses</string>
-    <string name="player_stat_killsPerShot">Kills per Shot</string>
+    <string name="player_stat_killRate">Kill Ratio</string>
     <string name="player_stat_broken">Broken</string>
     <string name="player_stat_done">Close</string>
 

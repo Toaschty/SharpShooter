@@ -4,11 +4,8 @@ import static android.app.Activity.RESULT_OK;
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,23 +15,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.storage.StorageReference;
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
 
 public class AccountFragment extends Fragment {
 
@@ -63,10 +51,6 @@ public class AccountFragment extends Fragment {
         // Load account image
         playerImage.setImageBitmap(FirebaseUtil.getInstance().userProfilePicture);
 
-
-        System.out.println("VIEW HERE");
-        System.out.println(FirebaseUtil.getInstance().userInstance.getName());
-
         // Image Picker Button
         playerImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,11 +64,8 @@ public class AccountFragment extends Fragment {
         });
 
         // Statistics Button
-        btn_statistics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO REPLACE
-            }
+        btn_statistics.setOnClickListener(view -> {
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics);
         });
 
         // Logout Button
@@ -93,6 +74,9 @@ public class AccountFragment extends Fragment {
             public void onClick(View view) {
                 // Sign out current user
                 FirebaseUtil.getInstance().authentication.signOut();
+
+                // Destroy instance
+                FirebaseUtil.getInstance().destroyInstance();
 
                 // "Restart" application by loading welcome page
                 Intent welcome_intent = new Intent(getActivity(), WelcomeActivity.class);
