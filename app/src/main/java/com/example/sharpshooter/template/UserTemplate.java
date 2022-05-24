@@ -6,19 +6,19 @@ public class UserTemplate {
     private int totalGames;
     private int hits;
     private int kills;
-    private double kd;
+    private double killRate;
     private int misses;
-    private int points;
+    private long points;
     private int shots;
 
     // Constructor
-    public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double kd, int misses, int points, int shots) {
+    public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double killRate, int misses, long points, int shots) {
         this.name = name;
         this.broken = broken;
         this.totalGames = totalGames;
         this.hits = hits;
         this.kills = kills;
-        this.kd = kd;
+        this.killRate = killRate;
         this.misses = misses;
         this.points = points;
         this.shots = shots;
@@ -34,47 +34,31 @@ public class UserTemplate {
         return broken;
     }
 
-    public void setBroken(int broken) { this.broken = broken; }
-
     public int getTotalGames() {
         return totalGames;
     }
-
-    public void setTotalGames(int totalGames) { this.totalGames = totalGames; }
 
     public int getHits() {
         return hits;
     }
 
-    public void setHits(int hits) { this.hits = hits; }
-
     public int getKills() {
         return kills;
     }
 
-    public void setKills(int kills) { this.kills = kills; }
-
-    public double getKd() {
-        return kd;
+    public double getKillRate() {
+        return killRate;
     }
-
-    public void setKd(double kd) { this.kd = kd; }
 
     public int getMisses() {
         return misses;
     }
 
-    public void setMisses(int misses) { this.misses = misses; }
-
-    public int getPoints() {
+    public long getPoints() {
         return points;
     }
-
-    public void setPoints(int points) { this.points = points; }
 
     public int getShots() {
         return shots;
     }
-
-    public void setShots(int shots) { this.shots = shots; }
 }

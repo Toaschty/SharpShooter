@@ -13,12 +13,10 @@ public class CurrentGameAdapter extends FragmentStateAdapter {
 
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
 
-
     public CurrentGameAdapter(@NonNull Fragment fragment, ArrayList<CurrentGameModel> currentGameModelArrayList) {
         super(fragment);
         this.currentGameModelArrayList = currentGameModelArrayList;
     }
-
 
     @NonNull
     @Override
