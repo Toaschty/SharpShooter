@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentCurrentGameSliderBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,8 +32,9 @@ public class DashboardFragment extends Fragment {
 
 
     private FragmentCurrentGameSliderBinding binding;
-    private ViewPager2 currentGameViewPager;
+    public static ViewPager2 currentGameViewPager;
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
+    private PageListener pageListener;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,24 +46,14 @@ public class DashboardFragment extends Fragment {
         currentGameModelArrayList = new ArrayList<>();
 
         currentGameViewPager = root.findViewById(R.id.currentGameViewPager);
-        final Object[] targetCountTemp = new Object[1];
-        db.collection("users").document(Objects.requireNonNull(mAuth.getUid())).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    System.out.println(document.getId() + " => " + document.getData().get("targetCount"));
-                    targetCountTemp[0] = document.getData().get("targetCount");
-                }
-                long targetCount = (Long) targetCountTemp[0];
-                for (int i = 0; i < targetCount; i++) {
-                    currentGameModelArrayList.add(new CurrentGameModel("Target" + i));
-                }
-                CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
-                currentGameViewPager.setAdapter(currentGameAdapter);
-            } else {
-                System.out.println(task.getException());
+        pageListener = new PageListener();
+        currentGameViewPager.registerOnPageChangeCallback(pageListener);
 
-            }
-        });
+        for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getTargetCount(); i++) {
+            currentGameModelArrayList.add(new CurrentGameModel("Target" + i, i));
+        }
+        CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
+        currentGameViewPager.setAdapter(currentGameAdapter);
 
 
         return root;
@@ -71,4 +64,16 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
+    private static class PageListener extends ViewPager2.OnPageChangeCallback {
+
+        public void onPageSelected(int position) {
+            Log.i("ViewPager", "page selected " + position);
+            FirebaseUtil.getInstance().setTargetId(position);
+        }
+    }
+
+
+
 }

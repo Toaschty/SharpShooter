@@ -21,7 +21,7 @@ public class CurrentGameAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return new CurrentGame(currentGameModelArrayList.get(position).getCurrentGame_name());
+        return new CurrentGame(currentGameModelArrayList.get(position).getCurrentGame_name(), position);
     }
 
     @Override

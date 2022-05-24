@@ -53,7 +53,10 @@ public class GameTemplate {
         return Math.toIntExact(score.get(targetId));
     }
 
-
+    public int getTargetCount()
+    {
+        return Math.toIntExact(targetCount);
+    }
 
 
     public void setPlayerTargetScore(String playerName, int targetId, int score)
@@ -69,9 +72,6 @@ public class GameTemplate {
         player.put("totalScore", score);
     }
 
-    public Map<String,Long> getTargetScore(){return null;}
-
-    public long getTotalScore(){return player.size();}
 
     public List<String> getPlayerNames() {
         return playerNames;
