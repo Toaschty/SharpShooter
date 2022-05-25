@@ -1,6 +1,5 @@
 package com.example.sharpshooter.ui.home;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.ui.NewGameDialog;
+import com.example.sharpshooter.ui.NewParkourDialog;
+import com.example.sharpshooter.ui.PlayerInputDialog;
 import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 import com.example.sharpshooter.R;
@@ -77,6 +79,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void showDialog(){
+        PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames);
+        NewParkourDialog newParkourDialog = new NewParkourDialog(R.layout.dialog_newparkour, playerInputDialog);
+        NewGameDialog newGameDialog = new NewGameDialog(R.layout.dialog_newgame, newParkourDialog);
+
+        newGameDialog.show(getParentFragmentManager(), "newGameDialog");
+
+        /*
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.dialog_newgame);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
@@ -93,13 +102,13 @@ public class HomeFragment extends Fragment {
                 newParkourPlayerNames.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
                 newParkourPlayerNames.show();
-/*
+
                 playerNameDialogRV = view2.findViewById(R.id.recyclerViewPlayerNames);
                 PlayerNameDialogAdapter playerNameDialogAdapter = new PlayerNameDialogAdapter(view2.getContext());
                 System.out.println(playerNameDialogAdapter.getItemCount());
                 playerNameDialogRV.setAdapter(playerNameDialogAdapter);
 
-*/
+
 
                 newParkourDialog.dismiss();
             });
@@ -111,6 +120,7 @@ public class HomeFragment extends Fragment {
         });
 
         dialog.show();
+        */
     }
 
     @Override
