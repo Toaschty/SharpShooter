@@ -8,6 +8,7 @@
     <!-- Home Fragment -->
     <string name="app_logo_description">SharpShooter App Logo</string>
     <string name="home_newGame">New Game</string>
+    <string name="home_activeGame">Active Game</string>
     <string name="home_lastGames">Last Games</string>
 
     <!-- New Game -->
