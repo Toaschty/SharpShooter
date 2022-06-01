@@ -23,6 +23,8 @@
     <string name="newParkour_targetCount">Targets</string>
     <string name="newParkour_continue">Continue</string>
     <string name="newParkour_start">Start</string>
+    <string name="newPlayer_name">Name</string>
+    <string name="newPlayer_name_hint">Name</string>
 
     <!-- Current Game -->
     <string name="current_game_leaderboard">Leaderboard</string>

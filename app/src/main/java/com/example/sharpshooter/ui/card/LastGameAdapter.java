@@ -75,21 +75,9 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             cv = (CardView) itemView.findViewById(R.id.lastGameCV);
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
 
-            cv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Dialog dialog = new Dialog(view.getContext());
-                    dialog.setContentView(R.layout.dialog_newgame);
-                    dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
-                    Button startBtn = dialog.findViewById(R.id.newGame_newParkour);
-                    startBtn.setOnClickListener(viewDialog -> {
-                        MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
-                        MainActivity.replaceFragment( (MainActivity) view.getContext());
-                        dialog.dismiss();
-                    });
-
-                    dialog.show();
-                }
+            cv.setOnClickListener((view) -> {
+                MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
+                MainActivity.replaceFragment( (MainActivity) view.getContext());
             });
 
         }
