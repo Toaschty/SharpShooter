@@ -8,6 +8,7 @@
     <!-- Home Fragment -->
     <string name="app_logo_description">SharpShooter App Logo</string>
     <string name="home_newGame">New Game</string>
+    <string name="home_activeGame">Active Game</string>
     <string name="home_lastGames">Last Games</string>
 
     <!-- New Game -->
@@ -15,13 +16,15 @@
     <string name="newGame_loadParkour">Load Parkour</string>
 
     <!-- New Parkour Dialog -->
-    <string name="newParkour_name">Name</string>
-    <string name="newParkour_name_hint">Name</string>
+    <string name="newParkour_name">Game Name</string>
+    <string name="newParkour_name_hint">Game Name</string>
     <string name="newParkour_playerCount">Players</string>
     <string name="newParkour_playerCountCustom">+</string>
     <string name="newParkour_targetCount">Targets</string>
     <string name="newParkour_continue">Continue</string>
     <string name="newParkour_start">Start</string>
+    <string name="newPlayer_name">Name</string>
+    <string name="newPlayer_name_hint">Name</string>
 
     <!-- Current Game -->
     <string name="current_game_leaderboard">Leaderboard</string>

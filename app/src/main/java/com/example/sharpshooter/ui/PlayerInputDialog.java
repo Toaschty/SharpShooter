@@ -6,16 +6,25 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.ui.card.LastGameModel;
+import com.example.sharpshooter.ui.card.PlayerNameDialogAdapter;
+import com.example.sharpshooter.ui.card.PlayerNameDialogModel;
+
+import java.util.ArrayList;
 
 public class PlayerInputDialog extends DialogFragment
 {
     int contentView;
 
-    private RecyclerView playerView;
     private Button startButton;
+    private RecyclerView playerNameDialogRV;
+    private PlayerNameDialogAdapter playerNameDialogAdapter;
+    private ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList;
+
 
     private String parkourName;
     private int playerCount;
@@ -35,7 +44,25 @@ public class PlayerInputDialog extends DialogFragment
         dialog.setContentView(contentView);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
 
-        playerView = dialog.findViewById(R.id.recyclerViewPlayerNames);
+        playerNameDialogRV = dialog.findViewById(R.id.recyclerViewPlayerNames);
+        playerNameDialogModelArrayList = new ArrayList<>();
+        for (int i = 0; i < playerCount; i++) {
+            if (i == 0)
+            {
+                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(true));
+            }else
+            {
+                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(false));
+            }
+        }
+
+        playerNameDialogAdapter = new PlayerNameDialogAdapter(dialog.getContext(), playerNameDialogModelArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(dialog.getContext(), LinearLayoutManager.VERTICAL, false);
+
+        playerNameDialogRV.setLayoutManager(linearLayoutManager);
+        playerNameDialogRV.setAdapter(playerNameDialogAdapter);
+
+
         // Add click listener
         startButton = dialog.findViewById(R.id.newParkour_start);
         startButton.setOnClickListener(view -> {
