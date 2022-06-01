@@ -15,8 +15,8 @@
     <string name="newGame_loadParkour">Load Parkour</string>
 
     <!-- New Parkour Dialog -->
-    <string name="newParkour_name">Name</string>
-    <string name="newParkour_name_hint">Name</string>
+    <string name="newParkour_name">Game Name</string>
+    <string name="newParkour_name_hint">Game Name</string>
     <string name="newParkour_playerCount">Players</string>
     <string name="newParkour_playerCountCustom">+</string>
     <string name="newParkour_targetCount">Targets</string>
