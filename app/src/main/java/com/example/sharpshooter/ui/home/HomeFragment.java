@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharpshooter.FirebaseUtil;
+
 import com.example.sharpshooter.ui.NewGameDialog;
 import com.example.sharpshooter.ui.NewParkourDialog;
 import com.example.sharpshooter.ui.PlayerInputDialog;
