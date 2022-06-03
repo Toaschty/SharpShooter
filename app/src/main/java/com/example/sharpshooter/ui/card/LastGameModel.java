@@ -7,14 +7,16 @@ public class LastGameModel {
     private int lastGame_playerCount;
     private int lastGame_targetCount;
     private int lastGame_image;
+    private String gameId;
 
     // Constructor
-    public LastGameModel(String name, String date, int playerCount, int targetCount, int lastGame_image) {
+    public LastGameModel(String name, String date, int playerCount, int targetCount, int lastGame_image, String gameId) {
         this.lastGame_name = name;
         this.lastGame_date = date;
         this.lastGame_playerCount = playerCount;
         this.lastGame_targetCount = targetCount;
         this.lastGame_image = lastGame_image;
+        this.gameId = gameId;
     }
 
     // Getter and Setter
@@ -39,5 +41,13 @@ public class LastGameModel {
 
     public void setLastGame_image(int lastGame_image) {
         this.lastGame_image = lastGame_image;
+    }
+
+    public String getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
     }
 }

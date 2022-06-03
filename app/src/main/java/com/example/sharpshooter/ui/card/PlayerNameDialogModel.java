@@ -16,4 +16,12 @@ public class PlayerNameDialogModel {
     public void setAccount(boolean account) {
         this.account = account;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

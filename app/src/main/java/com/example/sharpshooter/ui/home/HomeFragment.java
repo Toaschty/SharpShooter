@@ -60,9 +60,9 @@ public class HomeFragment extends Fragment {
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
                     if (value.getDocuments().get(i).get("active").toString() == "true")
-                        activeGameModelArrayList.add(0,new LastGameModel("ActiveGame", "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp));
+                        activeGameModelArrayList.add(0,new LastGameModel("ActiveGame", "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
                     else
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp));
+                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
                 }
             }
 
