@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.Loading;
 import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 
@@ -81,11 +82,11 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
 
             cv.setOnClickListener((view) -> {
                 FirebaseUtil.getInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
-                FirebaseUtil.getInstance().initGameInstanceWithId();
-                MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
-                MainActivity.replaceFragment( (MainActivity) view.getContext());
+                FirebaseUtil.getInstance().initGameInstanceWithId(() -> {
+                    MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
+                    MainActivity.replaceFragment( (MainActivity) view.getContext());
+                });
             });
-
         }
     }
 }

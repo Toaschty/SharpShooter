@@ -88,7 +88,6 @@ public class FirebaseUtil
 
     public void initGameInstanceWithId()
     {
-        instance.database.collection("users").document(instance.authentication.getUid()).collection("games").document(instance.activeGame).addSnapshotListener((value, error) -> {
             //Read existing active game from database
             instance.readCurrentGameFromDatabase();
             // Add SnapshotListener which waits for gameDocument database updates
@@ -96,14 +95,20 @@ public class FirebaseUtil
                     .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> {
                                 instance.updateActiveGameInstance(value2);
                             }
-                    );
-        });
+            );
+    }
 
-        // Add SnapshotListener which waits for database updates
-        instance.database.collection("users").document(instance.authentication.getUid()).addSnapshotListener((value, error) -> {
-                    instance.updateUserInstance(value);
-                }
-        );
+
+    public void initGameInstanceWithId(Loading loading)
+    {
+        //Read existing active game from database
+        instance.readCurrentGameFromDatabase(loading);
+        // Add SnapshotListener which waits for gameDocument database updates
+        instance.database.collection("users").document(instance.authentication.getUid())
+                .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> {
+                            instance.updateActiveGameInstance(value2);
+                        }
+                );
     }
 
 
@@ -183,7 +188,18 @@ public class FirebaseUtil
         DocumentReference docRef = database.collection("users")
                 .document(authentication.getUid()).collection("games").document(instance.activeGame);
         docRef.get().addOnSuccessListener(documentSnapshot -> gameInstance = documentSnapshot.toObject(GameTemplate.class));
+    }
 
+
+    public void readCurrentGameFromDatabase(Loading loading)
+    {
+        // Load data from database
+        DocumentReference docRef = database.collection("users")
+                .document(authentication.getUid()).collection("games").document(instance.activeGame);
+        docRef.get().addOnSuccessListener((documentSnapshot) -> {
+            gameInstance = documentSnapshot.toObject(GameTemplate.class);
+            loading.onCallback();
+        });
     }
 
     public void updateActiveGame()
