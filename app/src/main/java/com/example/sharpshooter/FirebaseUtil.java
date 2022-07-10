@@ -54,7 +54,7 @@ public class FirebaseUtil
 
             // Read existing user from database
             instance.readUserFromDatabase();
-            instance.initGameInstance();
+            instance.initGameInstance(() -> {});
 
         }
 
@@ -62,7 +62,7 @@ public class FirebaseUtil
     }
 
 
-    public void initGameInstance()
+    public void initGameInstance(Loading loading)
     {
         instance.database.collection("users").document(instance.authentication.getUid()).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
             if (task.getResult().getDocuments().isEmpty())
@@ -70,7 +70,7 @@ public class FirebaseUtil
 
             instance.activeGame = task.getResult().getDocuments().get(0).getId().toString();
             //Read existing active game from database
-            instance.readCurrentGameFromDatabase();
+            instance.readCurrentGameFromDatabase(loading);
             // Add SnapshotListener which waits for gameDocument database updates
             instance.database.collection("users").document(instance.authentication.getUid())
                     .collection("games").document(instance.activeGame).addSnapshotListener((value, error) -> {

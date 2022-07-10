@@ -21,11 +21,17 @@ public class CurrentGameAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        return new CurrentGame(currentGameModelArrayList.get(position).getCurrentGame_name(), position);
+        if (position == getItemCount()-1) {
+            return new CurrentGameEnd();
+        } else if (position == getItemCount()-2) {
+            return new CurrentGameWin();
+        } else {
+            return new CurrentGame(currentGameModelArrayList.get(position).getCurrentGame_name(), position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return currentGameModelArrayList.size();
+        return currentGameModelArrayList.size() + 2;
     }
 }

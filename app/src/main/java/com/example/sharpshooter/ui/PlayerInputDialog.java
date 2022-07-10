@@ -36,9 +36,11 @@ public class PlayerInputDialog extends DialogFragment
     private String parkourName;
     private int playerCount;
     private int targetCount;
+    private View root;
 
-    public PlayerInputDialog(int contentView)
+    public PlayerInputDialog(int contentView, View view)
     {
+        this.root = view;
         this.contentView = contentView;
     }
 
@@ -77,10 +79,16 @@ public class PlayerInputDialog extends DialogFragment
             for (int i = 0; i < playerCount; i++) {
                 playerNames.add(playerNameDialogAdapter.getName(i));
             }
-            FirebaseUtil.getInstance().gameInstance.setActive(false);
-            FirebaseUtil.getInstance().updateGameData("active", FirebaseUtil.getInstance().gameInstance.isActive(), FirebaseUtil.getInstance().activeGame);
+            if (FirebaseUtil.getInstance().gameInstance != null) {
+                FirebaseUtil.getInstance().gameInstance.setActive(false);
+                FirebaseUtil.getInstance().updateGameData("active", FirebaseUtil.getInstance().gameInstance.isActive(), FirebaseUtil.getInstance().activeGame);
+            }
             FirebaseUtil.getInstance().createNewGameData(new GameTemplate(true, parkourName,setPlayer(playerNames) , targetCount, playerNames));
-            FirebaseUtil.getInstance().initGameInstance();
+            FirebaseUtil.getInstance().initGameInstance(() ->{
+                MainActivity.setBottomNavVisibility(true, (MainActivity) root.getContext());
+                MainActivity.replaceFragment( (MainActivity) root.getContext());
+            });
+            dialog.dismiss();
         });
 
         return dialog;

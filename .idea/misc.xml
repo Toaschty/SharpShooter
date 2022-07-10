@@ -4,13 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/activity_main.xml" value="0.1574074074074074" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_last_game.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_layout.xml" value="0.4420289855072464" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_leaderboard.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_open_player_stats.xml" value="0.4010416666666667" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_playername.xml" value="0.4420289855072464" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/card_playerstats.xml" value="0.25" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/dialog_newparkour_playernames.xml" value="0.4010416666666667" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_account.xml" value="0.1574074074074074" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_current_game.xml" value="0.4420289855072464" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_current_game_end.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_current_game_slider.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_current_game_stats.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_current_game_win.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_detailed_player_stats.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_home.xml" value="0.38125" />
+        <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/fragment_leaderboard.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/layout_newgame_dialog.xml" value="0.4420289855072464" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/layout_newparkour.xml" value="0.4420289855072464" />
         <entry key="..\:/Users/a309a/AndroidStudioProjects/SharpShooter/app/src/main/res/layout/layout_newparkour_playernames.xml" value="0.4420289855072464" />

@@ -49,6 +49,8 @@ public class HomeFragment extends Fragment {
         // Card with Recycler view
         lastGameRV = root.findViewById(R.id.lastGameRecyclerView);
         activeGameRV = root.findViewById(R.id.activeGameRecyclerView);
+        root.findViewById(R.id.activeGameText).setVisibility(View.INVISIBLE);
+        root.findViewById(R.id.activeGameHorizontalLine).setVisibility(View.INVISIBLE);
 
         // dummy data.
         lastGameModelArrayList = new ArrayList<>();
@@ -64,6 +66,12 @@ public class HomeFragment extends Fragment {
                     else
                         lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
                 }
+            }
+
+            if(activeGameModelArrayList.size() != 0)
+            {
+                root.findViewById(R.id.activeGameText).setVisibility(View.VISIBLE);
+                root.findViewById(R.id.activeGameHorizontalLine).setVisibility(View.VISIBLE);
             }
 
             // we are initializing our adapter class and passing our arraylist to it.
@@ -85,13 +93,13 @@ public class HomeFragment extends Fragment {
 
 
         final Button btnNewGameDialog = binding.btnStartGame;
-        btnNewGameDialog.setOnClickListener(viewDialog -> showDialog());
+        btnNewGameDialog.setOnClickListener(viewDialog -> showDialog(root));
 
         return root;
     }
 
-    private void showDialog(){
-        PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames);
+    private void showDialog(View view){
+        PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view);
         NewParkourDialog newParkourDialog = new NewParkourDialog(R.layout.dialog_newparkour, playerInputDialog);
         NewGameDialog newGameDialog = new NewGameDialog(R.layout.dialog_newgame, newParkourDialog);
 
