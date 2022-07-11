@@ -42,7 +42,7 @@ public class AccountFragmentStatistics extends Fragment
         broken = binding.broken;
 
         // Get data from user object
-        UserTemplate tmpUser = FirebaseUtil.getInstance().userInstance;
+        UserTemplate tmpUser = FirebaseUtil.GetInstance().userInstance;
         games.setText(String.valueOf(tmpUser.getTotalGames()));
         points.setText(String.valueOf(tmpUser.getPoints()));
         shots.setText(String.valueOf(tmpUser.getShots()));

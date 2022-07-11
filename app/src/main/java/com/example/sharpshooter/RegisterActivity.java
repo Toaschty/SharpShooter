@@ -13,16 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sharpshooter.template.UserTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity
 {
@@ -108,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity
 
                     // Create new userdata in db
                     UserTemplate userTemplate = new UserTemplate(name,0,0,0,0,0,0,0,0);
-                    FirebaseUtil.getInstance().createNewUserData(userTemplate);
+                    FirebaseUtil.GetInstance().createNewUserData(userTemplate);
 
                     // Start main activity
                     Intent main_intent = new Intent(RegisterActivity.this, MainActivity.class);

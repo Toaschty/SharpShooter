@@ -34,15 +34,16 @@ public class FirebaseUtil
 
     // Account
     public UserTemplate userInstance;
-    // TODO CURRENT GAME
     // CurrentGame
     public GameTemplate gameInstance;
     public String activeGame;
 
-
     public Bitmap userProfilePicture;
 
-    public static FirebaseUtil getInstance()
+    // Progress of 2 means all data is loaded
+    public int loadingProgress = 0;
+
+    public static FirebaseUtil GetInstance()
     {
         if (instance == null)
         {
@@ -55,12 +56,10 @@ public class FirebaseUtil
             // Read existing user from database
             instance.readUserFromDatabase();
             instance.initGameInstance(() -> {});
-
         }
 
         return instance;
     }
-
 
     public void initGameInstance(Loading loading)
     {
@@ -120,8 +119,6 @@ public class FirebaseUtil
                 );
     }
 
-
-
     // Create data in database for new user
     public void createNewUserData(UserTemplate user) {
         database.collection("users").document(Objects.requireNonNull(authentication.getUid())).set(user);
@@ -132,13 +129,19 @@ public class FirebaseUtil
     {
         // Load data from database
         DocumentReference docRef = database.collection("users").document(authentication.getUid());
-        docRef.get().addOnSuccessListener(documentSnapshot -> userInstance = documentSnapshot.toObject(UserTemplate.class));
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            userInstance = documentSnapshot.toObject(UserTemplate.class);
+            loadingProgress++;
+            Utils.GetInstance().HandleLoadingProgress(loadingProgress);
+        });
 
         // Load profile picture from database
         StorageReference imgReference = storage.child("users/" + authentication.getUid());
         imgReference.getBytes(8000000).addOnSuccessListener(bytes -> {
             // Save loaded bytes in Bitmap
             userProfilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            loadingProgress++;
+            Utils.GetInstance().HandleLoadingProgress(loadingProgress);
         });
     }
 
