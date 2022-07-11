@@ -82,4 +82,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigationView = view.findViewById(R.id.nav_view);
         navigationView.setSelectedItemId(R.id.navigation_dashboard);
     }
+    public static void replaceFragmentToHome(MainActivity view)
+    {
+        BottomNavigationView navigationView = view.findViewById(R.id.nav_view);
+        navigationView.setSelectedItemId(R.id.navigation_home);
+    }
 }

@@ -66,8 +66,8 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, int position) {
         model = currentGameCardModelArrayList.get(position);
         holder.playername.setText(model.getPlayer_name());
-        FirebaseUtil.getInstance().updateActiveGame();
-        FirebaseUtil.getInstance().readCurrentGameFromDatabase();
+        //FirebaseUtil.getInstance().updateActiveGame();
+        //FirebaseUtil.getInstance().readCurrentGameFromDatabase();
         holder.score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
         Log.i("Static getCurrentItem", String.valueOf(DashboardFragment.currentGameViewPager.getCurrentItem()));
 
@@ -102,7 +102,7 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             rg = itemView.findViewById(R.id.currentGamePlayerPoints);
             zeroButton = itemView.findViewById(R.id.currentGamePlayerPoint0);
 
-
+            FirebaseUtil.getInstance().initGameInstanceWithId();
 
 
             rg.setOnCheckedChangeListener((radioGroup, i) -> {

@@ -54,31 +54,64 @@ public class FirebaseUtil
 
             // Read existing user from database
             instance.readUserFromDatabase();
+            instance.initGameInstance(() -> {});
 
-            instance.database.collection("users").document(instance.authentication.getUid()).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
-                if (task.getResult().getDocuments().isEmpty())
-                    return;
-
-                instance.activeGame = task.getResult().getDocuments().get(0).getId().toString();
-                //Read existing active game from database
-                instance.readCurrentGameFromDatabase();
-                // Add SnapshotListener which waits for gameDocument database updates
-                instance.database.collection("users").document(instance.authentication.getUid())
-                        .collection("games").document(instance.activeGame).addSnapshotListener((value, error) -> {
-                                    instance.updateActiveGameInstance(value);
-                                }
-                        );
-            });
-
-            // Add SnapshotListener which waits for database updates
-            instance.database.collection("users").document(instance.authentication.getUid()).addSnapshotListener((value, error) -> {
-                instance.updateUserInstance(value);
-                    }
-            );
         }
 
         return instance;
     }
+
+
+    public void initGameInstance(Loading loading)
+    {
+        instance.database.collection("users").document(instance.authentication.getUid()).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
+            if (task.getResult().getDocuments().isEmpty())
+                return;
+
+            instance.activeGame = task.getResult().getDocuments().get(0).getId().toString();
+            //Read existing active game from database
+            instance.readCurrentGameFromDatabase(loading);
+            // Add SnapshotListener which waits for gameDocument database updates
+            instance.database.collection("users").document(instance.authentication.getUid())
+                    .collection("games").document(instance.activeGame).addSnapshotListener((value, error) -> {
+                                instance.updateActiveGameInstance(value);
+                            }
+                    );
+        });
+
+        // Add SnapshotListener which waits for database updates
+        instance.database.collection("users").document(instance.authentication.getUid()).addSnapshotListener((value, error) -> {
+                    instance.updateUserInstance(value);
+                }
+        );
+    }
+
+    public void initGameInstanceWithId()
+    {
+            //Read existing active game from database
+            instance.readCurrentGameFromDatabase();
+            // Add SnapshotListener which waits for gameDocument database updates
+            instance.database.collection("users").document(instance.authentication.getUid())
+                    .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> {
+                                instance.updateActiveGameInstance(value2);
+                            }
+            );
+    }
+
+
+    public void initGameInstanceWithId(Loading loading)
+    {
+        //Read existing active game from database
+        instance.readCurrentGameFromDatabase(loading);
+        // Add SnapshotListener which waits for gameDocument database updates
+        instance.database.collection("users").document(instance.authentication.getUid())
+                .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> {
+                            instance.updateActiveGameInstance(value2);
+                        }
+                );
+    }
+
+
 
     // Create data in database for new user
     public void createNewUserData(UserTemplate user) {
@@ -155,7 +188,18 @@ public class FirebaseUtil
         DocumentReference docRef = database.collection("users")
                 .document(authentication.getUid()).collection("games").document(instance.activeGame);
         docRef.get().addOnSuccessListener(documentSnapshot -> gameInstance = documentSnapshot.toObject(GameTemplate.class));
+    }
 
+
+    public void readCurrentGameFromDatabase(Loading loading)
+    {
+        // Load data from database
+        DocumentReference docRef = database.collection("users")
+                .document(authentication.getUid()).collection("games").document(instance.activeGame);
+        docRef.get().addOnSuccessListener((documentSnapshot) -> {
+            gameInstance = documentSnapshot.toObject(GameTemplate.class);
+            loading.onCallback();
+        });
     }
 
     public void updateActiveGame()
@@ -202,6 +246,17 @@ public class FirebaseUtil
             }
         }
         catch (Exception ignored) {}
+    }
+
+    // Create data in database for new user
+    public void createNewGameData(GameTemplate game) {
+        database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document().set(game);
+    }
+    public void destoyGameInstace(){gameInstance = null;}
+
+    public void setActiveGame(String gameId)
+    {
+        activeGame = gameId;
     }
 
     public void destroyInstance()

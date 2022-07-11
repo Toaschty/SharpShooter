@@ -37,8 +37,14 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         if (playerNameDialogModelArrayList.get(position).isAccount()) {
             holder.name.setText(FirebaseUtil.getInstance().userInstance.getName());
+            playerNameDialogModelArrayList.get(position).setName(FirebaseUtil.getInstance().userInstance.getName());
             holder.name.setEnabled(false);
         }
+    }
+
+    public String getName(int i)
+    {
+        return playerNameDialogModelArrayList.get(i).getName();
     }
 
     @Override
@@ -52,6 +58,10 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.playerNameInput);
+            name.setOnKeyListener ((view, keyEvent, i) -> {
+                playerNameDialogModelArrayList.get(getAdapterPosition()).setName(name.getText().toString());
+                return false;
+            });
         }
     }
 }
