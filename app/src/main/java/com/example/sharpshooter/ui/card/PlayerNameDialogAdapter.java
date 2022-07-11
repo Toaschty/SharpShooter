@@ -1,18 +1,17 @@
 package com.example.sharpshooter.ui.card;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.ui.dashboard.CurrentGameCardAdapter;
 
 import java.util.ArrayList;
 
@@ -36,10 +35,12 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
         if (playerNameDialogModelArrayList.get(position).isAccount()) {
-            holder.name.setText(FirebaseUtil.getInstance().userInstance.getName());
-            playerNameDialogModelArrayList.get(position).setName(FirebaseUtil.getInstance().userInstance.getName());
+            holder.name.setText(FirebaseUtil.GetInstance().userInstance.getName());
+            playerNameDialogModelArrayList.get(position).setName(FirebaseUtil.GetInstance().userInstance.getName());
             holder.name.setEnabled(false);
         }
+
+        holder.playerName.setText("Player " + playerNameDialogModelArrayList.get(position).getCount());
     }
 
     public String getName(int i)
@@ -54,6 +55,7 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
 
     public class Viewholder extends RecyclerView.ViewHolder{
         private EditText name;
+        private TextView playerName;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +64,8 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
                 playerNameDialogModelArrayList.get(getAdapterPosition()).setName(name.getText().toString());
                 return false;
             });
+
+            playerName = itemView.findViewById(R.id.playerName);
         }
     }
 }

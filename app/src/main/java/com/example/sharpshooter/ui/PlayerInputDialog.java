@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
-import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.template.GameTemplate;
 import com.example.sharpshooter.ui.card.PlayerNameDialogAdapter;
 import com.example.sharpshooter.ui.card.PlayerNameDialogModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +30,6 @@ public class PlayerInputDialog extends DialogFragment
     private RecyclerView playerNameDialogRV;
     private PlayerNameDialogAdapter playerNameDialogAdapter;
     private ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList;
-
 
     private String parkourName;
     private int playerCount;
@@ -57,12 +55,9 @@ public class PlayerInputDialog extends DialogFragment
         playerNameDialogModelArrayList = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
             if (i == 0)
-            {
-                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(true));
-            }else
-            {
-                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(false));
-            }
+                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(true, i + 1));
+            else
+                playerNameDialogModelArrayList.add(new PlayerNameDialogModel(false, i + 1));
         }
 
         playerNameDialogAdapter = new PlayerNameDialogAdapter(dialog.getContext(), playerNameDialogModelArrayList);
@@ -76,18 +71,32 @@ public class PlayerInputDialog extends DialogFragment
         // Add click listener
         startButton = dialog.findViewById(R.id.newParkour_start);
         startButton.setOnClickListener(view -> {
+            playerNames.clear();
+
             for (int i = 0; i < playerCount; i++) {
                 playerNames.add(playerNameDialogAdapter.getName(i));
+
+                // Do nothing if name is not given
+                if (playerNames.get(i) == null)
+                    return;
             }
-            if (FirebaseUtil.getInstance().gameInstance != null) {
-                FirebaseUtil.getInstance().gameInstance.setActive(false);
-                FirebaseUtil.getInstance().updateGameData("active", FirebaseUtil.getInstance().gameInstance.isActive(), FirebaseUtil.getInstance().activeGame);
+            if (FirebaseUtil.GetInstance().gameInstance != null) {
+                FirebaseUtil.GetInstance().gameInstance.setActive(false);
+                FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
             }
-            FirebaseUtil.getInstance().createNewGameData(new GameTemplate(true, parkourName,setPlayer(playerNames) , targetCount, playerNames));
-            FirebaseUtil.getInstance().initGameInstance(() ->{
-                MainActivity.setBottomNavVisibility(true, (MainActivity) root.getContext());
-                MainActivity.replaceFragment( (MainActivity) root.getContext());
+            FirebaseUtil.GetInstance().createNewGameData(new GameTemplate(true, parkourName, setPlayer(playerNames), targetCount, playerNames));
+
+            // Show loading indicator
+            Utils.GetInstance().StartLoading();
+
+            FirebaseUtil.GetInstance().initGameInstance(() -> {
+                // Hide loading indicator
+                Utils.GetInstance().StopLoading();
+
+                Utils.GetInstance().setBottomNavVisibility(true);
+                Utils.GetInstance().replaceFragment();
             });
+
             dialog.dismiss();
         });
 
@@ -117,8 +126,4 @@ public class PlayerInputDialog extends DialogFragment
         this.playerCount = playerCount;
         this.targetCount = targetCount;
     }
-
-
-
-
 }

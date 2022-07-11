@@ -16,7 +16,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
@@ -46,10 +45,10 @@ public class AccountFragment extends Fragment {
         btn_statistics = binding.btnStatistics;
 
         // Load user name
-        playerName.setText(FirebaseUtil.getInstance().userInstance.getName());
+        playerName.setText(FirebaseUtil.GetInstance().userInstance.getName());
 
         // Load account image
-        playerImage.setImageBitmap(FirebaseUtil.getInstance().userProfilePicture);
+        playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
 
         // Image Picker Button
         playerImage.setOnClickListener(new View.OnClickListener() {
@@ -73,10 +72,10 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Sign out current user
-                FirebaseUtil.getInstance().authentication.signOut();
+                FirebaseUtil.GetInstance().authentication.signOut();
 
                 // Destroy instance
-                FirebaseUtil.getInstance().destroyInstance();
+                FirebaseUtil.GetInstance().destroyInstance();
 
                 // "Restart" application by loading welcome page
                 Intent welcome_intent = new Intent(getActivity(), WelcomeActivity.class);
@@ -100,7 +99,7 @@ public class AccountFragment extends Fragment {
             playerImage.setImageURI(img);
 
             // Upload image to firebase
-            FirebaseUtil.getInstance().uploadAccountImage(img);
+            FirebaseUtil.GetInstance().uploadAccountImage(img);
         }
     }
 

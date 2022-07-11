@@ -10,13 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 
 import java.util.ArrayList;
@@ -49,8 +46,8 @@ public class CurrentGame extends Fragment {
 
         card_PlayerstatRV = root.findViewById(R.id.currentGameRecyclerView);
         currentGameCardModelArrayList = new ArrayList<>();
-        for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getPlayerNames().size(); i++) {
-            currentGameCardModelArrayList.add(new CurrentGameCardModel(FirebaseUtil.getInstance().gameInstance.getPlayerNames().get(i), 0, targetId));
+        for (int i = 0; i < FirebaseUtil.GetInstance().gameInstance.getPlayerNames().size(); i++) {
+            currentGameCardModelArrayList.add(new CurrentGameCardModel(FirebaseUtil.GetInstance().gameInstance.getPlayerNames().get(i), 0, targetId));
         }
 
         CurrentGameCardAdapter currentGameCardAdapter = new CurrentGameCardAdapter(root.getContext(), currentGameCardModelArrayList);
@@ -59,17 +56,12 @@ public class CurrentGame extends Fragment {
         card_PlayerstatRV.setLayoutManager(linearLayoutManager);
         card_PlayerstatRV.setAdapter(currentGameCardAdapter);
 
-
-
-
-
         if (savedInstanceState != null) {
             title = savedInstanceState.getString("TITLE");
         }
 
         TextView currentGameTextView = root.findViewById(R.id.currentGameTitle);
         currentGameTextView.setText(title);
-
 
         return root;
     }

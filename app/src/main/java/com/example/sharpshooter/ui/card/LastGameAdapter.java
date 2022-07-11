@@ -1,11 +1,11 @@
 package com.example.sharpshooter.ui.card;
 
-import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,14 +13,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
-import com.example.sharpshooter.Loading;
-import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewholder> {
 
@@ -49,7 +45,6 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
         holder.lastGamePlayerCount.setText(String.valueOf( model.getLastGame_playerCount()) );
         holder.lastGameTargetCount.setText(String.valueOf( model.getLastGame_targetCount()) );
         holder.lastGameIV.setImageResource(model.getLastGame_image());
-
     }
 
     @Override
@@ -71,6 +66,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
 
         private CardView cv;
 
+        @SuppressLint("ClickableViewAccessibility")
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             lastGameName = itemView.findViewById(R.id.idLastGameName);
@@ -81,11 +77,21 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
 
             cv.setOnClickListener((view) -> {
-                FirebaseUtil.getInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
-                FirebaseUtil.getInstance().initGameInstanceWithId(() -> {
-                    MainActivity.setBottomNavVisibility(true, (MainActivity) view.getContext());
-                    MainActivity.replaceFragment( (MainActivity) view.getContext());
+                FirebaseUtil.GetInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
+                FirebaseUtil.GetInstance().initGameInstanceWithId(() -> {
+                    Utils.GetInstance().setBottomNavVisibility(true);
+                    Utils.GetInstance().replaceFragment();
                 });
+            });
+
+            // Start game name marguee
+            cv.setOnTouchListener((v, event) -> {
+                switch(event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN: lastGameName.setSelected(true); break;
+                    case MotionEvent.ACTION_CANCEL: lastGameName.setSelected(false); break;
+                }
+                return false;
             });
         }
     }

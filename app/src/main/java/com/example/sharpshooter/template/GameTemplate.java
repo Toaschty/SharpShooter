@@ -1,15 +1,10 @@
 package com.example.sharpshooter.template;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.example.sharpshooter.FirebaseUtil;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -60,24 +55,24 @@ public class GameTemplate {
     }
     public String getPlayerTotalScore(String playerName)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         return player.get("totalScore").toString();
     }
     public ArrayList<Long> getPlayerTargetScore(String playerName)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         return (ArrayList<Long>) player.get("targetScore");
     }
     public int getPlayerTargetScoreWithId(String playerName, int targetId)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         ArrayList<Long> score = (ArrayList<Long>) player.get("targetScore");
         return Math.toIntExact(score.get(targetId));
     }
 
     public int getPlayerBrokenArrowsWithId(String playerName, int targetId)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         ArrayList<Long> score = (ArrayList<Long>) player.get("brokenArrows");
         return Math.toIntExact(score.get(targetId));
     }
@@ -89,21 +84,21 @@ public class GameTemplate {
     }
 
     public void setPlayerBrokenArrows(String playerName, int targetId, int brokenArrows) {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         ArrayList<Long> targetScore = (ArrayList<Long>) player.get("brokenArrows");
         targetScore.set(targetId, (long)brokenArrows);
     }
 
     public void setPlayerTargetScore(String playerName, int targetId, int score)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         ArrayList<Long> targetScore = (ArrayList<Long>) player.get("targetScore");
         targetScore.set(targetId, (long)score);
     }
 
     public void setPlayerTotalScore(String playerName, int score)
     {
-        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         player.put("totalScore", score);
     }
 

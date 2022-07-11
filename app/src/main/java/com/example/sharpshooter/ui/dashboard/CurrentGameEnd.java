@@ -11,12 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
-import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentCurrentGameEndBinding;
 import com.example.sharpshooter.ui.card.CurrentGameWinAdapter;
 import com.example.sharpshooter.ui.card.CurrentGameWinModel;
-import com.example.sharpshooter.ui.card.LeaderboardModel;
 
 import java.util.ArrayList;
 
@@ -37,8 +36,8 @@ public class CurrentGameEnd extends Fragment {
 
         card_open_player_stats = root.findViewById(R.id.currentGameStatsButtons);
         currentGameModelArrayList = new ArrayList<>();
-        for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getPlayerNames().size(); i++) {
-            String playerName = FirebaseUtil.getInstance().gameInstance.getPlayerNames().get(i);
+        for (int i = 0; i < FirebaseUtil.GetInstance().gameInstance.getPlayerNames().size(); i++) {
+            String playerName = FirebaseUtil.GetInstance().gameInstance.getPlayerNames().get(i);
             currentGameModelArrayList.add(new CurrentGameWinModel(playerName));
         }
 
@@ -49,12 +48,12 @@ public class CurrentGameEnd extends Fragment {
 
         final Button btnDone = binding.btnDone;
         btnDone.setOnClickListener(btn -> {
-            if (FirebaseUtil.getInstance().gameInstance != null) {
-                FirebaseUtil.getInstance().gameInstance.setActive(false);
-                FirebaseUtil.getInstance().updateGameData("active", FirebaseUtil.getInstance().gameInstance.isActive(), FirebaseUtil.getInstance().activeGame);
+            if (FirebaseUtil.GetInstance().gameInstance != null) {
+                FirebaseUtil.GetInstance().gameInstance.setActive(false);
+                FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
             }
-            MainActivity.setBottomNavVisibility(false, (MainActivity) root.getContext());
-            MainActivity.replaceFragmentToHome( (MainActivity) root.getContext());
+            Utils.GetInstance().setBottomNavVisibility(false);
+            Utils.GetInstance().replaceFragmentToHome();
         });
 
         return root;

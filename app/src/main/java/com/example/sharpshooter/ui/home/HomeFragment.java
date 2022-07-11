@@ -21,15 +21,8 @@ import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentHomeBinding;
-import com.google.firebase.database.annotations.Nullable;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
@@ -59,7 +52,7 @@ public class HomeFragment extends Fragment {
         lastGameModelArrayList = new ArrayList<>();
         activeGameModelArrayList = new ArrayList<>();
 
-        FirebaseUtil.getInstance().database.collection("users").document(FirebaseUtil.getInstance().authentication.getUid()).collection("games").addSnapshotListener((value, error) -> {
+        FirebaseUtil.GetInstance().database.collection("users").document(FirebaseUtil.GetInstance().authentication.getUid()).collection("games").addSnapshotListener((value, error) -> {
 
             if (value.getDocuments().size() > 0)
             {
