@@ -75,11 +75,24 @@ public class GameTemplate {
         return Math.toIntExact(score.get(targetId));
     }
 
+    public int getPlayerBrokenArrowsWithId(String playerName, int targetId)
+    {
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        ArrayList<Long> score = (ArrayList<Long>) player.get("brokenArrows");
+        return Math.toIntExact(score.get(targetId));
+    }
+
+
     public int getTargetCount()
     {
         return Math.toIntExact(targetCount);
     }
 
+    public void setPlayerBrokenArrows(String playerName, int targetId, int brokenArrows) {
+        Map<String, Object> player = (Map<String, Object>) FirebaseUtil.getInstance().gameInstance.getPlayer().get(playerName);
+        ArrayList<Long> targetScore = (ArrayList<Long>) player.get("brokenArrows");
+        targetScore.set(targetId, (long)brokenArrows);
+    }
 
     public void setPlayerTargetScore(String playerName, int targetId, int score)
     {

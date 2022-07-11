@@ -67,7 +67,7 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     @Override
     public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, @SuppressLint("RecyclerView") int position){
         model = currentGameCardModelArrayList.get(position);
-        holder.playername.setText(model.getPlayer_name());
+        holder.playerName.setText(model.getPlayer_name());
         holder.score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
 
         //a snapshot that updates
@@ -77,6 +77,13 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
         });
 
         Log.i("Static getCurrentItem", String.valueOf(DashboardFragment.currentGameViewPager.getCurrentItem()));
+
+        switch (FirebaseUtil.getInstance().gameInstance.getPlayerBrokenArrowsWithId(model.getPlayer_name(), model.getTargetId()))
+        {
+            case 1: holder.brokenArrow1.setChecked(true); break;
+            case 2: holder.brokenArrow1.setChecked(true); holder.brokenArrow2.setChecked(true); break;
+            case 3: holder.brokenArrow1.setChecked(true); holder.brokenArrow2.setChecked(true); holder.brokenArrow3.setChecked(true); break;
+        }
 
         switch (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScoreWithId(model.getPlayer_name(), model.getTargetId()))
         {
@@ -97,35 +104,76 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     }
 
     public class Viewholder extends RecyclerView.ViewHolder{
-        private final TextView playername;
+        private final TextView playerName;
         private final TextView score;
         private final RadioGroup rg;
         private final CheckBox zeroButton;
+        private final CheckBox brokenArrow1;
+        private final CheckBox brokenArrow2;
+        private final CheckBox brokenArrow3;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            playername = itemView.findViewById(R.id.playerName);
+            playerName = itemView.findViewById(R.id.playerName);
             score = itemView.findViewById(R.id.currentGamePlayerPointSum);
             rg = itemView.findViewById(R.id.currentGamePlayerPoints);
             zeroButton = itemView.findViewById(R.id.currentGamePlayerPoint0);
+            brokenArrow1 = itemView.findViewById(R.id.currentGamePlayerBrokenArrow1);
+            brokenArrow2 = itemView.findViewById(R.id.currentGamePlayerBrokenArrow2);
+            brokenArrow3 = itemView.findViewById(R.id.currentGamePlayerBrokenArrow3);
 
             FirebaseUtil.getInstance().initGameInstanceWithId();
 
+            brokenArrow1.setOnClickListener(view -> {
+                int brokenArrows = 0;
+                if (brokenArrow1.isChecked())
+                    brokenArrows++;
+                if (brokenArrow2.isChecked())
+                    brokenArrows++;
+                if (brokenArrow3.isChecked())
+                    brokenArrows++;
+                FirebaseUtil.getInstance().gameInstance.setPlayerBrokenArrows(playerName.getText().toString(),model.getTargetId(), brokenArrows);
+                FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
+
+            });
+            brokenArrow2.setOnClickListener(view -> {
+                int brokenArrows = 0;
+                if (brokenArrow1.isChecked())
+                    brokenArrows++;
+                if (brokenArrow2.isChecked())
+                    brokenArrows++;
+                if (brokenArrow3.isChecked())
+                    brokenArrows++;
+                FirebaseUtil.getInstance().gameInstance.setPlayerBrokenArrows(playerName.getText().toString(),model.getTargetId(), brokenArrows);
+                FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
+
+            });
+            brokenArrow3.setOnClickListener(view -> {
+                int brokenArrows = 0;
+                if (brokenArrow1.isChecked())
+                    brokenArrows++;
+                if (brokenArrow2.isChecked())
+                    brokenArrows++;
+                if (brokenArrow3.isChecked())
+                    brokenArrows++;
+                FirebaseUtil.getInstance().gameInstance.setPlayerBrokenArrows(playerName.getText().toString(),model.getTargetId(), brokenArrows);
+                FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
+            });
 
             rg.setOnCheckedChangeListener((radioGroup, i) -> {
                 RadioButton radioButton = itemView.findViewById(i);
                 if(radioButton != null){
 
-                    FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(playername.getText().toString(),model.getTargetId(),  Integer.parseInt(radioButton.getText().toString()));
+                    FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(playerName.getText().toString(),model.getTargetId(),  Integer.parseInt(radioButton.getText().toString()));
                     int totalScore = 0;
-                    for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).size(); j++) {
-                        if (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).get(j) <= 20)
-                            totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).get(j);
+                    for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).size(); j++) {
+                        if (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).get(j) <= 20)
+                            totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).get(j);
                     }
-                    FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(playername.getText().toString(), totalScore);
+                    FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(playerName.getText().toString(), totalScore);
                     FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
 
-                    score.setText(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playername.getText().toString()));
+                    score.setText(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playerName.getText().toString()));
 
 
                     if (zeroButton.isChecked()) {
@@ -137,15 +185,15 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
 
             zeroButton.setOnClickListener(view -> {
                 rg.clearCheck();
-                FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(playername.getText().toString(), model.getTargetId(),  0);
+                FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(playerName.getText().toString(), model.getTargetId(),  0);
                 int totalScore = 0;
-                for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).size(); j++) {
-                    if (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).get(j) <= 20)
-                        totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playername.getText().toString()).get(j);
+                for (int j = 0; j < FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).size(); j++) {
+                    if (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).get(j) <= 20)
+                        totalScore += FirebaseUtil.getInstance().gameInstance.getPlayerTargetScore(playerName.getText().toString()).get(j);
                 }
-                FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(playername.getText().toString(), totalScore);
+                FirebaseUtil.getInstance().gameInstance.setPlayerTotalScore(playerName.getText().toString(), totalScore);
                 FirebaseUtil.getInstance().updateGameData("player", FirebaseUtil.getInstance().gameInstance.getPlayer(), FirebaseUtil.getInstance().activeGame);
-                score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playername.getText().toString())));
+                score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playerName.getText().toString())));
 
 
                 zeroButton.setChecked(true);

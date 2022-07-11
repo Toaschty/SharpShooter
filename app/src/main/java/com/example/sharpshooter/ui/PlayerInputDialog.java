@@ -98,11 +98,13 @@ public class PlayerInputDialog extends DialogFragment
     {
         Map<String, Object> player = new HashMap<>();
         ArrayList<Long> targetScore = new ArrayList<>(Collections.nCopies(targetCount, 0L));
+        ArrayList<Long> brokenArrows = new ArrayList<>(Collections.nCopies(targetCount, 0L));
 
         playerNames.forEach(playerName -> {
             Map<String, Object> playerObject = new HashMap<>();
             playerObject.put("targetScore", targetScore);
             playerObject.put("totalScore", 0);
+            playerObject.put("brokenArrows", brokenArrows);
             player.put(playerName.toString(), playerObject);
         });
 
