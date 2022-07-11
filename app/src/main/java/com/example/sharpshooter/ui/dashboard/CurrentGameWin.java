@@ -43,7 +43,7 @@ public class CurrentGameWin extends Fragment {
             leaderboardModelArrayList.add(new LeaderboardModel(playerName, Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(playerName)), (FirebaseUtil.GetInstance().gameInstance.getTargetCount()*20)));
         }
         leaderboardModelArrayList.sort(Comparator.comparing(LeaderboardModel::getPoints).reversed());
-
+        leaderboardModelArrayList.get(0).setPlayerName(leaderboardModelArrayList.get(0).getPlayerName() + " - Winner");
 
         LeaderboardCardAdapter leaderboardCardAdapter = new LeaderboardCardAdapter(root.getContext(), leaderboardModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
