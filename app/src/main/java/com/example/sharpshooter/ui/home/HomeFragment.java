@@ -26,7 +26,10 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
@@ -61,10 +64,11 @@ public class HomeFragment extends Fragment {
             if (value.getDocuments().size() > 0)
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
+                    ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
                     if (value.getDocuments().get(i).get("active").toString() == "true")
-                        activeGameModelArrayList.add(0,new LastGameModel("ActiveGame", "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                        activeGameModelArrayList.add(0,new LastGameModel("ActiveGame", (String) value.getDocuments().get(i).get("date"), playerCount.size() , Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
                     else
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), "01.01.2022", 3, Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
                 }
             }
 

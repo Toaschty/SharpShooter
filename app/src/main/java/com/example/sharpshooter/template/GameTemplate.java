@@ -2,6 +2,8 @@ package com.example.sharpshooter.template;
 
 import com.example.sharpshooter.FirebaseUtil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,7 @@ public class GameTemplate {
     private int targetCount;
     private Map<String, Object> player;
     private List<String> playerNames;
+    private String date;
 
     public GameTemplate(boolean active, String gameName, Map<String, Object> player, int targetCount, List<String> playerNames){
         this.active = active;
@@ -21,9 +24,24 @@ public class GameTemplate {
         this.player = player;
         this.targetCount = targetCount;
         this.playerNames = playerNames;
+        this.date = getDateNow();
     }
 
     public GameTemplate(){}
+
+
+    private String getDateNow()
+    {
+        LocalDate myDateObj = LocalDate.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        String formattedDate = myDateObj.format(myFormatObj);
+        return formattedDate;
+    }
+
+    public String getDate() {
+        return date;
+    }
 
     public String getGameName() {
         return gameName;
