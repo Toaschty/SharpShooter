@@ -182,7 +182,6 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
 
                 }
             });
-
             zeroButton.setOnClickListener(view -> {
                 rg.clearCheck();
                 FirebaseUtil.getInstance().gameInstance.setPlayerTargetScore(playerName.getText().toString(), model.getTargetId(),  0);
