@@ -1,5 +1,6 @@
 package com.example.sharpshooter.ui.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.ScoreUpdater;
 import com.example.sharpshooter.databinding.FragmentCurrentGameStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -63,12 +65,17 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull CurrentGameCardAdapter.Viewholder holder, @SuppressLint("RecyclerView") int position){
         model = currentGameCardModelArrayList.get(position);
         holder.playername.setText(model.getPlayer_name());
-        //FirebaseUtil.getInstance().updateActiveGame();
-        //FirebaseUtil.getInstance().readCurrentGameFromDatabase();
         holder.score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
+
+        //a snapshot that updates
+        FirebaseUtil.getInstance().scoreListener(() -> {
+            model = currentGameCardModelArrayList.get(position);
+            holder.score.setText(String.valueOf(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
+        });
+
         Log.i("Static getCurrentItem", String.valueOf(DashboardFragment.currentGameViewPager.getCurrentItem()));
 
         switch (FirebaseUtil.getInstance().gameInstance.getPlayerTargetScoreWithId(model.getPlayer_name(), model.getTargetId()))

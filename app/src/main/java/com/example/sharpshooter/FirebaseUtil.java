@@ -86,6 +86,15 @@ public class FirebaseUtil
         );
     }
 
+    public void scoreListener(ScoreUpdater scoreUpdater){
+        // Add SnapshotListener which waits for gameDocument database updates
+        instance.database.collection("users").document(instance.authentication.getUid())
+                .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> {
+                            scoreUpdater.onScoreChanged();
+                        }
+                );
+    }
+
     public void initGameInstanceWithId()
     {
             //Read existing active game from database

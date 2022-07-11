@@ -46,11 +46,9 @@ public class CurrentGameWin extends Fragment {
         leaderboardModelArrayList = new ArrayList<>();
         for (int i = 0; i < FirebaseUtil.getInstance().gameInstance.getPlayerNames().size(); i++) {
             String playerName = FirebaseUtil.getInstance().gameInstance.getPlayerNames().get(i);
-            leaderboardModelArrayList.add(new LeaderboardModel(playerName, Integer.parseInt(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playerName)), 100));
+            leaderboardModelArrayList.add(new LeaderboardModel(playerName, Integer.parseInt(FirebaseUtil.getInstance().gameInstance.getPlayerTotalScore(playerName)), (FirebaseUtil.getInstance().gameInstance.getTargetCount()*20)));
         }
         leaderboardModelArrayList.sort(Comparator.comparing(LeaderboardModel::getPoints).reversed());
-        int maxPoints = leaderboardModelArrayList.get(0).getPoints();
-        leaderboardModelArrayList.forEach((n) -> n.setMaxPoints(maxPoints));
 
 
         LeaderboardCardAdapter leaderboardCardAdapter = new LeaderboardCardAdapter(root.getContext(), leaderboardModelArrayList);
