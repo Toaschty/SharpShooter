@@ -42,7 +42,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/julius_sans_one"
-        android:text="@string/newParkour_name"
+        android:text="@string/register_username"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:background="@drawable/edittext"
         android:ems="10"
         android:fontFamily="sans-serif-light"
-        android:hint="@string/newParkour_name"
+        android:hint="@string/register_username"
         android:inputType="text"
         android:paddingLeft="10dp"
         android:textSize="20sp"
@@ -187,5 +187,21 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_repeat" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_selector"
+        android:backgroundTint="@color/black"
+        android:contentDescription="back"
+        android:elevation="7dp"
+        android:src="@drawable/back_button_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
