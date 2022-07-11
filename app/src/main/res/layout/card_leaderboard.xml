@@ -23,56 +23,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/julius_sans_one"
-            android:text="@string/newParkour_name"
+            android:text="_"
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/pointBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/pointBarConstraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/pointFrame"
+            <ProgressBar
+                android:id="@+id/pointBar"
+                style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/pointbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/pointFilled"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/edittext" />
-
-            <ImageView
-                android:id="@+id/pointFilled"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/button_design_pressed" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginStart="15dp"
                 android:fontFamily="@font/julius_sans_one"
                 android:text="_"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/pointFilled"
-                app:layout_constraintEnd_toEndOf="@+id/pointFilled"
-                app:layout_constraintTop_toTopOf="@+id/pointFilled" />
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/pointBar"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
