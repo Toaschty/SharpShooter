@@ -42,7 +42,7 @@ public class LeaderboardCardAdapter extends RecyclerView.Adapter<LeaderboardCard
         holder.playerName.setText( model.getPlayerName() );
         holder.progressBar.setProgress( model.getPoints() );
         holder.progressBar.setMax( model.getMaxPoints() );
-        holder.points.setText(model.getPoints());
+        holder.points.setText(String.valueOf(model.getPoints()));
     }
 
     @Override
