@@ -38,6 +38,8 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
             holder.name.setText(FirebaseUtil.GetInstance().userInstance.getName());
             playerNameDialogModelArrayList.get(position).setName(FirebaseUtil.GetInstance().userInstance.getName());
             holder.name.setEnabled(false);
+        }else {
+            holder.name.setEnabled(true);
         }
 
         holder.playerName.setText("Player " + playerNameDialogModelArrayList.get(position).getCount());

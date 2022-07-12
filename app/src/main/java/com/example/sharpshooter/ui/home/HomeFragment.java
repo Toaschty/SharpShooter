@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
         lastGameModelArrayList = new ArrayList<>();
         activeGameModelArrayList = new ArrayList<>();
 
-        FirebaseUtil.GetInstance().database.collection("users").document(FirebaseUtil.GetInstance().authentication.getUid()).collection("games").addSnapshotListener((value, error) -> {
+        FirebaseUtil.GetInstance().getAllGames(value -> {
 
             if (value.getDocuments().size() > 0)
             {
@@ -72,8 +72,8 @@ public class HomeFragment extends Fragment {
             }
 
             // we are initializing our adapter class and passing our arraylist to it.
-            LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList);
-            LastGameAdapter activeGameAdapter = new LastGameAdapter(root.getContext(), activeGameModelArrayList);
+            LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList, "game");
+            LastGameAdapter activeGameAdapter = new LastGameAdapter(root.getContext(), activeGameModelArrayList, "game");
 
             // below line is for setting a layout manager for our recycler view.
             // here we are creating vertical list so we will provide orientation as vertical

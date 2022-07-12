@@ -9,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
+import com.example.sharpshooter.ui.NewGameDialog;
+import com.example.sharpshooter.ui.PlayerInputDialog;
 
 import java.util.ArrayList;
 
@@ -22,10 +26,12 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
 
     private Context context;
     private ArrayList<LastGameModel> lastGameModelArrayList;
+    private String call;
 
-    public LastGameAdapter(Context context, ArrayList<LastGameModel> lastGameModelArrayList) {
+    public LastGameAdapter(Context context, ArrayList<LastGameModel> lastGameModelArrayList, String call) {
         this.context = context;
         this.lastGameModelArrayList = lastGameModelArrayList;
+        this.call = call;
     }
 
     @NonNull
@@ -77,11 +83,18 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
 
             cv.setOnClickListener((view) -> {
-                FirebaseUtil.GetInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
-                FirebaseUtil.GetInstance().initGameInstanceWithId(() -> {
-                    Utils.GetInstance().setBottomNavVisibility(true);
-                    Utils.GetInstance().replaceFragment();
-                });
+                if(call == "game") {
+                    FirebaseUtil.GetInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
+                    FirebaseUtil.GetInstance().initGameInstanceWithId(() -> {
+                        Utils.GetInstance().setBottomNavVisibility(true);
+                        Utils.GetInstance().replaceFragment();
+                    });
+                }else if( call == "load")
+                {
+                    PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view, lastGameName.getText().toString(), Math.toIntExact(Long.parseLong(lastGamePlayerCount.getText().toString())), Math.toIntExact(Long.parseLong(lastGameTargetCount.getText().toString())));
+
+                    playerInputDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "playerInputDialog");
+                }
             });
 
             // Start game name marguee
