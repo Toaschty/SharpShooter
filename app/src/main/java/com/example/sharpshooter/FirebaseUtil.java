@@ -1,14 +1,24 @@
 package com.example.sharpshooter;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.provider.MediaStore;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.sharpshooter.template.GameTemplate;
 import com.example.sharpshooter.template.UserTemplate;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Objects;
@@ -53,13 +64,16 @@ public class FirebaseUtil
             instance.database = FirebaseFirestore.getInstance();
             instance.authentication = FirebaseAuth.getInstance();
             instance.storage = FirebaseStorage.getInstance().getReference();
-
-            // Read existing user from database
-            instance.readUserFromDatabase();
-            instance.initGameInstance(() -> {});
         }
 
         return instance;
+    }
+
+    public void startLoadingProcess()
+    {
+        // Read existing user from database
+        instance.readUserFromDatabase();
+        instance.initGameInstance(() -> {});
     }
 
     public void initGameInstance(Loading loading)
@@ -136,11 +150,14 @@ public class FirebaseUtil
             Utils.GetInstance().HandleLoadingProgress(loadingProgress);
         });
 
-        // Load profile picture from database
         StorageReference imgReference = storage.child("users/" + authentication.getUid());
         imgReference.getBytes(8000000).addOnSuccessListener(bytes -> {
             // Save loaded bytes in Bitmap
             userProfilePicture = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            loadingProgress++;
+            Utils.GetInstance().HandleLoadingProgress(loadingProgress);
+        }).addOnFailureListener(failure -> {
+            userProfilePicture = null;
             loadingProgress++;
             Utils.GetInstance().HandleLoadingProgress(loadingProgress);
         });
@@ -148,11 +165,17 @@ public class FirebaseUtil
 
     // Upload profile picture
     public void uploadAccountImage(Uri img) {
+        // Start loading animation
+        Utils.GetInstance().StartLoading();
+
         // Get reference to new / existing img file in storage
         StorageReference imgStorage = storage.child("users/" + authentication.getUid());
 
         // Start new upload task
         UploadTask uploadTask = imgStorage.putFile(img);
+        uploadTask.addOnCompleteListener(task -> {
+            Utils.GetInstance().StopLoading();
+        });
     }
 
     // Update user instance

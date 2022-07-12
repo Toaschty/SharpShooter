@@ -1,5 +1,9 @@
 package com.example.sharpshooter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         // Create FirebaseUtil Instance
         FirebaseUtil.GetInstance();
 
+        // Start loading process
+        FirebaseUtil.GetInstance().startLoadingProcess();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 
         navView = binding.navView;
@@ -53,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_account:
                         //Todo it you can never access account if you don`t have set a Profile Picture
-                        //if (FirebaseUtil.GetInstance().loadingProgress < 2)
-                        //    return false;
+                        if (FirebaseUtil.GetInstance().loadingProgress < 2)
+                            return false;
                         navController.navigate(R.id.navigation_account);
                         return true;
                 }

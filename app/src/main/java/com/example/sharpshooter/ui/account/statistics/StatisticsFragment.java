@@ -1,19 +1,22 @@
-package com.example.sharpshooter.ui.account;
+package com.example.sharpshooter.ui.account.statistics;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentAccountStatisticsBinding;
 import com.example.sharpshooter.template.UserTemplate;
 
-public class AccountFragmentStatistics extends Fragment
+public class StatisticsFragment extends Fragment
 {
     private FragmentAccountStatisticsBinding binding;
 
@@ -51,6 +54,12 @@ public class AccountFragmentStatistics extends Fragment
         misses.setText(String.valueOf(tmpUser.getMisses()));
         killRate.setText(String.valueOf(tmpUser.getKillRate()));
         broken.setText(String.valueOf(tmpUser.getBroken()));
+
+        // Setup close button
+        Button btn_close = (Button) binding.btnClose;
+        btn_close.setOnClickListener(click -> {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_accountFragmentStatistics_to_navigation_account);
+        });
 
         return root;
     }

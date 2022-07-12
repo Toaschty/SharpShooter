@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -57,6 +59,11 @@ public class PlayedGamesFragment extends Fragment {
             playedGamesRV.setAdapter(lastGameAdapter);
         });
 
+        // Setup close button
+        Button btn_close = (Button) binding.btnClose;
+        btn_close.setOnClickListener(click -> {
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_playedGames_to_navigation_account);
+        });
 
         return root;
     }

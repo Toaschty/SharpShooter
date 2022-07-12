@@ -4,8 +4,10 @@ import static android.app.Activity.RESULT_OK;
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,11 @@ import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
+
+import java.io.IOException;
 
 public class AccountFragment extends Fragment {
 
@@ -51,7 +56,8 @@ public class AccountFragment extends Fragment {
         playerName.setText(FirebaseUtil.GetInstance().userInstance.getName());
 
         // Load account image
-        playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
+        if (FirebaseUtil.GetInstance().userProfilePicture != null)
+            playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
 
         // Image Picker Button
         playerImage.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +73,7 @@ public class AccountFragment extends Fragment {
 
         // Statistics Button
         btn_statistics.setOnClickListener(view -> {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics);
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics);
         });
 
         btn_playedGames.setOnClickListener(view -> {
@@ -111,6 +117,12 @@ public class AccountFragment extends Fragment {
 
             // Upload image to firebase
             FirebaseUtil.GetInstance().uploadAccountImage(img);
+
+            // Convert uri to bitmap -> Set picture for immediate feedback
+            try {
+                Bitmap uriBitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
+                FirebaseUtil.GetInstance().userProfilePicture = uriBitmap;
+            } catch (IOException ignored) {}
         }
     }
 
