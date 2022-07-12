@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView lastGameRV;
     private RecyclerView activeGameRV;
+    private int size = 5;
 
     private ArrayList<LastGameModel> lastGameModelArrayList;
     private ArrayList<LastGameModel> activeGameModelArrayList;
@@ -56,7 +57,10 @@ public class HomeFragment extends Fragment {
 
             if (value.getDocuments().size() > 0)
             {
-                for (int i = 0; i < value.getDocuments().size(); i++) {
+                if (value.getDocuments().size() < 5)
+                    size = value.getDocuments().size();
+
+                for (int i = 0; i < size; i++) {
                     ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
                     if (value.getDocuments().get(i).get("active").toString() == "true")
                         activeGameModelArrayList.add(0,new LastGameModel("ActiveGame", (String) value.getDocuments().get(i).get("date"), playerCount.size() , Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));

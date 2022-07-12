@@ -30,6 +30,7 @@
     <string name="current_game_leaderboard">Leaderboard</string>
     <string name="current_game_player_stats">Statistics</string>
     <string name="current_game_end_parkour">End parkour</string>
+    <string name="current_game_save_config">Save config</string>
 
     <!-- Played Game -->
     <string name="played_game_close">Close</string>

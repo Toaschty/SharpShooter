@@ -23,6 +23,8 @@ public class CurrentGameEnd extends Fragment {
     private FragmentCurrentGameEndBinding binding;
     private RecyclerView card_open_player_stats;
     private ArrayList<CurrentGameWinModel> currentGameModelArrayList;
+    private Button btnDone;
+    private Button btnSaveGameConfig;
 
     public CurrentGameEnd() {
         // Required empty public constructor
@@ -46,7 +48,18 @@ public class CurrentGameEnd extends Fragment {
         card_open_player_stats.setLayoutManager(linearLayoutManager);
         card_open_player_stats.setAdapter(currentGameWinAdapter);
 
-        final Button btnDone = binding.btnDone;
+        btnSaveGameConfig = binding.btnSaveConfig;
+        btnSaveGameConfig.setOnClickListener(btn -> {
+            ArrayList<Object> gameConfig = FirebaseUtil.GetInstance().userInstance.getSavedGameConfig();
+            if ( gameConfig.contains(FirebaseUtil.GetInstance().getActiveGame()) )
+                return;
+            gameConfig.add(FirebaseUtil.GetInstance().getActiveGame());
+            FirebaseUtil.GetInstance().userInstance.setSavedGameConfig(gameConfig);
+            FirebaseUtil.GetInstance().updateUserData("savedGameConfig", FirebaseUtil.GetInstance().userInstance.getSavedGameConfig());
+        });
+
+
+        btnDone = binding.btnDone;
         btnDone.setOnClickListener(btn -> {
             if (FirebaseUtil.GetInstance().gameInstance != null) {
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);

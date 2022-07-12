@@ -32,6 +32,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -304,5 +305,9 @@ public class FirebaseUtil
     public void destroyInstance()
     {
         instance = null;
+    }
+
+    public String getActiveGame() {
+        return activeGame;
     }
 }

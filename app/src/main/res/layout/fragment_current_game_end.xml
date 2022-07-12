@@ -24,10 +24,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/currentGameStatsButtons"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="388dp"
+        android:layout_height="462dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_done"
@@ -50,6 +50,25 @@
         android:textSize="24sp"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_saveConfig"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_selector"
+        android:fontFamily="@font/julius_sans_one"
+        android:text="@string/current_game_save_config"
+        android:textColor="@color/button_selector"
+        android:textSize="24sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btn_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
