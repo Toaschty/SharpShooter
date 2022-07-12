@@ -1,5 +1,7 @@
 package com.example.sharpshooter.template;
 
+import java.util.ArrayList;
+
 public class UserTemplate {
     private String name;
     private int broken;
@@ -10,6 +12,7 @@ public class UserTemplate {
     private int misses;
     private long points;
     private int shots;
+    private ArrayList<Object> savedGameConfig;
 
     // Constructor
     public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double killRate, int misses, long points, int shots) {
@@ -22,9 +25,14 @@ public class UserTemplate {
         this.misses = misses;
         this.points = points;
         this.shots = shots;
+        this.savedGameConfig = new ArrayList<>();
     }
 
     public UserTemplate() { }
+
+    public ArrayList<Object> getSavedGameConfig() {
+        return savedGameConfig;
+    }
 
     public String getName() { return name; }
 
@@ -61,4 +69,9 @@ public class UserTemplate {
     public int getShots() {
         return shots;
     }
+
+    public void setSavedGameConfig(ArrayList<Object> obj) {
+        this.savedGameConfig = obj;
+    }
+
 }

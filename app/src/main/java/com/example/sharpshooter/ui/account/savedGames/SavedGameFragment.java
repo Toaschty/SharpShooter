@@ -23,7 +23,6 @@ public class SavedGameFragment extends Fragment {
 
     private ArrayList<LastGameModel> lastGameModelArrayList;
 
-
     private FragmentAccountSavedGamesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,8 +40,10 @@ public class SavedGameFragment extends Fragment {
             if (value.getDocuments().size() > 0)
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
-                    ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                    lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                    if (FirebaseUtil.GetInstance().userInstance.getSavedGameConfig().contains(value.getDocuments().get(i).getId())) {
+                        ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
+                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                    }
                 }
             }
             // we are initializing our adapter class and passing our arraylist to it.
