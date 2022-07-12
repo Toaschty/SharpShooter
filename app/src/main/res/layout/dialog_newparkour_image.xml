@@ -44,16 +44,14 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/parkourImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:adjustViewBounds="true"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:foreground="@drawable/button_design_normal"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_add_photo_alternate_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/newParkourText"
             app:shapeAppearance="@style/roundedImageView" />
 
         <Button
