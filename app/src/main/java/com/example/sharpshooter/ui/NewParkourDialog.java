@@ -110,7 +110,7 @@ public class NewParkourDialog extends DialogFragment
             CollectData();
             if (checkInput())
             {
-                ((PlayerInputDialog) nextDialog).setData(parkourName.getText().toString(), selectedPlayerCount, selectedTargetCount);
+                ((NewParkourImageDialog) nextDialog).setData(parkourName.getText().toString(), selectedPlayerCount, selectedTargetCount);
                 nextDialog.show(getParentFragmentManager(), "Next");
                 dialog.dismiss();
             }

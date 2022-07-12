@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.ui.NewGameDialog;
 import com.example.sharpshooter.ui.NewParkourDialog;
+import com.example.sharpshooter.ui.NewParkourImageDialog;
 import com.example.sharpshooter.ui.PlayerInputDialog;
 import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
@@ -101,7 +102,8 @@ public class HomeFragment extends Fragment {
 
     private void showDialog(View view){
         PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view);
-        NewParkourDialog newParkourDialog = new NewParkourDialog(R.layout.dialog_newparkour, playerInputDialog);
+        NewParkourImageDialog newParkourImageDialog = new NewParkourImageDialog(R.layout.dialog_newparkour_image, playerInputDialog);
+        NewParkourDialog newParkourDialog = new NewParkourDialog(R.layout.dialog_newparkour, newParkourImageDialog);
         NewGameDialog newGameDialog = new NewGameDialog(R.layout.dialog_newgame, newParkourDialog);
 
         newGameDialog.show(getParentFragmentManager(), "newGameDialog");

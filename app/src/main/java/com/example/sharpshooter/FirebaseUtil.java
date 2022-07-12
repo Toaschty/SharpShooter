@@ -10,12 +10,14 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.sharpshooter.template.GameTemplate;
 import com.example.sharpshooter.template.UserTemplate;
+import com.example.sharpshooter.ui.card.LastGameModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -171,6 +173,20 @@ public class FirebaseUtil
 
         // Get reference to new / existing img file in storage
         StorageReference imgStorage = storage.child("users/" + authentication.getUid());
+
+        // Start new upload task
+        UploadTask uploadTask = imgStorage.putFile(img);
+        uploadTask.addOnCompleteListener(task -> {
+            Utils.GetInstance().StopLoading();
+        });
+    }
+
+    public void uploadParkourImage(Uri img, String parkourId) {
+        // Start loading animation
+        Utils.GetInstance().StartLoading();
+
+        // Get reference to new / existing img file in storage
+        StorageReference imgStorage = storage.child("parkours/" + parkourId);
 
         // Start new upload task
         UploadTask uploadTask = imgStorage.putFile(img);
