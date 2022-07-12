@@ -43,7 +43,7 @@ public class CurrentGameEnd extends Fragment {
             currentGameModelArrayList.add(new CurrentGameWinModel(playerName));
         }
 
-        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList);
+        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList, getActivity());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         card_open_player_stats.setLayoutManager(linearLayoutManager);
         card_open_player_stats.setAdapter(currentGameWinAdapter);
