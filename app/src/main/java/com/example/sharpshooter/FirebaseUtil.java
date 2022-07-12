@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -258,6 +259,12 @@ public class FirebaseUtil
             }
         }
         catch (Exception ignored) {}
+    }
+
+    public void getAllGames(AllGamesLoader allGamesLoader){
+        FirebaseUtil.GetInstance().database.collection("users").document(FirebaseUtil.GetInstance().authentication.getUid()).collection("games").addSnapshotListener((value, error) -> {
+            allGamesLoader.onCallback(value);
+        });
     }
 
     // Create data in database for new user

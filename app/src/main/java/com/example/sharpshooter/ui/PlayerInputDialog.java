@@ -42,6 +42,15 @@ public class PlayerInputDialog extends DialogFragment
         this.contentView = contentView;
     }
 
+    public PlayerInputDialog(int contentView, View view, String parkourName, int playerCount, int targetCount)
+    {
+        this.root = view;
+        this.contentView = contentView;
+        this.parkourName = parkourName;
+        this.playerCount = playerCount;
+        this.targetCount = targetCount;
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {

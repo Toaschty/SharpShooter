@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.sharpshooter.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_loadGame"
+            app:destination="@id/loadGame" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -25,9 +29,31 @@
         <action
             android:id="@+id/action_navigation_account_to_accountFragmentStatistics"
             app:destination="@id/accountFragmentStatistics" />
+        <action
+            android:id="@+id/action_navigation_account_to_playedGames"
+            app:destination="@id/playedGames" />
+        <action
+            android:id="@+id/action_navigation_account_to_savedGameFragment"
+            app:destination="@id/savedGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragmentStatistics"
         android:name="com.example.sharpshooter.ui.account.AccountFragmentStatistics"
         android:label="AccountFragmentStatistics" />
+    <fragment
+        android:id="@+id/playedGames"
+        android:name="com.example.sharpshooter.ui.account.playedGames.PlayedGamesFragment"
+        android:label="PlayedGames" />
+    <fragment
+        android:id="@+id/savedGameFragment"
+        android:name="com.example.sharpshooter.ui.account.savedGames.SavedGameFragment"
+        android:label="SavedGameFragment" />
+    <fragment
+        android:id="@+id/loadGame"
+        android:name="com.example.sharpshooter.ui.home.loadGame.LoadGame"
+        android:label="LoadGame" >
+        <action
+            android:id="@+id/action_loadGame_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

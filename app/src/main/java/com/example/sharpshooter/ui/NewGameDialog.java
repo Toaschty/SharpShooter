@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.R;
 
@@ -13,6 +14,7 @@ public class NewGameDialog extends DialogFragment
     private int contentView;
     private DialogFragment nextDialog;
     private Button newParkourButton;
+    private Button loadParkourBtn;
 
     public NewGameDialog(int contentView, DialogFragment nextDialog)
     {
@@ -34,6 +36,12 @@ public class NewGameDialog extends DialogFragment
         newParkourButton.setOnClickListener(view -> {
             nextDialog.show(getParentFragmentManager(), "Next");
             dialog.dismiss();
+        });
+
+        loadParkourBtn = dialog.findViewById(R.id.newParkour_continue);
+        loadParkourBtn.setOnClickListener(view -> {
+            dialog.dismiss();
+            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_home_to_loadGame);
         });
 
         return dialog;
