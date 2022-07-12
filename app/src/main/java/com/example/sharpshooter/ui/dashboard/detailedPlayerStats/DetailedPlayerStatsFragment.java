@@ -9,13 +9,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
-import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentDetailedPlayerStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DetailedPlayerStatsFragment extends Fragment {
     private FragmentDetailedPlayerStatsBinding binding;
@@ -50,16 +51,70 @@ public class DetailedPlayerStatsFragment extends Fragment {
         String playerNameBuffer = Utils.GetInstance().getBufferPlayerStats();
         playerName.setText(playerNameBuffer);
         points.setText(gameTemplate.getPlayerTotalScore(playerNameBuffer));
-        shots.setText("0");
-        kills.setText("0");
-        hits.setText("0");
-        misses.setText("0");
-        killRate.setText("0");
-        broken.setText("0");
+        ArrayList<Long> targetScore = gameTemplate.getPlayerTargetScore(playerNameBuffer);
 
-        btnClose.setOnClickListener(view -> {
+        int targetCount = gameTemplate.getTargetCount();
+        AtomicInteger shotsCount = new AtomicInteger();
+        AtomicInteger killsCount = new AtomicInteger();
+        AtomicInteger missesCount = new AtomicInteger();
+        AtomicInteger hitsCount = new AtomicInteger();
+        int brokenCount = 0;
+
+        for (int i = 0; i < targetCount; i++) {
+            brokenCount += gameTemplate.getPlayerBrokenArrowsWithId(playerNameBuffer, i);
+        }
+
+        targetScore.forEach(n -> {
+            if ( n == 20 )
+            {
+                killsCount.getAndIncrement();
+                shotsCount.getAndIncrement();
+                hitsCount.getAndIncrement();
+            }else if( n == 16 )
+            {
+                shotsCount.getAndIncrement();
+                hitsCount.getAndIncrement();
+            }
+            else if( n == 14 )
+            {
+                killsCount.getAndIncrement();
+                shotsCount.addAndGet(2);
+                hitsCount.getAndIncrement();
+                missesCount.getAndIncrement();
+            }
+            else if ( n == 10 ) {
+                shotsCount.addAndGet(2);
+                hitsCount.getAndIncrement();
+                missesCount.getAndIncrement();
+            }
+            else if (n == 8) {
+                killsCount.getAndIncrement();
+                shotsCount.addAndGet(3);
+                hitsCount.getAndIncrement();
+                missesCount.addAndGet(2);
+            }
+            else if (n == 4) {
+                shotsCount.addAndGet(3);
+                hitsCount.getAndIncrement();
+                missesCount.addAndGet(2);
+            }
+            else {
+                shotsCount.addAndGet(3);
+                missesCount.addAndGet(3);
+            }
+
         });
 
+        shots.setText(String.valueOf(shotsCount));
+        kills.setText(String.valueOf(killsCount));
+        hits.setText(String.valueOf(hitsCount));
+        misses.setText(String.valueOf(missesCount));
+        killRate.setText(String.valueOf(((float) killsCount.get()) / (float) shotsCount.get()));
+        broken.setText(String.valueOf(brokenCount));
+
+        btnClose.setOnClickListener(view -> {
+            getActivity().onBackPressed();
+        });
         return root;
     }
 
