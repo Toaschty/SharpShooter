@@ -1,5 +1,7 @@
 package com.example.sharpshooter.ui.card;
 
+import com.example.sharpshooter.R;
+
 public class LastGameModel {
 
     private String lastGame_name;
@@ -10,13 +12,13 @@ public class LastGameModel {
     private String gameId;
 
     // Constructor
-    public LastGameModel(String name, String date, int playerCount, int targetCount, int lastGame_image, String gameId) {
+    public LastGameModel(String name, String date, int playerCount, int targetCount, String gameId) {
         this.lastGame_name = name;
         this.lastGame_date = date;
         this.lastGame_playerCount = playerCount;
         this.lastGame_targetCount = targetCount;
-        this.lastGame_image = lastGame_image;
         this.gameId = gameId;
+        this.lastGame_image = R.drawable.ic_no_image;
     }
 
     // Getter and Setter
@@ -35,17 +37,11 @@ public class LastGameModel {
         this.lastGame_name = lastGame_name;
     }
 
-    public int getLastGame_image() {
-        return lastGame_image;
-    }
-
-    public void setLastGame_image(int lastGame_image) {
-        this.lastGame_image = lastGame_image;
-    }
-
     public String getGameId() {
         return gameId;
     }
+
+    public int getLastGame_image() { return lastGame_image; }
 
     public void setGameId(String gameId) {
         this.gameId = gameId;

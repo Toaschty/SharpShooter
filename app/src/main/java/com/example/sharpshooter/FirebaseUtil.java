@@ -28,6 +28,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.Document;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,6 +37,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class FirebaseUtil
@@ -182,6 +184,10 @@ public class FirebaseUtil
     }
 
     public void uploadParkourImage(Uri img, String parkourId) {
+        // Uri cannot be null
+        if (img == null)
+            return;
+
         // Start loading animation
         Utils.GetInstance().StartLoading();
 
@@ -308,8 +314,12 @@ public class FirebaseUtil
     }
 
     // Create data in database for new user
-    public void createNewGameData(GameTemplate game) {
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document().set(game);
+    public String createNewGameData(GameTemplate game) {
+        DocumentReference gameReference = database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document();
+        gameReference.set(game);
+
+        // Return the document id of newly created game
+        return gameReference.getId();
     }
     public void destoyGameInstace(){gameInstance = null;}
 

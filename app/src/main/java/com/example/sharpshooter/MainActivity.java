@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                         navController.navigate(R.id.navigation_dashboard);
                         return true;
                     case R.id.navigation_account:
-                        //Todo it you can never access account if you don`t have set a Profile Picture
                         if (FirebaseUtil.GetInstance().loadingProgress < 2)
                             return false;
                         navController.navigate(R.id.navigation_account);

@@ -1,6 +1,7 @@
 package com.example.sharpshooter.ui;
 
 import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -95,10 +96,10 @@ public class PlayerInputDialog extends DialogFragment
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);
                 FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
             }
-            FirebaseUtil.GetInstance().createNewGameData(new GameTemplate(true, parkourName, setPlayer(playerNames), targetCount, playerNames));
+            String gameId = FirebaseUtil.GetInstance().createNewGameData(new GameTemplate(true, parkourName, setPlayer(playerNames), targetCount, playerNames));
 
             // Upload parkour image
-            FirebaseUtil.GetInstance().uploadParkourImage(parkourImage, FirebaseUtil.GetInstance().getActiveGame());
+            FirebaseUtil.GetInstance().uploadParkourImage(parkourImage, gameId);
 
             // Show loading indicator
             Utils.GetInstance().StartLoading();

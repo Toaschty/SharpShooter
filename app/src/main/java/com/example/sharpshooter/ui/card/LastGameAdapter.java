@@ -2,6 +2,7 @@ package com.example.sharpshooter.ui.card;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,9 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.ImageLoader;
 import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
@@ -50,7 +55,10 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
         holder.lastGameDate.setText( model.getLastGame_date() );
         holder.lastGamePlayerCount.setText(String.valueOf( model.getLastGame_playerCount()) );
         holder.lastGameTargetCount.setText(String.valueOf( model.getLastGame_targetCount()) );
+
+        // Set default image -> Then try to load image from database
         holder.lastGameIV.setImageResource(model.getLastGame_image());
+        ImageLoader.GetInstance().addImageViewToLoading(holder.lastGameIV, model.getGameId());
     }
 
     @Override
@@ -69,7 +77,6 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
         private TextView lastGameTargetCount;
         private ImageView lastGameIV;
 
-
         private CardView cv;
 
         @SuppressLint("ClickableViewAccessibility")
@@ -79,8 +86,8 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGameDate = itemView.findViewById(R.id.idLastGameDate);
             lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
             lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
-            cv = (CardView) itemView.findViewById(R.id.lastGameCV);
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
+            cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
             cv.setOnClickListener((view) -> {
                 if(call == "game") {
@@ -89,15 +96,14 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
                         Utils.GetInstance().setBottomNavVisibility(true);
                         Utils.GetInstance().replaceFragment();
                     });
-                }else if( call == "load")
+                }else if(call == "load")
                 {
                     PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view, lastGameName.getText().toString(), Math.toIntExact(Long.parseLong(lastGamePlayerCount.getText().toString())), Math.toIntExact(Long.parseLong(lastGameTargetCount.getText().toString())));
-
                     playerInputDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "playerInputDialog");
                 }
             });
 
-            // Start game name marguee
+            // Start game name marquee
             cv.setOnTouchListener((v, event) -> {
                 switch(event.getAction())
                 {

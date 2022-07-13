@@ -36,7 +36,6 @@ public class SavedGameFragment extends Fragment {
         // Card with Recycler view
         playedGamesRV = root.findViewById(R.id.saved_games_RecyclerView);
 
-        // dummy data.
         lastGameModelArrayList = new ArrayList<>();
         FirebaseUtil.GetInstance().getAllGames(value -> {
             if (value.getDocuments().size() > 0)
@@ -44,7 +43,7 @@ public class SavedGameFragment extends Fragment {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
                     if (FirebaseUtil.GetInstance().userInstance.getSavedGameConfig().contains(value.getDocuments().get(i).getId())) {
                         ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
                     }
                 }
             }

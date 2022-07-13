@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.sharpshooter.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class NewParkourImageDialog extends DialogFragment
@@ -52,10 +53,8 @@ public class NewParkourImageDialog extends DialogFragment
         // Image Picker Button
         parkourImageView.setOnClickListener(view -> {
             // Start Image Picker Intent
-            Intent gallery = new Intent();
-            gallery.setType("image/*");
-            gallery.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
+            Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(Intent.createChooser(camera, "Take Picture"), 6969);
         });
 
         // Add click listener
@@ -75,15 +74,15 @@ public class NewParkourImageDialog extends DialogFragment
 
         // If Image Picker was "successful"
         if (resultCode == RESULT_OK && requestCode == 6969) {
-            // Set selected image
-            Uri img = data.getData();
-            parkourImage = img;
+            // Get Bitmap
+            Bitmap parkourBitmap = (Bitmap) data.getExtras().get("data");
+            parkourImageView.setImageBitmap(parkourBitmap);
 
-            // Convert uri to bitmap -> Set picture for immediate feedback
-            try {
-                Bitmap uriBitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
-                parkourImageView.setImageBitmap(uriBitmap);
-            } catch (IOException ignored) {}
+            // Save Bitmap as Uri
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            parkourBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), parkourBitmap, "ParkourImage", null);
+            parkourImage = Uri.parse(path);
         }
     }
 
