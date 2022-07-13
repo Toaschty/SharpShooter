@@ -1,5 +1,6 @@
 package com.example.sharpshooter.ui.card;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.ui.dashboard.CurrentGameCardAdapter;
 
 import java.util.ArrayList;
@@ -22,10 +27,12 @@ import java.util.ArrayList;
 public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAdapter.Viewholder>{
     private Context context;
     private ArrayList<CurrentGameWinModel> currentGameWinModelArrayList;
+    private Activity activity;
 
-    public CurrentGameWinAdapter(Context context, ArrayList<CurrentGameWinModel> currentGameWinModelArrayList){
+    public CurrentGameWinAdapter(Context context, ArrayList<CurrentGameWinModel> currentGameWinModelArrayList, Activity activity){
         this.context = context;
         this.currentGameWinModelArrayList = currentGameWinModelArrayList;
+        this.activity = activity;
     }
     @NonNull
     @Override
@@ -61,8 +68,9 @@ public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAd
             cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
 
-            cv.setOnClickListener((view) -> {
-                System.out.println("Do something");
+            btn_open_player_stats.setOnClickListener((view) -> {
+                Utils.GetInstance().setBufferPlayerStats(btn_open_player_stats.getText().toString());
+                Navigation.findNavController(itemView).navigate(R.id.action_navigation_dashboard_to_detailedPlayerStatsFragment);
             });
         }
     }

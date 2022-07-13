@@ -63,6 +63,8 @@ public class GameTemplate {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
         return (ArrayList<Long>) player.get("targetScore");
     }
+
+
     public int getPlayerTargetScoreWithId(String playerName, int targetId)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);

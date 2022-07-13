@@ -17,6 +17,9 @@ public class Utils
     private MainActivity context;
     private final ImageView loadingIndicator;
     private final RotateAnimation loadingRotate;
+    private String playerName;
+
+
 
     public static void SetupUtils(MainActivity activity)
     {
@@ -85,4 +88,14 @@ public class Utils
         BottomNavigationView navigationView = context.findViewById(R.id.nav_view);
         navigationView.setSelectedItemId(R.id.navigation_home);
     }
+
+    public void setBufferPlayerStats(String playerName)
+    {
+        this.playerName = playerName;
+    }
+
+    public String getBufferPlayerStats(){
+        return playerName;
+    }
+
 }

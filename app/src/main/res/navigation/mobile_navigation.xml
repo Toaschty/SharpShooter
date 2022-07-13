@@ -19,7 +19,14 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.sharpshooter.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_current_game_slider" />
+        tools:layout="@layout/fragment_current_game_slider" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_currentGameEnd"
+            app:destination="@id/currentGameEnd" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_detailedPlayerStatsFragment"
+            app:destination="@id/detailedPlayerStatsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_account"
@@ -67,5 +74,21 @@
         <action
             android:id="@+id/action_loadGame_to_navigation_home"
             app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentGameEnd"
+        android:name="com.example.sharpshooter.ui.dashboard.CurrentGameEnd"
+        android:label="CurrentGameEnd" >
+        <action
+            android:id="@+id/action_currentGameEnd_to_detailedPlayerStatsFragment"
+            app:destination="@id/detailedPlayerStatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedPlayerStatsFragment"
+        android:name="com.example.sharpshooter.ui.dashboard.detailedPlayerStats.DetailedPlayerStatsFragment"
+        android:label="DetailedPlayerStatsFragment" >
+        <action
+            android:id="@+id/action_detailedPlayerStatsFragment_to_currentGameEnd"
+            app:destination="@id/currentGameEnd" />
     </fragment>
 </navigation>
