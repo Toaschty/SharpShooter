@@ -26,12 +26,13 @@ import com.example.sharpshooter.ui.NewGameDialog;
 import com.example.sharpshooter.ui.PlayerInputDialog;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewholder> {
 
-    private Context context;
-    private ArrayList<LastGameModel> lastGameModelArrayList;
-    private String call;
+    private final Context context;
+    private final ArrayList<LastGameModel> lastGameModelArrayList;
+    private final String call;
 
     public LastGameAdapter(Context context, ArrayList<LastGameModel> lastGameModelArrayList, String call) {
         this.context = context;
@@ -71,13 +72,12 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
     // View holder class for initializing of
     // your views such as TextView.
     public class Viewholder extends RecyclerView.ViewHolder {
-        private TextView lastGameName;
-        private TextView lastGameDate;
-        private TextView lastGamePlayerCount;
-        private TextView lastGameTargetCount;
-        private ImageView lastGameIV;
+        private final TextView lastGameName;
+        private final TextView lastGameDate;
+        private final TextView lastGamePlayerCount;
+        private final TextView lastGameTargetCount;
+        private final ImageView lastGameIV;
 
-        private CardView cv;
 
         @SuppressLint("ClickableViewAccessibility")
         public Viewholder(@NonNull View itemView) {
@@ -86,17 +86,20 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGameDate = itemView.findViewById(R.id.idLastGameDate);
             lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
             lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
+            CardView cv = itemView.findViewById(R.id.lastGameCV);
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
             cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
             cv.setOnClickListener((view) -> {
-                if(call == "game") {
+                if(Objects.equals(call, "game")) {
                     FirebaseUtil.GetInstance().setActiveGame(lastGameModelArrayList.get(getAdapterPosition()).getGameId());
                     FirebaseUtil.GetInstance().initGameInstanceWithId(() -> {
+                        if (Utils.GetInstance() == null)
+                            return;
                         Utils.GetInstance().setBottomNavVisibility(true);
                         Utils.GetInstance().replaceFragment();
                     });
-                }else if(call == "load")
+                } else if(Objects.equals(call, "load"))
                 {
                     PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view, lastGameName.getText().toString(), Math.toIntExact(Long.parseLong(lastGamePlayerCount.getText().toString())), Math.toIntExact(Long.parseLong(lastGameTargetCount.getText().toString())));
                     playerInputDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "playerInputDialog");

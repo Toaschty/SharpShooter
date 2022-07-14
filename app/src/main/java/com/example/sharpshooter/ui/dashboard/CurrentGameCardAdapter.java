@@ -20,7 +20,6 @@ import com.example.sharpshooter.R;
 import java.util.ArrayList;
 
 public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCardAdapter.Viewholder> {
-    private Context context;
     private final ArrayList<CurrentGameCardModel> currentGameCardModelArrayList;
     private CurrentGameCardModel model;
 
@@ -29,7 +28,6 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
 
 
     public CurrentGameCardAdapter(Context context, ArrayList<CurrentGameCardModel> currentGameCardModelArrayList){
-        this.context = context;
         this.currentGameCardModelArrayList = currentGameCardModelArrayList;
     }
 

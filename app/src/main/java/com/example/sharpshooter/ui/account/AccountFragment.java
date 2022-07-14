@@ -60,45 +60,33 @@ public class AccountFragment extends Fragment {
             playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
 
         // Image Picker Button
-        playerImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Start Image Picker Intent
-                Intent gallery = new Intent();
-                gallery.setType("image/*");
-                gallery.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
-            }
+        playerImage.setOnClickListener(view -> {
+            // Start Image Picker Intent
+            Intent gallery = new Intent();
+            gallery.setType("image/*");
+            gallery.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
         });
 
         // Statistics Button
-        btn_statistics.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics);
-        });
+        btn_statistics.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics));
 
-        btn_playedGames.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_playedGames);
-        });
+        btn_playedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_playedGames));
 
-        btn_savedGames.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_savedGameFragment);
-        });
+        btn_savedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_savedGameFragment));
 
         // Logout Button
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Sign out current user
-                FirebaseUtil.GetInstance().authentication.signOut();
+        btn_logout.setOnClickListener(view -> {
+            // Sign out current user
+            FirebaseUtil.GetInstance().authentication.signOut();
 
-                // Destroy instance
-                FirebaseUtil.GetInstance().destroyInstance();
+            // Destroy instance
+            FirebaseUtil.GetInstance().destroyInstance();
 
-                // "Restart" application by loading welcome page
-                Intent welcome_intent = new Intent(getActivity(), WelcomeActivity.class);
-                startActivity(welcome_intent);
-                finishAffinity(getActivity());
-            }
+            // "Restart" application by loading welcome page
+            Intent welcome_intent = new Intent(requireActivity(), WelcomeActivity.class);
+            startActivity(welcome_intent);
+            finishAffinity(requireActivity());
         });
 
         return root;

@@ -39,6 +39,7 @@ public class DashboardFragment extends Fragment {
         for (int i = 0; i < FirebaseUtil.GetInstance().gameInstance.getTargetCount(); i++) {
             currentGameModelArrayList.add(new CurrentGameModel("Target " + (i + 1), i));
         }
+        assert getParentFragment() != null;
         CurrentGameAdapter currentGameAdapter = new CurrentGameAdapter(getParentFragment(), currentGameModelArrayList);
         currentGameViewPager.setAdapter(currentGameAdapter);
 

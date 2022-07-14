@@ -64,9 +64,7 @@ public class LoadGame extends Fragment {
 
         btnClose = binding.btnClose;
 
-        btnClose.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_loadGame_to_navigation_home);
-        });
+        btnClose.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_loadGame_to_navigation_home));
 
         return root;
     }

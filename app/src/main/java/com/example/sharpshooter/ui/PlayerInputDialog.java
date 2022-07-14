@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +38,7 @@ public class PlayerInputDialog extends DialogFragment
     private int playerCount;
     private int targetCount;
     private Uri parkourImage;
-    private View root;
+    private final View root;
 
     public PlayerInputDialog(int contentView, View view)
     {
@@ -54,6 +55,7 @@ public class PlayerInputDialog extends DialogFragment
         this.targetCount = targetCount;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -102,7 +104,8 @@ public class PlayerInputDialog extends DialogFragment
             FirebaseUtil.GetInstance().uploadParkourImage(parkourImage, gameId);
 
             // Show loading indicator
-            Utils.GetInstance().StartLoading();
+            if ( Utils.GetInstance() != null)
+                Utils.GetInstance().StartLoading();
 
             FirebaseUtil.GetInstance().initGameInstance(() -> {
                 // Hide loading indicator
@@ -129,7 +132,7 @@ public class PlayerInputDialog extends DialogFragment
             playerObject.put("targetScore", targetScore);
             playerObject.put("totalScore", 0);
             playerObject.put("brokenArrows", brokenArrows);
-            player.put(playerName.toString(), playerObject);
+            player.put(playerName, playerObject);
         });
 
         return player;
