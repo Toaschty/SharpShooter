@@ -17,7 +17,7 @@ public class Utils
 {
     private static Utils _instance;
 
-    private MainActivity context;
+    private final MainActivity context;
     private final ImageView loadingIndicator;
     private final RotateAnimation loadingRotate;
     private String playerName;

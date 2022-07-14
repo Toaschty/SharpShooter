@@ -48,6 +48,10 @@ public class DetailedPlayerStatsFragment extends Fragment {
         broken = binding.broken;
 
         btnClose = binding.btnDone;
+        if (FirebaseUtil.GetInstance() == null)
+            return root;
+        if (Utils.GetInstance() == null)
+            return root;
         GameTemplate gameTemplate = FirebaseUtil.GetInstance().gameInstance;
         String playerNameBuffer = Utils.GetInstance().getBufferPlayerStats();
         playerName.setText(playerNameBuffer);
@@ -62,7 +66,7 @@ public class DetailedPlayerStatsFragment extends Fragment {
         broken.setText(String.valueOf(stats.get("brokenCount")));
 
         btnClose.setOnClickListener(view -> {
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         });
         return root;
     }

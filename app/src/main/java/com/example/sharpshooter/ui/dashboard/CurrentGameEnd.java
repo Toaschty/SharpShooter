@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,7 @@ public class CurrentGameEnd extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCurrentGameEndBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -46,7 +47,7 @@ public class CurrentGameEnd extends Fragment {
             currentGameModelArrayList.add(new CurrentGameWinModel(playerName));
         }
 
-        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList, getActivity());
+        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         card_open_player_stats.setLayoutManager(linearLayoutManager);
         card_open_player_stats.setAdapter(currentGameWinAdapter);
@@ -64,10 +65,13 @@ public class CurrentGameEnd extends Fragment {
 
         btnDone = binding.btnDone;
         btnDone.setOnClickListener(btn -> {
+            if (Utils.GetInstance() == null)
+                return;
             if (FirebaseUtil.GetInstance().gameInstance != null) {
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);
                 FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
                 UserTemplate uploadStats = FirebaseUtil.GetInstance().userInstance;
+
                 Map<String, Integer> stats = Utils.GetInstance().generateStats(uploadStats.getName());
                 uploadStats.addPoints(Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(uploadStats.getName())));
                 uploadStats.addBroken(stats.get("brokenCount"));

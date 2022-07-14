@@ -46,7 +46,7 @@ public class LoadGame extends Fragment {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
                     if (FirebaseUtil.GetInstance().userInstance.getSavedGameConfig().contains(value.getDocuments().get(i).getId())) {
                         ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId().toString()));
+                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), R.drawable.ic_account_black_24dp, value.getDocuments().get(i).getId()));
                     }
                 }
             }
@@ -64,9 +64,7 @@ public class LoadGame extends Fragment {
 
         btnClose = binding.btnClose;
 
-        btnClose.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_loadGame_to_navigation_home);
-        });
+        btnClose.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_loadGame_to_navigation_home));
 
         return root;
     }

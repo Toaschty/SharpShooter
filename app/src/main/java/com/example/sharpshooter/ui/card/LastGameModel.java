@@ -3,9 +3,9 @@ package com.example.sharpshooter.ui.card;
 public class LastGameModel {
 
     private String lastGame_name;
-    private String lastGame_date;
-    private int lastGame_playerCount;
-    private int lastGame_targetCount;
+    private final String lastGame_date;
+    private final int lastGame_playerCount;
+    private final int lastGame_targetCount;
     private int lastGame_image;
     private String gameId;
 

@@ -25,21 +25,17 @@ import com.example.sharpshooter.ui.dashboard.CurrentGameCardAdapter;
 import java.util.ArrayList;
 
 public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAdapter.Viewholder>{
-    private Context context;
-    private ArrayList<CurrentGameWinModel> currentGameWinModelArrayList;
-    private Activity activity;
+    private final ArrayList<CurrentGameWinModel> currentGameWinModelArrayList;
 
-    public CurrentGameWinAdapter(Context context, ArrayList<CurrentGameWinModel> currentGameWinModelArrayList, Activity activity){
-        this.context = context;
+    public CurrentGameWinAdapter(Context context, ArrayList<CurrentGameWinModel> currentGameWinModelArrayList){
         this.currentGameWinModelArrayList = currentGameWinModelArrayList;
-        this.activity = activity;
     }
     @NonNull
     @Override
     public CurrentGameWinAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // to inflate the layout for each item of recycler view.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_open_player_stats, parent, false);
-        return new CurrentGameWinAdapter.Viewholder(view);
+        return new Viewholder(view);
     }
 
     @Override
@@ -58,18 +54,17 @@ public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAd
 
     // View holder class for initializing of
     // your views such as TextView.
-    public class Viewholder extends RecyclerView.ViewHolder {
-        private Button btn_open_player_stats;
-        private CardView cv;
+    public static class Viewholder extends RecyclerView.ViewHolder {
+        private final Button btn_open_player_stats;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
             btn_open_player_stats = itemView.findViewById(R.id.btn_open_player_stats);
-            cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
 
             btn_open_player_stats.setOnClickListener((view) -> {
-                Utils.GetInstance().setBufferPlayerStats(btn_open_player_stats.getText().toString());
+                if (Utils.GetInstance() != null)
+                    Utils.GetInstance().setBufferPlayerStats(btn_open_player_stats.getText().toString());
                 Navigation.findNavController(itemView).navigate(R.id.action_navigation_dashboard_to_detailedPlayerStatsFragment);
             });
         }

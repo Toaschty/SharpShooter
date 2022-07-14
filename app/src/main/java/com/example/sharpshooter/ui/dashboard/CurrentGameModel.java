@@ -3,7 +3,7 @@ package com.example.sharpshooter.ui.dashboard;
 public class CurrentGameModel {
 
     private String currentGame_name;
-    private int targetId;
+    private final int targetId;
 
     public CurrentGameModel(String currentGame_name, int targetId)
     {

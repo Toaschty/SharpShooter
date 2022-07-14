@@ -34,8 +34,7 @@ public class GameTemplate {
         LocalDate myDateObj = LocalDate.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        String formattedDate = myDateObj.format(myFormatObj);
-        return formattedDate;
+        return myDateObj.format(myFormatObj);
     }
 
     public String getDate() {

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.navigation.Navigation;
 
@@ -22,6 +23,7 @@ public class NewGameDialog extends DialogFragment
         this.nextDialog = nextDialog;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -41,7 +43,7 @@ public class NewGameDialog extends DialogFragment
         loadParkourBtn = dialog.findViewById(R.id.newParkour_continue);
         loadParkourBtn.setOnClickListener(view -> {
             dialog.dismiss();
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_home_to_loadGame);
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_home_to_loadGame);
         });
 
         return dialog;

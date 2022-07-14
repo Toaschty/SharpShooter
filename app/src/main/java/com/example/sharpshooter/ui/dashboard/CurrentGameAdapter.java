@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class CurrentGameAdapter extends FragmentStateAdapter {
 
-    private ArrayList<CurrentGameModel> currentGameModelArrayList;
+    private final ArrayList<CurrentGameModel> currentGameModelArrayList;
 
     public CurrentGameAdapter(@NonNull Fragment fragment, ArrayList<CurrentGameModel> currentGameModelArrayList) {
         super(fragment);
