@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
 
         FirebaseUtil.GetInstance().getAllGames(value -> {
             for (int i = 0; i < value.getDocuments().size(); i++) {
-                ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
+                @SuppressWarnings("unchecked") ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
                 if (Objects.requireNonNull(value.getDocuments().get(i).get("active")).toString().equals("true"))
                     activeGameModelArrayList.add(0,new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size() , Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
                 else
@@ -67,13 +67,17 @@ public class HomeFragment extends Fragment {
 
 
             lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
+            lastGameModelArrayList.forEach(n -> System.out.println(n.getLastGame_name()));
+            System.out.println(lastGameModelArrayList.size());
+
             if (lastGameModelArrayList.size() > 5)
             {
-                for (int i = 5; i < lastGameModelArrayList.size(); i++) {
-                    //noinspection SuspiciousListRemoveInLoop
-                    lastGameModelArrayList.remove(i);
+                int size = lastGameModelArrayList.size()-5;
+                for (int i = 0; i < size; i++) {
+                    lastGameModelArrayList.remove(5);
                 }
             }
+            lastGameModelArrayList.forEach(n -> System.out.println(n.getLastGame_name()));
 
             if(activeGameModelArrayList.size() != 0)
             {
