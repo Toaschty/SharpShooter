@@ -32,6 +32,14 @@
     <string name="current_game_player_stats">Statistics</string>
     <string name="current_game_end_parkour">End parkour</string>
     <string name="current_game_save_config">Save config</string>
+    <string name="current_game_points_20">20</string>
+    <string name="current_game_points_16">16</string>
+    <string name="current_game_points_14">14</string>
+    <string name="current_game_points_10">10</string>
+    <string name="current_game_points_8">8</string>
+    <string name="current_game_points_4">4</string>
+    <string name="current_game_points_0">0</string>
+    <string name="current_game_brokenArrow">Broken arrow</string>
 
     <!-- Played Game -->
     <string name="played_game_close">Close</string>
@@ -68,4 +76,18 @@
     <string name="register_failed_auth_password_missmatch">Passwords do not match</string>
     <string name="register_failed_auth_email_used">Email already used</string>
     <string name="register_failed_auth_unknown_error">Unknown error</string>
+
+    <!-- Help -->
+    <string name="help_title">Help</string>
+    <string name="help_points_dummy_name">Player Name</string>
+    <string name="help_points_markPoints">Mark your score of current target here</string>
+    <string name="help_points_markBroken">Mark your broken / lost arrows here</string>
+    <string name="help_points_score">Your current score</string>
+    <string name="help_points_pointTable">Point Table</string>
+    <string name="help_points_hit">Hit</string>
+    <string name="help_points_kill">Kill</string>
+    <string name="help_points_firstArrow">1st Arrow</string>
+    <string name="help_points_secondArrow">2nd Arrow</string>
+    <string name="help_points_thirdArrow">3rd Arrow</string>
+    <string name="help_points_markerLine">Line</string>
 </resources>

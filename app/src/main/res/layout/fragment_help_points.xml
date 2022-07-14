@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/helpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:text="@string/help_title"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currentScoreDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_score"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/markerLine3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/markerLine3"
+        app:layout_constraintTop_toBottomOf="@+id/markerLine1" />
+
+    <TextView
+        android:id="@+id/broklenArrowDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_markBroken"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/markerLine1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/markerLine1"
+        app:layout_constraintTop_toBottomOf="@+id/markerLine1" />
+
+    <TextView
+        android:id="@+id/pointTable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_pointTable"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/broklenArrowDescription" />
+
+    <TextView
+        android:id="@+id/firstArrow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_firstArrow"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTableKill1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableLine" />
+
+    <TextView
+        android:id="@+id/secondArrow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_secondArrow"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTableKill2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableHit1" />
+
+    <TextView
+        android:id="@+id/thirdArrow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_thirdArrow"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTableKill2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableHit2" />
+
+    <TextView
+        android:id="@+id/pointTable20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_20"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableLine" />
+
+    <TextView
+        android:id="@+id/pointTable16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_16"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pointTableHit1"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable20" />
+
+    <TextView
+        android:id="@+id/pointTable14"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_14"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pointTableKill2"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable16" />
+
+    <TextView
+        android:id="@+id/pointTable10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_10"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pointTableHit2"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable14" />
+
+    <TextView
+        android:id="@+id/pointTable8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_8"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pointTableKill3"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable10" />
+
+    <TextView
+        android:id="@+id/pointTable4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="@string/current_game_points_4"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pointTableHit3"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable8" />
+
+    <TextView
+        android:id="@+id/pointTableKill1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_kill"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTable20"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableLine" />
+
+    <TextView
+        android:id="@+id/pointTableHit1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_hit"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTable20"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pointTableKill1"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableKill1" />
+
+    <TextView
+        android:id="@+id/pointTableKill2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_kill"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTable16"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pointTableHit1"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableHit1" />
+
+    <TextView
+        android:id="@+id/pointTableHit2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_hit"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTable14"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pointTableKill2"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableKill2" />
+
+    <TextView
+        android:id="@+id/pointTableKill3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_kill"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/pointTable10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pointTableHit2"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableHit2" />
+
+    <TextView
+        android:id="@+id/pointTableHit3"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="@string/help_points_hit"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/pointTableKill3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pointTableKill3"
+        app:layout_constraintTop_toBottomOf="@+id/pointTableKill3" />
+
+    <TextView
+        android:id="@+id/pointDescription"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/julius_sans_one"
+        android:gravity="center_horizontal"
+        android:text="@string/help_points_markPoints"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/markerLine2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/markerLine2"
+        app:layout_constraintTop_toBottomOf="@+id/helpTitle" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/markerLine2">
+
+        <RadioGroup
+            android:id="@+id/currentGamePlayerPoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint20"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_20"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint16"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_16"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint14"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_14"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint10"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_10"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint8"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_8"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/currentGamePlayerPoint4"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_right_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_4"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/currentGamePlayerScore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/currentGamePlayerBrokenArrow1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_left_selector"
+                android:button="@android:color/transparent"
+                android:contentDescription="@string/current_game_brokenArrow"
+                android:fontFamily="@font/julius_sans_one"
+                android:foreground="@drawable/ic_broken_arrow"
+                android:foregroundGravity="center"
+                android:foregroundTint="@color/box_selector"
+                android:gravity="center"
+                android:textSize="20sp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <CheckBox
+                android:id="@+id/currentGamePlayerBrokenArrow2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:contentDescription="@string/current_game_brokenArrow"
+                android:fontFamily="@font/julius_sans_one"
+                android:foreground="@drawable/ic_broken_arrow"
+                android:foregroundGravity="center"
+                android:foregroundTint="@color/box_selector"
+                android:gravity="center"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/currentGamePlayerBrokenArrow3"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:contentDescription="@string/current_game_brokenArrow"
+                android:fontFamily="@font/julius_sans_one"
+                android:foreground="@drawable/ic_broken_arrow"
+                android:foregroundGravity="center"
+                android:foregroundTint="@color/box_selector"
+                android:gravity="center"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/currentGamePlayerPoint0"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_button_center_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:text="@string/current_game_points_0"
+                android:textColor="@color/box_selector"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/currentGamePlayerPointSum"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:background="@drawable/radio_button_right_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/julius_sans_one"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_done"
+
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_selector"
+        android:fontFamily="@font/julius_sans_one"
+        android:text="@string/player_stat_done"
+        android:textColor="@color/button_selector"
+        android:textSize="24sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/markerLine1"
+        android:layout_width="195dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/help_points_markerLine"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/ic_help_marker" />
+
+    <ImageView
+        android:id="@+id/pointTableLine"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="@string/help_points_markerLine"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointTable"
+        app:srcCompat="@drawable/ic_help_marker" />
+
+    <ImageView
+        android:id="@+id/markerLine3"
+        android:layout_width="130dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/help_points_markerLine"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:srcCompat="@drawable/ic_help_marker" />
+
+    <ImageView
+        android:id="@+id/markerLine2"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/help_points_markerLine"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/pointDescription"
+        app:srcCompat="@drawable/ic_help_marker" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

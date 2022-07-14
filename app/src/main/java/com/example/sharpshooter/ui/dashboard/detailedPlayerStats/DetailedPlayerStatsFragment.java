@@ -15,6 +15,7 @@ import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentDetailedPlayerStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -62,7 +63,12 @@ public class DetailedPlayerStatsFragment extends Fragment {
         kills.setText(String.valueOf(stats.get("killsCount")));
         hits.setText(String.valueOf(stats.get("hitsCount")));
         misses.setText(String.valueOf(stats.get("missesCount")));
-        killRate.setText(String.valueOf(((float) stats.get("killsCount") / (float) stats.get("shotsCount"))));
+
+        // Calculate Kill ratio
+        DecimalFormat df = new DecimalFormat("#.00");
+        float killrate = (float) stats.get("killsCount") / (float) stats.get("shotsCount") * 100;
+        killRate.setText(String.valueOf(df.format(killrate)) + " %");
+
         broken.setText(String.valueOf(stats.get("brokenCount")));
 
         btnClose.setOnClickListener(view -> {
