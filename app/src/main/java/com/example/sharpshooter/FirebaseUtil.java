@@ -38,6 +38,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class FirebaseUtil
@@ -318,7 +319,7 @@ public class FirebaseUtil
     }
 
     // Create data in database for new user
-    public void createNewGameData(GameTemplate game) {
+    public String createNewGameData(GameTemplate game) {
         DocumentReference gameReference = database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewGameData)")).collection("games").document();
         gameReference.set(game);
 
