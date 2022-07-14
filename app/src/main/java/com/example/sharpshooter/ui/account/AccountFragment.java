@@ -22,7 +22,6 @@ import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
 
@@ -108,8 +107,7 @@ public class AccountFragment extends Fragment {
 
             // Convert uri to bitmap -> Set picture for immediate feedback
             try {
-                Bitmap uriBitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
-                FirebaseUtil.GetInstance().userProfilePicture = uriBitmap;
+                FirebaseUtil.GetInstance().userProfilePicture = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
             } catch (IOException ignored) {}
         }
     }

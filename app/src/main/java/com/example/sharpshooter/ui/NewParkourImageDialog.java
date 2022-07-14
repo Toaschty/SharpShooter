@@ -11,17 +11,18 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.sharpshooter.R;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.util.Objects;
 
 public class NewParkourImageDialog extends DialogFragment
 {
-    int contentView;
-    private DialogFragment nextDialog;
+    final int contentView;
+    private final DialogFragment nextDialog;
 
     private Button continueButton;
     private ImageView parkourImageView;
@@ -37,6 +38,7 @@ public class NewParkourImageDialog extends DialogFragment
         this.nextDialog = nextDialog;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -81,7 +83,7 @@ public class NewParkourImageDialog extends DialogFragment
             // Save Bitmap as Uri
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             parkourBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-            String path = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), parkourBitmap, "ParkourImage", null);
+            String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), parkourBitmap, "ParkourImage", null);
             parkourImage = Uri.parse(path);
         }
     }

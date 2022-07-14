@@ -1,7 +1,6 @@
 package com.example.sharpshooter.ui;
 
 import android.app.Dialog;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,7 @@ import java.util.Map;
 
 public class PlayerInputDialog extends DialogFragment
 {
-    int contentView;
+    final int contentView;
 
     private Button startButton;
     private RecyclerView playerNameDialogRV;

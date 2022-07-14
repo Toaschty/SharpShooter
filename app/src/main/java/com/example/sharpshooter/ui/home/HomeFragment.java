@@ -24,13 +24,14 @@ import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView lastGameRV;
     private RecyclerView activeGameRV;
-    private int size = 5;
 
     private ArrayList<LastGameModel> lastGameModelArrayList;
     private ArrayList<LastGameModel> activeGameModelArrayList;
@@ -55,18 +56,22 @@ public class HomeFragment extends Fragment {
         activeGameModelArrayList = new ArrayList<>();
 
         FirebaseUtil.GetInstance().getAllGames(value -> {
+            for (int i = 0; i < value.getDocuments().size(); i++) {
+                ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
+                if (Objects.requireNonNull(value.getDocuments().get(i).get("active")).toString().equals("true"))
+                    activeGameModelArrayList.add(0,new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size() , Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
+                else
+                    lastGameModelArrayList.add(new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size(), Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
+            }
 
-            if (value.getDocuments().size() > 0)
+
+
+            lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
+            if (lastGameModelArrayList.size() > 5)
             {
-                if (value.getDocuments().size() < 5)
-                    size = value.getDocuments().size();
-
-                for (int i = 0; i < size; i++) {
-                    ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                    if (value.getDocuments().get(i).get("active").toString() == "true")
-                        activeGameModelArrayList.add(0,new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size() , Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
-                    else
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
+                for (int i = 5; i < lastGameModelArrayList.size(); i++) {
+                    //noinspection SuspiciousListRemoveInLoop
+                    lastGameModelArrayList.remove(i);
                 }
             }
 

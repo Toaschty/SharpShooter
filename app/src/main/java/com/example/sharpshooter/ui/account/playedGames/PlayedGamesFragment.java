@@ -19,6 +19,8 @@ import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
 
 public class PlayedGamesFragment extends Fragment {
     private RecyclerView playedGamesRV;
@@ -28,6 +30,7 @@ public class PlayedGamesFragment extends Fragment {
 
     private FragmentAccountPlayedGamesBinding binding;
 
+    @SuppressWarnings("unchecked")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
@@ -44,9 +47,11 @@ public class PlayedGamesFragment extends Fragment {
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
                     ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                    lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
+                    lastGameModelArrayList.add(new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size(), Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
                 }
             }
+            lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
+
             // we are initializing our adapter class and passing our arraylist to it.
             LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList, "game");
 
@@ -61,9 +66,7 @@ public class PlayedGamesFragment extends Fragment {
 
         // Setup close button
         Button btn_close = (Button) binding.btnClose;
-        btn_close.setOnClickListener(click -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_playedGames_to_navigation_account);
-        });
+        btn_close.setOnClickListener(click -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_playedGames_to_navigation_account));
 
         return root;
     }

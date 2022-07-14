@@ -15,9 +15,7 @@ import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentDetailedPlayerStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DetailedPlayerStatsFragment extends Fragment {
     private FragmentDetailedPlayerStatsBinding binding;
@@ -62,12 +60,11 @@ public class DetailedPlayerStatsFragment extends Fragment {
         kills.setText(String.valueOf(stats.get("killsCount")));
         hits.setText(String.valueOf(stats.get("hitsCount")));
         misses.setText(String.valueOf(stats.get("missesCount")));
+        //noinspection ConstantConditions
         killRate.setText(String.valueOf(((float) stats.get("killsCount") / (float) stats.get("shotsCount"))));
         broken.setText(String.valueOf(stats.get("brokenCount")));
 
-        btnClose.setOnClickListener(view -> {
-            requireActivity().onBackPressed();
-        });
+        btnClose.setOnClickListener(view -> requireActivity().onBackPressed());
         return root;
     }
 

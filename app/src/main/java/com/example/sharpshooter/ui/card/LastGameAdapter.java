@@ -2,7 +2,6 @@ package com.example.sharpshooter.ui.card;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,17 +11,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.ImageLoader;
-import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
-import com.example.sharpshooter.ui.NewGameDialog;
 import com.example.sharpshooter.ui.PlayerInputDialog;
 
 import java.util.ArrayList;
@@ -86,9 +80,8 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGameDate = itemView.findViewById(R.id.idLastGameDate);
             lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
             lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
-            CardView cv = itemView.findViewById(R.id.lastGameCV);
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
-            cv = (CardView) itemView.findViewById(R.id.lastGameCV);
+            CardView cv = (CardView) itemView.findViewById(R.id.lastGameCV);
 
             cv.setOnClickListener((view) -> {
                 if(Objects.equals(call, "game")) {
