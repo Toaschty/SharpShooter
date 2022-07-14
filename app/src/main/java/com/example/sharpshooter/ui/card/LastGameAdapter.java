@@ -2,21 +2,26 @@ package com.example.sharpshooter.ui.card;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.ImageLoader;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
+import com.example.sharpshooter.ui.NewParkourImageDialog;
 import com.example.sharpshooter.ui.PlayerInputDialog;
 
 import java.util.ArrayList;
@@ -94,8 +99,15 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
                     });
                 } else if(Objects.equals(call, "load"))
                 {
-                    PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view, lastGameName.getText().toString(), Math.toIntExact(Long.parseLong(lastGamePlayerCount.getText().toString())), Math.toIntExact(Long.parseLong(lastGameTargetCount.getText().toString())));
-                    playerInputDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "playerInputDialog");
+                    // Setup dialog
+                    PlayerInputDialog playerInputDialog = new PlayerInputDialog(R.layout.dialog_newparkour_playernames, view);
+                    NewParkourImageDialog playerImageDialog = new NewParkourImageDialog(R.layout.dialog_newparkour_image, playerInputDialog);
+
+                    // Load and set data from saved parkour
+                    playerImageDialog.setData(lastGameName.getText().toString(), Math.toIntExact(Long.parseLong(lastGamePlayerCount.getText().toString())), Math.toIntExact(Long.parseLong(lastGameTargetCount.getText().toString())));
+
+                    // Show dialog
+                    playerImageDialog.show(((AppCompatActivity) context).getSupportFragmentManager(), "playerInputDialog");
                 }
             });
 

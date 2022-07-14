@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,7 @@ public class PlayedGamesFragment extends Fragment {
 
         // Card with Recycler view
         playedGamesRV = root.findViewById(R.id.saved_games_RecyclerView);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(playedGamesRV);
 
         // dummy data.
         lastGameModelArrayList = new ArrayList<>();
@@ -71,6 +73,21 @@ public class PlayedGamesFragment extends Fragment {
         return root;
     }
 
+    // Swipe to delete callback
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            // Delete swiped game from database
+            int pos = viewHolder.getAdapterPosition();
+            LastGameModel model = lastGameModelArrayList.get(pos);
+            FirebaseUtil.GetInstance().deleteGame(model.getGameId());
+        }
+    };
 
     @Override
     public void onDestroyView() {
