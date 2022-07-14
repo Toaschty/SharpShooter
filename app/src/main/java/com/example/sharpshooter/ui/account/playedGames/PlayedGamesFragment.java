@@ -19,6 +19,7 @@ import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class PlayedGamesFragment extends Fragment {
     private RecyclerView playedGamesRV;
@@ -47,6 +48,8 @@ public class PlayedGamesFragment extends Fragment {
                     lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
                 }
             }
+            lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
+
             // we are initializing our adapter class and passing our arraylist to it.
             LastGameAdapter lastGameAdapter = new LastGameAdapter(root.getContext(), lastGameModelArrayList, "game");
 
