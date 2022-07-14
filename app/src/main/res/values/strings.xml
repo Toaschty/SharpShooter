@@ -57,8 +57,8 @@
 
     <!-- Account -->
     <string name="account_statistics">Statistics</string>
-    <string name="account_last_games">Played Games</string>
-    <string name="account_saved_parkours">Saved Parkours</string>
+    <string name="account_last_games">Played games</string>
+    <string name="account_saved_parkours">Saved parkours</string>
     <string name="account_logout">Log Out</string>
 
     <!-- Welcome / Login / Register -->
@@ -90,4 +90,21 @@
     <string name="help_points_secondArrow">2nd Arrow</string>
     <string name="help_points_thirdArrow">3rd Arrow</string>
     <string name="help_points_markerLine">Line</string>
+
+    <!-- Help Leaderboard -->
+    <string name="help_leaderboard_helpText1">This slide shows all players ranked by their scores</string>
+    <string name="help_leaderboard_helpText2">Depending on the scores the black bars fill up</string>
+    <string name="help_leaderboard_helpText3">A full black bar means the highest possible score of this parkour is reached</string>
+    <string name="help_leaderboard_player1">Player 1 - Winner</string>
+    <string name="help_leaderboard_player2">Player 2</string>
+    <string name="help_leaderboard_points1">75</string>
+    <string name="help_leaderboard_points2">54</string>
+
+    <!-- Help Statistics -->
+    <string name="help_statistics_helpText1">On this slide all players are listed as buttons</string>
+    <string name="help_statistics_helpText2">By clicking on a button a new window with detailed statistics will open</string>
+    <string name="help_statistics_helpText3">This button saves the parkour as an template</string>
+    <string name="help_statistics_helpText4">Saved parkours are visible on the account page</string>
+    <string name="help_statistics_helpText5">Templates can be used to easily start a new game with the same settings</string>
+    <string name="help_statistics_player">Player</string>
 </resources>

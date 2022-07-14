@@ -37,14 +37,18 @@ public class HelpPointsFragment extends Fragment {
         // Setup dummy button logic
         rg.setOnCheckedChangeListener((radioGroup, i) -> {
             // Set score to selected button
-            switch (i)
-            {
-                case R.id.currentGamePlayerPoint20: score.setText("20"); break;
-                case R.id.currentGamePlayerPoint16: score.setText("16"); break;
-                case R.id.currentGamePlayerPoint14: score.setText("14"); break;
-                case R.id.currentGamePlayerPoint10: score.setText("10"); break;
-                case R.id.currentGamePlayerPoint8: score.setText("8"); break;
-                case R.id.currentGamePlayerPoint4: score.setText("4"); break;
+            if (i == R.id.currentGamePlayerPoint20) {
+                score.setText(R.string.current_game_points_20);
+            } else if (i == R.id.currentGamePlayerPoint16) {
+                score.setText(R.string.current_game_points_16);
+            } else if(i == R.id.currentGamePlayerPoint14) {
+                score.setText(R.string.current_game_points_14);
+            } else if(i == R.id.currentGamePlayerPoint10) {
+                score.setText(R.string.current_game_points_10);
+            } else if(i == R.id.currentGamePlayerPoint8) {
+                score.setText(R.string.current_game_points_8);
+            } else if(i == R.id.currentGamePlayerPoint4) {
+                score.setText(R.string.current_game_points_4);
             }
 
             // Reset zero button if checked
