@@ -15,12 +15,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 
 public class FirebaseUtil
@@ -192,6 +195,12 @@ public class FirebaseUtil
         // Update field with data in database
         database.collection("users").document(authentication.getUid()).update(field, data);
     }
+    // // Update functions
+    public void updateMultipleUserDataFields(Map<String, Object> data)
+    {
+        // Update field with data in database
+        database.collection("users").document(authentication.getUid()).update(data);
+    }
 
 
     public void readCurrentGameFromDatabase()
@@ -260,6 +269,12 @@ public class FirebaseUtil
         catch (Exception ignored) {}
     }
 
+    public void getAllGames(AllGamesLoader allGamesLoader){
+        FirebaseUtil.GetInstance().database.collection("users").document(FirebaseUtil.GetInstance().authentication.getUid()).collection("games").addSnapshotListener((value, error) -> {
+            allGamesLoader.onCallback(value);
+        });
+    }
+
     // Create data in database for new user
     public void createNewGameData(GameTemplate game) {
         database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document().set(game);
@@ -274,5 +289,9 @@ public class FirebaseUtil
     public void destroyInstance()
     {
         instance = null;
+    }
+
+    public String getActiveGame() {
+        return activeGame;
     }
 }

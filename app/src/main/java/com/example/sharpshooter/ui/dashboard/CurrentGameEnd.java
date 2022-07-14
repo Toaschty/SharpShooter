@@ -14,15 +14,20 @@ import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentCurrentGameEndBinding;
+import com.example.sharpshooter.template.UserTemplate;
 import com.example.sharpshooter.ui.card.CurrentGameWinAdapter;
 import com.example.sharpshooter.ui.card.CurrentGameWinModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CurrentGameEnd extends Fragment {
     private FragmentCurrentGameEndBinding binding;
     private RecyclerView card_open_player_stats;
     private ArrayList<CurrentGameWinModel> currentGameModelArrayList;
+    private Button btnDone;
+    private Button btnSaveGameConfig;
 
     public CurrentGameEnd() {
         // Required empty public constructor
@@ -41,16 +46,47 @@ public class CurrentGameEnd extends Fragment {
             currentGameModelArrayList.add(new CurrentGameWinModel(playerName));
         }
 
-        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList);
+        CurrentGameWinAdapter currentGameWinAdapter = new CurrentGameWinAdapter(root.getContext(), currentGameModelArrayList, getActivity());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         card_open_player_stats.setLayoutManager(linearLayoutManager);
         card_open_player_stats.setAdapter(currentGameWinAdapter);
 
-        final Button btnDone = binding.btnDone;
+        btnSaveGameConfig = binding.btnSaveConfig;
+        btnSaveGameConfig.setOnClickListener(btn -> {
+            ArrayList<Object> gameConfig = FirebaseUtil.GetInstance().userInstance.getSavedGameConfig();
+            if ( gameConfig.contains(FirebaseUtil.GetInstance().getActiveGame()) )
+                return;
+            gameConfig.add(FirebaseUtil.GetInstance().getActiveGame());
+            FirebaseUtil.GetInstance().userInstance.setSavedGameConfig(gameConfig);
+            FirebaseUtil.GetInstance().updateUserData("savedGameConfig", FirebaseUtil.GetInstance().userInstance.getSavedGameConfig());
+        });
+
+
+        btnDone = binding.btnDone;
         btnDone.setOnClickListener(btn -> {
             if (FirebaseUtil.GetInstance().gameInstance != null) {
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);
                 FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
+                UserTemplate uploadStats = FirebaseUtil.GetInstance().userInstance;
+                Map<String, Integer> stats = Utils.GetInstance().generateStats(uploadStats.getName());
+                uploadStats.addPoints(Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(uploadStats.getName())));
+                uploadStats.addBroken(stats.get("brokenCount"));
+                uploadStats.addHits(stats.get("hitsCount"));
+                uploadStats.addKills(stats.get("killsCount"));
+                uploadStats.addMisses(stats.get("missesCount"));
+                uploadStats.addShots(stats.get("shotsCount"));
+                uploadStats.addTotalGames();
+                uploadStats.addKillRate();
+                Map<String, Object> updateUserData = new HashMap<>();
+                updateUserData.put("points",uploadStats.getPoints());
+                updateUserData.put("broken",uploadStats.getBroken());
+                updateUserData.put("hits",uploadStats.getHits());
+                updateUserData.put("killRate",uploadStats.getKillRate());
+                updateUserData.put("kills",uploadStats.getKills());
+                updateUserData.put("misses",uploadStats.getMisses());
+                updateUserData.put("shots",uploadStats.getShots());
+                updateUserData.put("totalGames",uploadStats.getTotalGames());
+                FirebaseUtil.GetInstance().updateMultipleUserDataFields(updateUserData);
             }
             Utils.GetInstance().setBottomNavVisibility(false);
             Utils.GetInstance().replaceFragmentToHome();

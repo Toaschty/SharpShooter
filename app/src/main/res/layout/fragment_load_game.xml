@@ -10,12 +10,12 @@
     tools:context=".ui.dashboard.CurrentGame">
 
     <TextView
-        android:id="@+id/currentGamePlayerStatistic"
+        android:id="@+id/loading_game_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/julius_sans_one"
-        android:text="@string/current_game_player_stats"
+        android:text="@string/newGame_loadParkour"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,19 +23,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/currentGameStatsButtons"
-        android:layout_width="388dp"
-        android:layout_height="462dp"
+        android:id="@+id/saved_game_RecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_saveConfig"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentGamePlayerStatistic" />
+        app:layout_constraintTop_toBottomOf="@+id/loading_game_title" />
 
     <Button
-        android:id="@+id/btn_done"
+        android:id="@+id/btn_close"
         android:layout_width="0dp"
         android:layout_height="50dp"
 
@@ -44,30 +45,11 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_selector"
         android:fontFamily="@font/julius_sans_one"
-        android:text="@string/current_game_end_parkour"
+        android:text="@string/played_game_close"
         android:textColor="@color/button_selector"
         android:textSize="24sp"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_saveConfig"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/button_selector"
-        android:fontFamily="@font/julius_sans_one"
-        android:text="@string/current_game_save_config"
-        android:textColor="@color/button_selector"
-        android:textSize="24sp"
-        app:backgroundTint="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btn_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

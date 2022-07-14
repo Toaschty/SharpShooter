@@ -1,5 +1,7 @@
 package com.example.sharpshooter.template;
 
+import java.util.ArrayList;
+
 public class UserTemplate {
     private String name;
     private int broken;
@@ -10,6 +12,7 @@ public class UserTemplate {
     private int misses;
     private long points;
     private int shots;
+    private ArrayList<Object> savedGameConfig;
 
     // Constructor
     public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double killRate, int misses, long points, int shots) {
@@ -22,9 +25,14 @@ public class UserTemplate {
         this.misses = misses;
         this.points = points;
         this.shots = shots;
+        this.savedGameConfig = new ArrayList<>();
     }
 
     public UserTemplate() { }
+
+    public ArrayList<Object> getSavedGameConfig() {
+        return savedGameConfig;
+    }
 
     public String getName() { return name; }
 
@@ -60,5 +68,43 @@ public class UserTemplate {
 
     public int getShots() {
         return shots;
+    }
+
+    public void setSavedGameConfig(ArrayList<Object> obj) {
+        this.savedGameConfig = obj;
+    }
+
+    public void addPoints(long points) {
+        this.points += points;
+    }
+
+    public void addBroken(int broken) {
+        this.broken += broken;
+    }
+
+    public void addHits(int hits) {
+        this.hits += hits;
+    }
+
+    public void addKillRate() {
+        float kills = getKills();
+        float shots = getShots();
+        this.killRate = kills/shots;
+    }
+
+    public void addKills(int kills) {
+        this.kills += kills;
+    }
+
+    public void addMisses(int misses) {
+        this.misses += misses;
+    }
+
+    public void addShots(int shots) {
+        this.shots += shots;
+    }
+
+    public void addTotalGames() {
+        this.totalGames += 1;
     }
 }
