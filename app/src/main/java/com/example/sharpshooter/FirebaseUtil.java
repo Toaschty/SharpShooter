@@ -15,6 +15,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -61,7 +64,12 @@ public class FirebaseUtil
 
     public void initGameInstance(Loading loading)
     {
-        instance.database.collection("users").document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstance)")).collection("games").whereEqualTo("active", true).get().addOnCompleteListener(task -> {
+        instance.database.collection("users")
+                .document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstance)"))
+                .collection("games")
+                .whereEqualTo("active", true)
+                .get()
+                .addOnCompleteListener(task -> {
             if (task.getResult().getDocuments().isEmpty())
                 return;
 
@@ -78,7 +86,8 @@ public class FirebaseUtil
         });
 
         // Add SnapshotListener which waits for database updates
-        instance.database.collection("users").document(instance.authentication.getUid()).addSnapshotListener((value, error) -> {
+        instance.database.collection("users")
+                .document(instance.authentication.getUid()).addSnapshotListener((value, error) -> {
                     if ( value != null)
                         instance.updateUserInstance(value);
                 }
@@ -87,8 +96,10 @@ public class FirebaseUtil
 
     public void scoreListener(ScoreUpdater scoreUpdater){
         // Add SnapshotListener which waits for gameDocument database updates
-        instance.database.collection("users").document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (scoreListener)"))
-                .collection("games").document(instance.activeGame).addSnapshotListener((value2, error2) -> scoreUpdater.onScoreChanged()
+        instance.database.collection("users")
+                .document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (scoreListener)"))
+                .collection("games").document(instance.activeGame)
+                .addSnapshotListener((value2, error2) -> scoreUpdater.onScoreChanged()
                 );
     }
 
@@ -97,7 +108,8 @@ public class FirebaseUtil
             //Read existing active game from database
             instance.readCurrentGameFromDatabase();
             // Add SnapshotListener which waits for gameDocument database updates
-            instance.database.collection("users").document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstanceWithId)"))
+            instance.database.collection("users")
+                    .document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstanceWithId)"))
                     .collection("games").document(instance.activeGame).addSnapshotListener((value, error2) -> {
                             if ( value != null)
                                 instance.updateActiveGameInstance(value);
@@ -111,7 +123,8 @@ public class FirebaseUtil
         //Read existing active game from database
         instance.readCurrentGameFromDatabase(loading);
         // Add SnapshotListener which waits for gameDocument database updates
-        instance.database.collection("users").document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstanceWithId(Loading loading))"))
+        instance.database.collection("users")
+                .document(Objects.requireNonNull(instance.authentication.getUid(), "instance uid must not be null (initGameInstanceWithId(Loading loading))"))
                 .collection("games").document(instance.activeGame).addSnapshotListener((value, error) -> {
                         if ( value != null)
                             instance.updateActiveGameInstance(value);
@@ -121,14 +134,16 @@ public class FirebaseUtil
 
     // Create data in database for new user
     public void createNewUserData(UserTemplate user) {
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewUserData)")).set(user);
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewUserData)")).set(user);
     }
 
     // Read existing user data from database
     private void readUserFromDatabase()
     {
         // Load data from database
-        DocumentReference docRef = database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readUserFromDatabase)"));
+        DocumentReference docRef = database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readUserFromDatabase)"));
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             userInstance = documentSnapshot.toObject(UserTemplate.class);
             loadingProgress++;
@@ -218,13 +233,17 @@ public class FirebaseUtil
     public void updateUserData(String field, Object data)
     {
         // Update field with data in database
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateUserData)")).update(field, data);
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateUserData)"))
+                .update(field, data);
     }
     // // Update functions
     public void updateMultipleUserDataFields(Map<String, Object> data)
     {
         // Update field with data in database
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateMultipleUserDataFields)")).update(data);
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateMultipleUserDataFields)"))
+                .update(data);
     }
 
 
@@ -232,7 +251,8 @@ public class FirebaseUtil
     {
         // Load data from database
         DocumentReference docRef = database.collection("users")
-                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readCurrentGameFromDatabase)")).collection("games").document(instance.activeGame);
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readCurrentGameFromDatabase)"))
+                .collection("games").document(instance.activeGame);
         docRef.get().addOnSuccessListener(documentSnapshot -> gameInstance = documentSnapshot.toObject(GameTemplate.class));
     }
 
@@ -241,7 +261,8 @@ public class FirebaseUtil
     {
         // Load data from database
         DocumentReference docRef = database.collection("users")
-                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readCurrentGameFromDatabase)")).collection("games").document(instance.activeGame);
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (readCurrentGameFromDatabase)"))
+                .collection("games").document(instance.activeGame);
         docRef.get().addOnSuccessListener((documentSnapshot) -> {
             gameInstance = documentSnapshot.toObject(GameTemplate.class);
             loading.onCallback();
@@ -251,7 +272,10 @@ public class FirebaseUtil
     public void updateGameData(String field, Object data, String game)
     {
         // Update field with data in database
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateGameData)")).collection("games").document(game).update(field, data);
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (updateGameData)"))
+                .collection("games")
+                .document(game).update(field, data);
     }
 
 
@@ -288,22 +312,49 @@ public class FirebaseUtil
     }
 
     public void getAllGames(AllGamesLoader allGamesLoader){
-        FirebaseUtil.GetInstance().database.collection("users").document(Objects.requireNonNull(FirebaseUtil.GetInstance().authentication.getUid(), "instance uid must not be null (getAllGames)")).collection("games").addSnapshotListener((value, error) -> allGamesLoader.onCallback(value));
+        FirebaseUtil.GetInstance().database.collection("users")
+                .document(Objects.requireNonNull(FirebaseUtil.GetInstance()
+                        .authentication.getUid(), "instance uid must not be null (getAllGames)"))
+                .collection("games")
+                .addSnapshotListener((value, error) -> allGamesLoader.onCallback(value));
     }
 
     // Create data in database for new user
     public String createNewGameData(GameTemplate game) {
-        DocumentReference gameReference = database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewGameData)")).collection("games").document();
+        DocumentReference gameReference = database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewGameData)"))
+                .collection("games").document();
         gameReference.set(game);
 
         // Return the document id of newly created game
         return gameReference.getId();
     }
 
+    public void triggerSnapshotListenerForGameData() {
+        List<String> playerNames = Collections.singletonList("test");
+        Map<String, Object> player = new HashMap<>();
+        player.put("null", "null");
+        GameTemplate game = new GameTemplate(true, "parkourName", player, 0, playerNames);
+        DocumentReference gameReference = database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (createNewGameData)"))
+                .collection("games").document();
+        gameReference.set(game);
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (deleteGame)"))
+                .collection("games")
+                .document(gameReference.getId()).delete();
+    }
+
+
+
     public void deleteGame(String gameId)
     {
-        database.collection("users").document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (deleteGame)")).collection("games").document(gameId).delete();
+        database.collection("users")
+                .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (deleteGame)"))
+                .collection("games")
+                .document(gameId).delete();
     }
+
 
     public void destoyGameInstace(){gameInstance = null;}
 

@@ -43,8 +43,8 @@ public class PlayedGamesFragment extends Fragment {
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(playedGamesRV);
 
         // dummy data.
-        lastGameModelArrayList = new ArrayList<>();
         FirebaseUtil.GetInstance().getAllGames(value -> {
+            lastGameModelArrayList = new ArrayList<>();
             if (value.getDocuments().size() > 0)
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
@@ -67,7 +67,7 @@ public class PlayedGamesFragment extends Fragment {
         });
 
         // Setup close button
-        Button btn_close = (Button) binding.btnClose;
+        Button btn_close = binding.btnClose;
         btn_close.setOnClickListener(click -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_playedGames_to_navigation_account));
 
         return root;

@@ -40,8 +40,8 @@ public class SavedGameFragment extends Fragment {
         playedGamesRV = root.findViewById(R.id.saved_games_RecyclerView);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(playedGamesRV);
 
-        lastGameModelArrayList = new ArrayList<>();
         FirebaseUtil.GetInstance().getAllGames(value -> {
+            lastGameModelArrayList = new ArrayList<>();
             if (value.getDocuments().size() > 0)
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
@@ -82,7 +82,10 @@ public class SavedGameFragment extends Fragment {
             // Delete swiped game from database
             int pos = viewHolder.getAdapterPosition();
             LastGameModel model = lastGameModelArrayList.get(pos);
-            FirebaseUtil.GetInstance().deleteGame(model.getGameId());
+            ArrayList<Object> savedGameCongig = FirebaseUtil.GetInstance().userInstance.getSavedGameConfig();
+            savedGameCongig.remove(model.getGameId());
+            FirebaseUtil.GetInstance().updateUserData("savedGameConfig", savedGameCongig);
+            FirebaseUtil.GetInstance().triggerSnapshotListenerForGameData();
         }
     };
 
