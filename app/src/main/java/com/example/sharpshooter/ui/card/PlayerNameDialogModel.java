@@ -2,7 +2,7 @@ package com.example.sharpshooter.ui.card;
 
 public class PlayerNameDialogModel {
     private String name;
-    private int count;
+    private final int count;
     private boolean account;
 
     public PlayerNameDialogModel(boolean account, int count)

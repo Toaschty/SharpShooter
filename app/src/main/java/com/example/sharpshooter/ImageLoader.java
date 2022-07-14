@@ -1,25 +1,21 @@
 package com.example.sharpshooter;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.util.Pair;
 import android.widget.ImageView;
 
-import androidx.versionedparcelable.ParcelImpl;
-
-import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ImageLoader
 {
     private static ImageLoader _instance;
 
-    private List<Pair<String, Bitmap>> parkourBitmaps;
+    private final List<Pair<String, Bitmap>> parkourBitmaps;
     private int loadingViews;
 
     private ImageLoader()
@@ -40,11 +36,11 @@ public class ImageLoader
     {
         // Set imageview to bitmap if bitmap is already loaded
         if(setLoadedImageIfExisting(view, parkourId)) {
-            Utils.GetInstance().StopLoading();
+            Objects.requireNonNull(Utils.GetInstance()).StopLoading();
             return;
         }
 
-        Utils.GetInstance().StartLoading();
+        Objects.requireNonNull(Utils.GetInstance()).StartLoading();
 
         // Add view to loading views
         loadingViews++;

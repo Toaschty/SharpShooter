@@ -1,43 +1,20 @@
 package com.example.sharpshooter;
 
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.sharpshooter.template.GameTemplate;
 import com.example.sharpshooter.template.UserTemplate;
-import com.example.sharpshooter.ui.card.LastGameModel;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.model.Document;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -178,16 +155,14 @@ public class FirebaseUtil
     // Upload profile picture
     public void uploadAccountImage(Uri img) {
         // Start loading animation
-        Utils.GetInstance().StartLoading();
+        Objects.requireNonNull(Utils.GetInstance()).StartLoading();
 
         // Get reference to new / existing img file in storage
         StorageReference imgStorage = storage.child("users/" + authentication.getUid());
 
         // Start new upload task
         UploadTask uploadTask = imgStorage.putFile(img);
-        uploadTask.addOnCompleteListener(task -> {
-            Utils.GetInstance().StopLoading();
-        });
+        uploadTask.addOnCompleteListener(task -> Utils.GetInstance().StopLoading());
     }
 
     public void uploadParkourImage(Uri img, String parkourId) {
@@ -196,16 +171,14 @@ public class FirebaseUtil
             return;
 
         // Start loading animation
-        Utils.GetInstance().StartLoading();
+        Objects.requireNonNull(Utils.GetInstance()).StartLoading();
 
         // Get reference to new / existing img file in storage
         StorageReference imgStorage = storage.child("parkours/" + parkourId);
 
         // Start new upload task
         UploadTask uploadTask = imgStorage.putFile(img);
-        uploadTask.addOnCompleteListener(task -> {
-            Utils.GetInstance().StopLoading();
-        });
+        uploadTask.addOnCompleteListener(task -> Utils.GetInstance().StopLoading());
     }
 
     // Update user instance

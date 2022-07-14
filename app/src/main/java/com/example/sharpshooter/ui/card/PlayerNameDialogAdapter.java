@@ -16,7 +16,7 @@ import com.example.sharpshooter.R;
 import java.util.ArrayList;
 
 public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDialogAdapter.Viewholder> {
-    private Context context;
+    private final Context context;
     private final ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList;
 
     public PlayerNameDialogAdapter(Context context, ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList){

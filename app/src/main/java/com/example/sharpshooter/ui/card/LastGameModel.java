@@ -8,7 +8,7 @@ public class LastGameModel {
     private final String lastGame_date;
     private final int lastGame_playerCount;
     private final int lastGame_targetCount;
-    private int lastGame_image;
+    private final int lastGame_image;
     private String gameId;
 
     // Constructor

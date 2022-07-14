@@ -25,6 +25,7 @@ import com.example.sharpshooter.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -57,10 +58,10 @@ public class HomeFragment extends Fragment {
         FirebaseUtil.GetInstance().getAllGames(value -> {
             for (int i = 0; i < value.getDocuments().size(); i++) {
                 ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                if (value.getDocuments().get(i).get("active").toString() == "true")
-                    activeGameModelArrayList.add(0,new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size() , Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
+                if (Objects.requireNonNull(value.getDocuments().get(i).get("active")).toString().equals("true"))
+                    activeGameModelArrayList.add(0,new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size() , Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
                 else
-                    lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
+                    lastGameModelArrayList.add(new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size(), Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
             }
 
 
@@ -69,6 +70,7 @@ public class HomeFragment extends Fragment {
             if (lastGameModelArrayList.size() > 5)
             {
                 for (int i = 5; i < lastGameModelArrayList.size(); i++) {
+                    //noinspection SuspiciousListRemoveInLoop
                     lastGameModelArrayList.remove(i);
                 }
             }
