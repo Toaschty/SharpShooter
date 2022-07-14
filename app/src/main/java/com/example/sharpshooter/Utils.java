@@ -1,12 +1,17 @@
 package com.example.sharpshooter;
 
-import android.graphics.drawable.Icon;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import com.example.sharpshooter.template.GameTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Utils
 {
@@ -94,6 +99,72 @@ public class Utils
 
     public String getBufferPlayerStats(){
         return playerName;
+    }
+
+    public Map<String, Integer> generateStats(String playerName)
+    {
+        GameTemplate gameTemplate = FirebaseUtil.GetInstance().gameInstance;
+        Map<String, Integer> stats = new HashMap<>();
+        int targetCount = gameTemplate.getTargetCount();
+        AtomicInteger shotsCount = new AtomicInteger();
+        AtomicInteger killsCount = new AtomicInteger();
+        AtomicInteger missesCount = new AtomicInteger();
+        AtomicInteger hitsCount = new AtomicInteger();
+        int brokenCount = 0;
+        ArrayList<Long> targetScore = gameTemplate.getPlayerTargetScore(playerName);
+        for (int i = 0; i < targetCount; i++) {
+            brokenCount += gameTemplate.getPlayerBrokenArrowsWithId(playerName, i);
+        }
+        targetScore.forEach(n -> {
+            if ( n == 20 )
+            {
+                killsCount.getAndIncrement();
+                shotsCount.getAndIncrement();
+                hitsCount.getAndIncrement();
+            }else if( n == 16 )
+            {
+                shotsCount.getAndIncrement();
+                hitsCount.getAndIncrement();
+            }
+            else if( n == 14 )
+            {
+                killsCount.getAndIncrement();
+                shotsCount.addAndGet(2);
+                hitsCount.getAndIncrement();
+                missesCount.getAndIncrement();
+            }
+            else if ( n == 10 ) {
+                shotsCount.addAndGet(2);
+                hitsCount.getAndIncrement();
+                missesCount.getAndIncrement();
+            }
+            else if (n == 8) {
+                killsCount.getAndIncrement();
+                shotsCount.addAndGet(3);
+                hitsCount.getAndIncrement();
+                missesCount.addAndGet(2);
+            }
+            else if (n == 4) {
+                shotsCount.addAndGet(3);
+                hitsCount.getAndIncrement();
+                missesCount.addAndGet(2);
+            }
+            else {
+                shotsCount.addAndGet(3);
+                missesCount.addAndGet(3);
+            }
+
+        });
+
+        stats.put("targetCount", targetCount);
+        stats.put("shotsCount", shotsCount.get());
+        stats.put("killsCount", killsCount.get());
+        stats.put("missesCount", missesCount.get());
+        stats.put("hitsCount", hitsCount.get());
+        stats.put("brokenCount", brokenCount);
+
+        return stats;
+
     }
 
 }

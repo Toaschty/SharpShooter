@@ -14,10 +14,13 @@ import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentCurrentGameEndBinding;
+import com.example.sharpshooter.template.UserTemplate;
 import com.example.sharpshooter.ui.card.CurrentGameWinAdapter;
 import com.example.sharpshooter.ui.card.CurrentGameWinModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CurrentGameEnd extends Fragment {
     private FragmentCurrentGameEndBinding binding;
@@ -64,6 +67,26 @@ public class CurrentGameEnd extends Fragment {
             if (FirebaseUtil.GetInstance().gameInstance != null) {
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);
                 FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
+                UserTemplate uploadStats = FirebaseUtil.GetInstance().userInstance;
+                Map<String, Integer> stats = Utils.GetInstance().generateStats(uploadStats.getName());
+                uploadStats.addPoints(Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(uploadStats.getName())));
+                uploadStats.addBroken(stats.get("brokenCount"));
+                uploadStats.addHits(stats.get("hitsCount"));
+                uploadStats.addKills(stats.get("killsCount"));
+                uploadStats.addMisses(stats.get("missesCount"));
+                uploadStats.addShots(stats.get("shotsCount"));
+                uploadStats.addTotalGames();
+                uploadStats.addKillRate();
+                Map<String, Object> updateUserData = new HashMap<>();
+                updateUserData.put("points",uploadStats.getPoints());
+                updateUserData.put("broken",uploadStats.getBroken());
+                updateUserData.put("hits",uploadStats.getHits());
+                updateUserData.put("killRate",uploadStats.getKillRate());
+                updateUserData.put("kills",uploadStats.getKills());
+                updateUserData.put("misses",uploadStats.getMisses());
+                updateUserData.put("shots",uploadStats.getShots());
+                updateUserData.put("totalGames",uploadStats.getTotalGames());
+                FirebaseUtil.GetInstance().updateMultipleUserDataFields(updateUserData);
             }
             Utils.GetInstance().setBottomNavVisibility(false);
             Utils.GetInstance().replaceFragmentToHome();

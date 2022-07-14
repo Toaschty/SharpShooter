@@ -74,4 +74,37 @@ public class UserTemplate {
         this.savedGameConfig = obj;
     }
 
+    public void addPoints(long points) {
+        this.points += points;
+    }
+
+    public void addBroken(int broken) {
+        this.broken += broken;
+    }
+
+    public void addHits(int hits) {
+        this.hits += hits;
+    }
+
+    public void addKillRate() {
+        float kills = getKills();
+        float shots = getShots();
+        this.killRate = kills/shots;
+    }
+
+    public void addKills(int kills) {
+        this.kills += kills;
+    }
+
+    public void addMisses(int misses) {
+        this.misses += misses;
+    }
+
+    public void addShots(int shots) {
+        this.shots += shots;
+    }
+
+    public void addTotalGames() {
+        this.totalGames += 1;
+    }
 }

@@ -23,6 +23,7 @@ import com.google.firebase.storage.UploadTask;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 
 public class FirebaseUtil
@@ -193,6 +194,12 @@ public class FirebaseUtil
     {
         // Update field with data in database
         database.collection("users").document(authentication.getUid()).update(field, data);
+    }
+    // // Update functions
+    public void updateMultipleUserDataFields(Map<String, Object> data)
+    {
+        // Update field with data in database
+        database.collection("users").document(authentication.getUid()).update(data);
     }
 
 
