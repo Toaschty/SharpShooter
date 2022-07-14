@@ -52,7 +52,6 @@ public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAd
             super(itemView);
             btn_open_player_stats = itemView.findViewById(R.id.btn_open_player_stats);
 
-
             btn_open_player_stats.setOnClickListener((view) -> {
                 if (Utils.GetInstance() != null)
                     Utils.GetInstance().setBufferPlayerStats(btn_open_player_stats.getText().toString());

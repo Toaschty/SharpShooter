@@ -23,14 +23,9 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
     private final ArrayList<CurrentGameCardModel> currentGameCardModelArrayList;
     private CurrentGameCardModel model;
 
-
-
-
-
     public CurrentGameCardAdapter(Context context, ArrayList<CurrentGameCardModel> currentGameCardModelArrayList){
         this.currentGameCardModelArrayList = currentGameCardModelArrayList;
     }
-
 
     @NonNull
     @Override

@@ -16,6 +16,8 @@ import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentAccountStatisticsBinding;
 import com.example.sharpshooter.template.UserTemplate;
 
+import java.text.DecimalFormat;
+
 import java.util.Objects;
 
 public class StatisticsFragment extends Fragment
@@ -54,7 +56,11 @@ public class StatisticsFragment extends Fragment
         kills.setText(String.valueOf(tmpUser.getKills()));
         hits.setText(String.valueOf(tmpUser.getHits()));
         misses.setText(String.valueOf(tmpUser.getMisses()));
-        killRate.setText(String.valueOf(tmpUser.getKillRate()));
+
+        // Format kill ratio
+        DecimalFormat df = new DecimalFormat("#.00");
+        killRate.setText(String.valueOf(df.format(tmpUser.getKillRate() * 100)) + " %");
+
         broken.setText(String.valueOf(tmpUser.getBroken()));
 
         // Setup close button

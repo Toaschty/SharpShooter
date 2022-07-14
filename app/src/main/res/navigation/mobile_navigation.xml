@@ -26,6 +26,15 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_detailedPlayerStatsFragment"
             app:destination="@id/detailedPlayerStatsFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_helpPointsFragment"
+            app:destination="@id/helpPointsFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_helpLeaderboardFragment"
+            app:destination="@id/helpLeaderboardFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_helpStatisticsFragment"
+            app:destination="@id/helpStatisticsFragment" />
     </fragment>
 
     <fragment
@@ -90,5 +99,29 @@
         <action
             android:id="@+id/action_detailedPlayerStatsFragment_to_currentGameEnd"
             app:destination="@id/currentGameEnd" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpPointsFragment"
+        android:name="com.example.sharpshooter.ui.help.HelpPointsFragment"
+        android:label="HelpPointsFragment" >
+        <action
+            android:id="@+id/action_helpPointsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpLeaderboardFragment"
+        android:name="com.example.sharpshooter.ui.help.HelpLeaderboardFragment"
+        android:label="HelpLeaderboardFragment" >
+        <action
+            android:id="@+id/action_helpLeaderboardFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpStatisticsFragment"
+        android:name="com.example.sharpshooter.ui.help.HelpStatisticsFragment"
+        android:label="HelpStatisticsFragment" >
+        <action
+            android:id="@+id/action_helpStatisticsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 </navigation>

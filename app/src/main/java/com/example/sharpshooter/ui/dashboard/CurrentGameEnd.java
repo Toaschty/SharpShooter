@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -95,6 +96,12 @@ public class CurrentGameEnd extends Fragment {
             }
             Utils.GetInstance().setBottomNavVisibility(false);
             Utils.GetInstance().replaceFragmentToHome();
+        });
+
+        // Setup help button
+        Button helpButton = binding.currentGameHelp;
+        helpButton.setOnClickListener(click -> {
+            Navigation.findNavController(root).navigate(R.id.action_navigation_dashboard_to_helpStatisticsFragment);
         });
 
         return root;

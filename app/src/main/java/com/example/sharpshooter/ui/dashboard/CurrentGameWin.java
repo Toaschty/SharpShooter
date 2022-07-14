@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
@@ -53,6 +55,12 @@ public class CurrentGameWin extends Fragment {
             card_Leaderboard.setLayoutManager(linearLayoutManager);
             card_Leaderboard.setAdapter(leaderboardCardAdapter);
             });
+
+        // Setup help button
+        Button helpButton = binding.currentGameHelp;
+        helpButton.setOnClickListener(click -> {
+            Navigation.findNavController(root).navigate(R.id.action_navigation_dashboard_to_helpLeaderboardFragment);
+        });
 
         return root;
     }
