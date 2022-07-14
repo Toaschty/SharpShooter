@@ -18,7 +18,6 @@ import com.example.sharpshooter.template.GameTemplate;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DetailedPlayerStatsFragment extends Fragment {
     private FragmentDetailedPlayerStatsBinding binding;
@@ -71,9 +70,7 @@ public class DetailedPlayerStatsFragment extends Fragment {
 
         broken.setText(String.valueOf(stats.get("brokenCount")));
 
-        btnClose.setOnClickListener(view -> {
-            requireActivity().onBackPressed();
-        });
+        btnClose.setOnClickListener(view -> requireActivity().onBackPressed());
         return root;
     }
 

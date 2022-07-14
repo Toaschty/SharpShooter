@@ -4,16 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharpshooter.FirebaseUtil;
-import com.example.sharpshooter.MainActivity;
 import com.example.sharpshooter.R;
 
 import java.util.ArrayList;

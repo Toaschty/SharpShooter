@@ -38,21 +38,23 @@ public class CurrentGameWin extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentCurrentGameWinBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        FirebaseUtil.GetInstance().scoreListener(() -> {
 
-        card_Leaderboard = root.findViewById(R.id.currentGameLeaderboardRecyclerView);
-        leaderboardModelArrayList = new ArrayList<>();
-        for (int i = 0; i < FirebaseUtil.GetInstance().gameInstance.getPlayerNames().size(); i++) {
-            String playerName = FirebaseUtil.GetInstance().gameInstance.getPlayerNames().get(i);
-            leaderboardModelArrayList.add(new LeaderboardModel(playerName, Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(playerName)), (FirebaseUtil.GetInstance().gameInstance.getTargetCount()*20)));
-        }
-        leaderboardModelArrayList.sort(Comparator.comparing(LeaderboardModel::getPoints).reversed());
-        leaderboardModelArrayList.get(0).setPlayerName(leaderboardModelArrayList.get(0).getPlayerName() + " - Winner");
+            card_Leaderboard = root.findViewById(R.id.currentGameLeaderboardRecyclerView);
+            leaderboardModelArrayList = new ArrayList<>();
+            for (int i = 0; i < FirebaseUtil.GetInstance().gameInstance.getPlayerNames().size(); i++) {
+                String playerName = FirebaseUtil.GetInstance().gameInstance.getPlayerNames().get(i);
+                leaderboardModelArrayList.add(new LeaderboardModel(playerName, Integer.parseInt(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(playerName)), (FirebaseUtil.GetInstance().gameInstance.getTargetCount()*20)));
+            }
+            leaderboardModelArrayList.sort(Comparator.comparing(LeaderboardModel::getPoints).reversed());
+            leaderboardModelArrayList.get(0).setPlayerName(leaderboardModelArrayList.get(0).getPlayerName() + " - Winner");
 
-        LeaderboardCardAdapter leaderboardCardAdapter = new LeaderboardCardAdapter(root.getContext(), leaderboardModelArrayList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
+            LeaderboardCardAdapter leaderboardCardAdapter = new LeaderboardCardAdapter(root.getContext(), leaderboardModelArrayList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
 
-        card_Leaderboard.setLayoutManager(linearLayoutManager);
-        card_Leaderboard.setAdapter(leaderboardCardAdapter);
+            card_Leaderboard.setLayoutManager(linearLayoutManager);
+            card_Leaderboard.setAdapter(leaderboardCardAdapter);
+            });
 
         // Setup help button
         Button helpButton = binding.currentGameHelp;

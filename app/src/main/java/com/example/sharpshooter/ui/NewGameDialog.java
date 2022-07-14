@@ -12,8 +12,8 @@ import com.example.sharpshooter.R;
 
 public class NewGameDialog extends DialogFragment
 {
-    private int contentView;
-    private DialogFragment nextDialog;
+    private final int contentView;
+    private final DialogFragment nextDialog;
     private Button newParkourButton;
     private Button loadParkourBtn;
 

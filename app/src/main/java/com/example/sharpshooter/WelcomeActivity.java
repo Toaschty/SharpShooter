@@ -38,20 +38,14 @@ public class WelcomeActivity extends AppCompatActivity
         Button btn_register = (Button) findViewById(R.id.btn_register);
 
         // Button click -> Open new Intent
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_login = new Intent(WelcomeActivity.this, LoginActivity.class);
-                startActivity(intent_login);
-            }
+        btn_login.setOnClickListener(view -> {
+            Intent intent_login = new Intent(WelcomeActivity.this, LoginActivity.class);
+            startActivity(intent_login);
         });
 
-        btn_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent_login = new Intent(WelcomeActivity.this, RegisterActivity.class);
-                startActivity(intent_login);
-            }
+        btn_register.setOnClickListener(view -> {
+            Intent intent_login = new Intent(WelcomeActivity.this, RegisterActivity.class);
+            startActivity(intent_login);
         });
     }
 }

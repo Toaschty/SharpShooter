@@ -35,6 +35,7 @@ public class CurrentGameEnd extends Fragment {
         // Required empty public constructor
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

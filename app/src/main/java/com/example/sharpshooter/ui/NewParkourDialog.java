@@ -1,24 +1,10 @@
 package com.example.sharpshooter.ui;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -31,8 +17,8 @@ import java.util.Objects;
 
 public class NewParkourDialog extends DialogFragment
 {
-    int contentView;
-    private DialogFragment nextDialog;
+    final int contentView;
+    private final DialogFragment nextDialog;
 
     private EditText parkourName;
     private EditText playerCount;

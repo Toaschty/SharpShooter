@@ -39,61 +39,50 @@ public class LoginActivity extends AppCompatActivity
         error.setVisibility(View.INVISIBLE);
 
         Button btn_login = (Button) findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Get data from input fields
-                String email = email_input.getText().toString();
-                String password = password_input.getText().toString();
+        btn_login.setOnClickListener(view -> {
+            // Get data from input fields
+            String email = email_input.getText().toString();
+            String password = password_input.getText().toString();
 
-                // Check if both input fields are filled
-                if (email.isEmpty() || password.isEmpty())
-                    return;
+            // Check if both input fields are filled
+            if (email.isEmpty() || password.isEmpty())
+                return;
 
-                // Check if email contains a '@'
-                if (!email.contains("@"))
-                {
-                    showError(R.string.login_failed_auth_email_invalid);
-                    return;
-                }
-
-                loginUser(email, password);
+            // Check if email contains a '@'
+            if (!email.contains("@"))
+            {
+                showError(R.string.login_failed_auth_email_invalid);
+                return;
             }
+
+            loginUser(email, password);
         });
 
         ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btn_back.setOnClickListener(v -> finish());
     }
 
     // Handle the actual login in firebase
     private void loginUser(String email, String password)
     {
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Get User
-                    FirebaseUser user = mAuth.getCurrentUser();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                // Get User
+                FirebaseUser user = mAuth.getCurrentUser();
 
-                    // Start main activity
-                    Intent main_intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(main_intent);
+                // Start main activity
+                Intent main_intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(main_intent);
 
-                    // Close all previous intents
-                    finishAffinity();
-                } else {
-                    // Reset input fields
-                    email_input.setText("");
-                    password_input.setText("");
+                // Close all previous intents
+                finishAffinity();
+            } else {
+                // Reset input fields
+                email_input.setText("");
+                password_input.setText("");
 
-                    // Show error
-                    showError(R.string.login_failed_auth_wrong_password);
-                }
+                // Show error
+                showError(R.string.login_failed_auth_wrong_password);
             }
         });
     }

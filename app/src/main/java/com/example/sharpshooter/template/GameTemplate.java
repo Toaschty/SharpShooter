@@ -7,7 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+@SuppressWarnings("unchecked")
 public class GameTemplate {
 
     private boolean active;
@@ -55,27 +57,27 @@ public class GameTemplate {
     public String getPlayerTotalScore(String playerName)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        return player.get("totalScore").toString();
+        return Objects.requireNonNull(player.get("totalScore")).toString();
     }
     public ArrayList<Long> getPlayerTargetScore(String playerName)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        return (ArrayList<Long>) player.get("targetScore");
+        return (ArrayList<Long>) Objects.requireNonNull(player).get("targetScore");
     }
 
 
     public int getPlayerTargetScoreWithId(String playerName, int targetId)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        ArrayList<Long> score = (ArrayList<Long>) player.get("targetScore");
-        return Math.toIntExact(score.get(targetId));
+        ArrayList<Long> score = (ArrayList<Long>) Objects.requireNonNull(player).get("targetScore");
+        return Math.toIntExact(Objects.requireNonNull(score).get(targetId));
     }
 
     public int getPlayerBrokenArrowsWithId(String playerName, int targetId)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        ArrayList<Long> score = (ArrayList<Long>) player.get("brokenArrows");
-        return Math.toIntExact(score.get(targetId));
+        ArrayList<Long> score = (ArrayList<Long>) Objects.requireNonNull(player).get("brokenArrows");
+        return Math.toIntExact(Objects.requireNonNull(score).get(targetId));
     }
 
 
@@ -86,21 +88,21 @@ public class GameTemplate {
 
     public void setPlayerBrokenArrows(String playerName, int targetId, int brokenArrows) {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        ArrayList<Long> targetScore = (ArrayList<Long>) player.get("brokenArrows");
-        targetScore.set(targetId, (long)brokenArrows);
+        ArrayList<Long> targetScore = (ArrayList<Long>) Objects.requireNonNull(player).get("brokenArrows");
+        Objects.requireNonNull(targetScore).set(targetId, (long)brokenArrows);
     }
 
     public void setPlayerTargetScore(String playerName, int targetId, int score)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        ArrayList<Long> targetScore = (ArrayList<Long>) player.get("targetScore");
-        targetScore.set(targetId, (long)score);
+        ArrayList<Long> targetScore = (ArrayList<Long>) Objects.requireNonNull(player).get("targetScore");
+        Objects.requireNonNull(targetScore).set(targetId, (long)score);
     }
 
     public void setPlayerTotalScore(String playerName, int score)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
-        player.put("totalScore", score);
+        Objects.requireNonNull(player).put("totalScore", score);
     }
 
 

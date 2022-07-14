@@ -19,6 +19,7 @@ import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoadGame extends Fragment {
     private RecyclerView loadGameRV;
@@ -45,8 +46,9 @@ public class LoadGame extends Fragment {
             {
                 for (int i = 0; i < value.getDocuments().size(); i++) {
                     if (FirebaseUtil.GetInstance().userInstance.getSavedGameConfig().contains(value.getDocuments().get(i).getId())) {
+                        //noinspection unchecked
                         ArrayList<Object> playerCount = (ArrayList<Object>) value.getDocuments().get(i).get("playerNames");
-                        lastGameModelArrayList.add(new LastGameModel(value.getDocuments().get(i).get("gameName").toString(), (String) value.getDocuments().get(i).get("date"), playerCount.size(), Integer.parseInt(value.getDocuments().get(i).get("targetCount").toString()), value.getDocuments().get(i).getId().toString()));
+                        lastGameModelArrayList.add(new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size(), Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
                     }
                 }
             }
