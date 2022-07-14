@@ -1,10 +1,13 @@
 package com.example.sharpshooter.ui;
 
 import android.app.Dialog;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +37,8 @@ public class PlayerInputDialog extends DialogFragment
     private String parkourName;
     private int playerCount;
     private int targetCount;
-    private View root;
+    private Uri parkourImage;
+    private final View root;
 
     public PlayerInputDialog(int contentView, View view)
     {
@@ -51,6 +55,7 @@ public class PlayerInputDialog extends DialogFragment
         this.targetCount = targetCount;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -93,10 +98,14 @@ public class PlayerInputDialog extends DialogFragment
                 FirebaseUtil.GetInstance().gameInstance.setActive(false);
                 FirebaseUtil.GetInstance().updateGameData("active", FirebaseUtil.GetInstance().gameInstance.isActive(), FirebaseUtil.GetInstance().activeGame);
             }
-            FirebaseUtil.GetInstance().createNewGameData(new GameTemplate(true, parkourName, setPlayer(playerNames), targetCount, playerNames));
+            String gameId = FirebaseUtil.GetInstance().createNewGameData(new GameTemplate(true, parkourName, setPlayer(playerNames), targetCount, playerNames));
+
+            // Upload parkour image
+            FirebaseUtil.GetInstance().uploadParkourImage(parkourImage, gameId);
 
             // Show loading indicator
-            Utils.GetInstance().StartLoading();
+            if ( Utils.GetInstance() != null)
+                Utils.GetInstance().StartLoading();
 
             FirebaseUtil.GetInstance().initGameInstance(() -> {
                 // Hide loading indicator
@@ -123,16 +132,17 @@ public class PlayerInputDialog extends DialogFragment
             playerObject.put("targetScore", targetScore);
             playerObject.put("totalScore", 0);
             playerObject.put("brokenArrows", brokenArrows);
-            player.put(playerName.toString(), playerObject);
+            player.put(playerName, playerObject);
         });
 
         return player;
     }
 
-    public void setData(String parkourName, int playerCount, int targetCount)
+    public void setData(String parkourName, int playerCount, int targetCount, Uri parkourImage)
     {
         this.parkourName = parkourName;
         this.playerCount = playerCount;
         this.targetCount = targetCount;
+        this.parkourImage = parkourImage;
     }
 }

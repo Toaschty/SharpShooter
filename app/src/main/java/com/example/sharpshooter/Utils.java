@@ -1,5 +1,7 @@
 package com.example.sharpshooter;
 
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
@@ -7,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.sharpshooter.template.GameTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.api.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +20,7 @@ public class Utils
 {
     private static Utils _instance;
 
-    private MainActivity context;
+    private final MainActivity context;
     private final ImageView loadingIndicator;
     private final RotateAnimation loadingRotate;
     private String playerName;
@@ -51,7 +54,7 @@ public class Utils
 
     public void StartLoading()
     {
-        loadingIndicator.setAnimation(loadingRotate);
+        loadingIndicator.startAnimation(loadingRotate);
         loadingIndicator.setVisibility(View.VISIBLE);
     }
 

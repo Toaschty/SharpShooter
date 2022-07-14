@@ -4,8 +4,10 @@ import static android.app.Activity.RESULT_OK;
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,11 @@ import androidx.navigation.Navigation;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
+
+import java.io.IOException;
 
 public class AccountFragment extends Fragment {
 
@@ -51,48 +56,37 @@ public class AccountFragment extends Fragment {
         playerName.setText(FirebaseUtil.GetInstance().userInstance.getName());
 
         // Load account image
-        playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
+        if (FirebaseUtil.GetInstance().userProfilePicture != null)
+            playerImage.setImageBitmap(FirebaseUtil.GetInstance().userProfilePicture);
 
         // Image Picker Button
-        playerImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Start Image Picker Intent
-                Intent gallery = new Intent();
-                gallery.setType("image/*");
-                gallery.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
-            }
+        playerImage.setOnClickListener(view -> {
+            // Start Image Picker Intent
+            Intent gallery = new Intent();
+            gallery.setType("image/*");
+            gallery.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
         });
 
         // Statistics Button
-        btn_statistics.setOnClickListener(view -> {
-                Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics);
-        });
+        btn_statistics.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics));
 
-        btn_playedGames.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_playedGames);
-        });
+        btn_playedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_playedGames));
 
-        btn_savedGames.setOnClickListener(view -> {
-            Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_savedGameFragment);
-        });
+        btn_savedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_savedGameFragment));
 
         // Logout Button
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Sign out current user
-                FirebaseUtil.GetInstance().authentication.signOut();
+        btn_logout.setOnClickListener(view -> {
+            // Sign out current user
+            FirebaseUtil.GetInstance().authentication.signOut();
 
-                // Destroy instance
-                FirebaseUtil.GetInstance().destroyInstance();
+            // Destroy instance
+            FirebaseUtil.GetInstance().destroyInstance();
 
-                // "Restart" application by loading welcome page
-                Intent welcome_intent = new Intent(getActivity(), WelcomeActivity.class);
-                startActivity(welcome_intent);
-                finishAffinity(getActivity());
-            }
+            // "Restart" application by loading welcome page
+            Intent welcome_intent = new Intent(requireActivity(), WelcomeActivity.class);
+            startActivity(welcome_intent);
+            finishAffinity(requireActivity());
         });
 
         return root;
@@ -111,6 +105,12 @@ public class AccountFragment extends Fragment {
 
             // Upload image to firebase
             FirebaseUtil.GetInstance().uploadAccountImage(img);
+
+            // Convert uri to bitmap -> Set picture for immediate feedback
+            try {
+                Bitmap uriBitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
+                FirebaseUtil.GetInstance().userProfilePicture = uriBitmap;
+            } catch (IOException ignored) {}
         }
     }
 

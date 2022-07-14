@@ -3,7 +3,7 @@ package com.example.sharpshooter.ui.dashboard;
 public class CurrentGameCardModel {
     private String player_name;
     private int score;
-    private int targetId;
+    private final int targetId;
 
     public CurrentGameCardModel(String player_name, int score, int targetId)
     {

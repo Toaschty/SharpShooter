@@ -20,11 +20,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.sharpshooter.R;
+
+import java.util.Objects;
 
 public class NewParkourDialog extends DialogFragment
 {
@@ -47,6 +50,7 @@ public class NewParkourDialog extends DialogFragment
         this.nextDialog = nextDialog;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
@@ -110,7 +114,7 @@ public class NewParkourDialog extends DialogFragment
             CollectData();
             if (checkInput())
             {
-                ((PlayerInputDialog) nextDialog).setData(parkourName.getText().toString(), selectedPlayerCount, selectedTargetCount);
+                ((NewParkourImageDialog) nextDialog).setData(parkourName.getText().toString(), selectedPlayerCount, selectedTargetCount);
                 nextDialog.show(getParentFragmentManager(), "Next");
                 dialog.dismiss();
             }
@@ -123,27 +127,30 @@ public class NewParkourDialog extends DialogFragment
     {
         // Playercount
         int playerId = playerGroup.getCheckedRadioButtonId();
-        switch (playerId)
-        {
-            case R.id.newParkourPlayerButton1: selectedPlayerCount = 1; break;
-            case R.id.newParkourPlayerButton2: selectedPlayerCount = 2; break;
-            case R.id.newParkourPlayerButton3: selectedPlayerCount = 3; break;
-        }
+
+        // if else instead of Switch case because since Gradle 8.0 Resources are not final anymore. switch statement requires all the case labels to be constant at compile time.
+        if (playerId == R.id.newParkourPlayerButton1)
+            selectedPlayerCount = 1;
+        else if (playerId == R.id.newParkourPlayerButton2)
+            selectedPlayerCount = 2;
+        else if (playerId == R.id.newParkourPlayerButton3)
+            selectedPlayerCount = 3;
+
 
         if (playerCount.getText().toString().length() > 0)
-            selectedPlayerCount = Integer.valueOf(playerCount.getText().toString());
+            selectedPlayerCount = Integer.parseInt(playerCount.getText().toString());
 
         // Targetcount
         int targetId = targetGroup.getCheckedRadioButtonId();
-        switch (targetId)
-        {
-            case R.id.newParkourTargetButton1: selectedTargetCount = 5; break;
-            case R.id.newParkourTargetButton2: selectedTargetCount = 10; break;
-            case R.id.newParkourTargetButton3: selectedTargetCount = 15; break;
-        }
+        if (targetId == R.id.newParkourTargetButton1)
+            selectedTargetCount = 5;
+        else if (targetId == R.id.newParkourTargetButton2)
+            selectedTargetCount = 10;
+        else if (targetId == R.id.newParkourTargetButton3)
+            selectedTargetCount = 15;
 
         if (targetCount.getText().toString().length() > 0)
-            selectedTargetCount = Integer.valueOf(targetCount.getText().toString());
+            selectedTargetCount = Integer.parseInt(targetCount.getText().toString());
     }
 
     private boolean checkInput()
@@ -157,22 +164,19 @@ public class NewParkourDialog extends DialogFragment
             return false;
 
         // Targetcount selected?
-        if (selectedTargetCount == 0)
-            return false;
-
-        return true;
+        return selectedTargetCount != 0;
     }
 
     private void SelectEditText(EditText text)
     {
         text.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.radio_button_right_checked, null));
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        text.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext(), "getContext must not be null (SelectEditText)"), R.color.white));
     }
 
     private void DeselectEditText(EditText text)
     {
         text.setText("");
         text.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.radio_button_right_unchecked, null));
-        text.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+        text.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext(), "getContext must not be null (DeselectEditText)"), R.color.black));
     }
 }

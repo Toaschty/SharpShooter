@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDialogAdapter.Viewholder> {
     private Context context;
-    private ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList;
+    private final ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList;
 
     public PlayerNameDialogAdapter(Context context, ArrayList<PlayerNameDialogModel> playerNameDialogModelArrayList){
         this.context = context;
@@ -56,8 +56,8 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
     }
 
     public class Viewholder extends RecyclerView.ViewHolder{
-        private EditText name;
-        private TextView playerName;
+        private final EditText name;
+        private final TextView playerName;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);

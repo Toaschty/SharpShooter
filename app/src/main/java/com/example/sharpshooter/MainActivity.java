@@ -1,5 +1,9 @@
 package com.example.sharpshooter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -30,37 +34,38 @@ public class MainActivity extends AppCompatActivity {
         Utils.SetupUtils(this);
 
         // Show loading indicator
-        Utils.GetInstance().StartLoading();
+        if (Utils.GetInstance() != null)
+            Utils.GetInstance().StartLoading();
 
         // Create FirebaseUtil Instance
         FirebaseUtil.GetInstance();
 
+        // Start loading process
+        FirebaseUtil.GetInstance().startLoadingProcess();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 
         navView = binding.navView;
-        navView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                navController.popBackStack(item.getItemId(), false);
-
-                switch (item.getItemId())
-                {
-                    case R.id.navigation_home:
-                        navController.navigate(R.id.navigation_home);
-                        return true;
-                    case R.id.navigation_dashboard:
-                        navController.navigate(R.id.navigation_dashboard);
-                        return true;
-                    case R.id.navigation_account:
-                        //Todo it you can never access account if you don`t have set a Profile Picture
-                        //if (FirebaseUtil.GetInstance().loadingProgress < 2)
-                        //    return false;
-                        navController.navigate(R.id.navigation_account);
-                        return true;
-                }
-
-                return false;
+        navView.setOnItemSelectedListener(item -> {
+            navController.popBackStack(item.getItemId(), false);
+            if (item.getItemId() == R.id.navigation_home)
+            {
+                navController.navigate(R.id.navigation_home);
+                return true;
             }
+            else if (item.getItemId() == R.id.navigation_dashboard)
+            {
+                navController.navigate(R.id.navigation_dashboard);
+                return true;
+            }
+            else if (item.getItemId() == R.id.navigation_account)
+            {
+                if (FirebaseUtil.GetInstance().loadingProgress < 2)
+                    return false;
+                navController.navigate(R.id.navigation_account);
+                return true;
+            }
+            return false;
         });
 
         Utils.GetInstance().setBottomNavVisibility(false);

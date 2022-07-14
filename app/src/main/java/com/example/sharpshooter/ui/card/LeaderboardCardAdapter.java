@@ -19,11 +19,9 @@ import com.example.sharpshooter.R;
 import java.util.ArrayList;
 
 public class LeaderboardCardAdapter extends RecyclerView.Adapter<LeaderboardCardAdapter.Viewholder> {
-    private Context context;
-    private ArrayList<LeaderboardModel> leaderboardModelArrayList;
+    private final ArrayList<LeaderboardModel> leaderboardModelArrayList;
 
     public LeaderboardCardAdapter(Context context, ArrayList<LeaderboardModel> leaderboardModelArrayList) {
-        this.context = context;
         this.leaderboardModelArrayList = leaderboardModelArrayList;
     }
 
@@ -32,7 +30,7 @@ public class LeaderboardCardAdapter extends RecyclerView.Adapter<LeaderboardCard
     public LeaderboardCardAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // to inflate the layout for each item of recycler view.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_leaderboard, parent, false);
-        return new LeaderboardCardAdapter.Viewholder(view);
+        return new Viewholder(view);
     }
 
     @Override
@@ -54,10 +52,10 @@ public class LeaderboardCardAdapter extends RecyclerView.Adapter<LeaderboardCard
 
     // View holder class for initializing of
     // your views such as TextView.
-    public class Viewholder extends RecyclerView.ViewHolder {
-        private TextView playerName;
-        private ProgressBar progressBar;
-        private TextView points;
+    public static class Viewholder extends RecyclerView.ViewHolder {
+        private final TextView playerName;
+        private final ProgressBar progressBar;
+        private final TextView points;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);

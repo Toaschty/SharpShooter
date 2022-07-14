@@ -45,16 +45,28 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragmentStatistics"
-        android:name="com.example.sharpshooter.ui.account.AccountFragmentStatistics"
-        android:label="AccountFragmentStatistics" />
+        android:name="com.example.sharpshooter.ui.account.statistics.StatisticsFragment"
+        android:label="AccountFragmentStatistics" >
+        <action
+            android:id="@+id/action_accountFragmentStatistics_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
     <fragment
         android:id="@+id/playedGames"
         android:name="com.example.sharpshooter.ui.account.playedGames.PlayedGamesFragment"
-        android:label="PlayedGames" />
+        android:label="PlayedGames" >
+        <action
+            android:id="@+id/action_playedGames_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
     <fragment
         android:id="@+id/savedGameFragment"
         android:name="com.example.sharpshooter.ui.account.savedGames.SavedGameFragment"
-        android:label="SavedGameFragment" />
+        android:label="SavedGameFragment" >
+        <action
+            android:id="@+id/action_savedGameFragment_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
     <fragment
         android:id="@+id/loadGame"
         android:name="com.example.sharpshooter.ui.home.loadGame.LoadGame"
