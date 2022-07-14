@@ -279,6 +279,12 @@ public class FirebaseUtil
     public void createNewGameData(GameTemplate game) {
         database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document().set(game);
     }
+
+    public void deleteGame(String gameId)
+    {
+        database.collection("users").document(Objects.requireNonNull(authentication.getUid())).collection("games").document(gameId).delete();
+    }
+
     public void destoyGameInstace(){gameInstance = null;}
 
     public void setActiveGame(String gameId)
