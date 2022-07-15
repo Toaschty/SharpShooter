@@ -66,6 +66,12 @@ public class PlayedGamesFragment extends Fragment {
             playedGamesRV.setAdapter(lastGameAdapter);
         });
 
+        // Setup help button
+        Button helpButton = binding.currentGameHelp;
+        helpButton.setOnClickListener(click -> {
+            Navigation.findNavController(root).navigate(R.id.action_playedGames_to_helpPlayedGamesFragment);
+        });
+
         // Setup close button
         Button btn_close = binding.btnClose;
         btn_close.setOnClickListener(click -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_playedGames_to_navigation_account));

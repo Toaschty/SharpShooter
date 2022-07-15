@@ -29,7 +29,7 @@
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/dialog_newparkour.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/dialog_newparkour_image.xml" value="0.5" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account.xml" value="0.275" />
-        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account_played_games.xml" value="0.16722408026755853" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account_played_games.xml" value="0.33" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account_saved_games.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_account_statistics.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_current_game_end.xml" value="0.275" />
@@ -38,7 +38,10 @@
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_current_game_win.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_detailed_player_stats.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_leaderboard.xml" value="0.2972972972972973" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_playedGames.xml" value="0.275" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_played_games.xml" value="0.25" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_points.xml" value="0.33" />
+        <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_saved_games.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_help_statistics.xml" value="0.25" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_home.xml" value="0.275" />
         <entry key="..\:/Users/reisa/Desktop/Game_Development/SharpShooter/app/src/main/res/layout/fragment_image.xml" value="0.275" />

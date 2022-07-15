@@ -63,6 +63,12 @@ public class SavedGameFragment extends Fragment {
             playedGamesRV.setAdapter(lastGameAdapter);
         });
 
+        // Setup help button
+        Button helpButton = binding.currentGameHelp;
+        helpButton.setOnClickListener(click -> {
+            Navigation.findNavController(root).navigate(R.id.action_savedGameFragment_to_helpSavedGamesFragment);
+        });
+
         // Setup close button
         Button btn_close = (Button) binding.btnClose;
         btn_close.setOnClickListener(click -> Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.nav_host_fragment_activity_main).navigate(R.id.action_savedGameFragment_to_navigation_account));

@@ -7,9 +7,12 @@ import android.provider.MediaStore;
 import android.util.Pair;
 import android.widget.ImageView;
 
+import com.google.firebase.FirebaseException;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StreamDownloadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
