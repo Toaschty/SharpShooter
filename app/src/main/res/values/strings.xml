@@ -54,6 +54,7 @@
     <string name="player_stat_killRate">Kill Ratio</string>
     <string name="player_stat_broken">Broken</string>
     <string name="player_stat_done">Close</string>
+    <string name="player_stat_killRate_placeholder" formatted="false">%.2f %%</string>
 
     <!-- Account -->
     <string name="account_statistics">Statistics</string>
@@ -78,6 +79,7 @@
     <string name="register_failed_auth_unknown_error">Unknown error</string>
 
     <!-- Help -->
+    <string name="help_button">\?</string>
     <string name="help_title">Help</string>
     <string name="help_dummyParkourName">Parkour #1</string>
     <string name="help_dummyPlayerCount">3</string>

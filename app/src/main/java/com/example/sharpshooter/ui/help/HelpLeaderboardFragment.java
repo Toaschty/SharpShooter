@@ -5,16 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentHelpLeaderboardBinding;
-import com.example.sharpshooter.databinding.FragmentHelpPointsBinding;
 
 public class HelpLeaderboardFragment extends Fragment {
 

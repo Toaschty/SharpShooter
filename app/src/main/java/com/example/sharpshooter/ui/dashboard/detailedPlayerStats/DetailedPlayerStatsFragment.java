@@ -1,5 +1,6 @@
 package com.example.sharpshooter.ui.dashboard.detailedPlayerStats;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,15 +9,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.sharpshooter.FirebaseUtil;
+import com.example.sharpshooter.R;
 import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentDetailedPlayerStatsBinding;
 import com.example.sharpshooter.template.GameTemplate;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class DetailedPlayerStatsFragment extends Fragment {
@@ -64,9 +66,18 @@ public class DetailedPlayerStatsFragment extends Fragment {
         misses.setText(String.valueOf(stats.get("missesCount")));
 
         // Calculate Kill ratio
-        DecimalFormat df = new DecimalFormat("#.00");
-        float killrate = (float) stats.get("killsCount") / (float) stats.get("shotsCount") * 100;
-        killRate.setText(String.valueOf(df.format(killrate)) + " %");
+        Integer killCount = stats.get("killsCount");
+        Integer shotsCount = stats.get("shotsCount");
+
+        if (killCount != null && shotsCount != null)
+        {
+            if (killCount > 0 && shotsCount > 0) {
+                float killRatio = (killCount.floatValue() / shotsCount.floatValue()) * 100;
+
+                String text = getResources().getString(R.string.player_stat_killRate_placeholder, killRatio);
+                killRate.setText(text);
+            }
+        }
 
         broken.setText(String.valueOf(stats.get("brokenCount")));
 

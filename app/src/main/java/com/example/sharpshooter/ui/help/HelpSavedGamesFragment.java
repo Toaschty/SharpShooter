@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.sharpshooter.R;
-import com.example.sharpshooter.databinding.FragmentHelpPlayedGamesBinding;
 import com.example.sharpshooter.databinding.FragmentHelpSavedGamesBinding;
 
 import java.time.LocalDate;

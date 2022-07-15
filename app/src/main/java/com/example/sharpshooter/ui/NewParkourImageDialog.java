@@ -17,7 +17,6 @@ import androidx.fragment.app.DialogFragment;
 import com.example.sharpshooter.R;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Objects;
 
 public class NewParkourImageDialog extends DialogFragment
 {

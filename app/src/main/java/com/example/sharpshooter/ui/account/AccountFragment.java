@@ -4,7 +4,6 @@ import static android.app.Activity.RESULT_OK;
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +25,7 @@ import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class AccountFragment extends Fragment {
 
@@ -107,7 +107,7 @@ public class AccountFragment extends Fragment {
 
             // Convert uri to bitmap -> Set picture for immediate feedback
             try {
-                FirebaseUtil.GetInstance().userProfilePicture = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), img);
+                FirebaseUtil.GetInstance().userProfilePicture = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(this.getActivity()).getContentResolver(), img);
             } catch (IOException ignored) {}
         }
     }

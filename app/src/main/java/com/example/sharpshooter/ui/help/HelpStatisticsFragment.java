@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.sharpshooter.databinding.FragmentHelpLeaderboardBinding;
 import com.example.sharpshooter.databinding.FragmentHelpStatisticsBinding;
 
 public class HelpStatisticsFragment extends Fragment {

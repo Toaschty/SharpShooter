@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import io.grpc.Context;
-
 public class FirebaseUtil
 {
     private static FirebaseUtil instance = null;
