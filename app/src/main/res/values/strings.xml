@@ -24,7 +24,7 @@
     <string name="newParkour_continue">Continue</string>
     <string name="newParkour_start">Start</string>
     <string name="newPlayer_name">Name</string>
-    <string name="newPlayer_name_hint">Insert name...</string>
+    <string name="newPlayer_name_hint">Insert name…</string>
     <string name="newParkour_add_image">Add image</string>
 
     <!-- Current Game -->
@@ -54,7 +54,7 @@
     <string name="player_stat_killRate">Kill Ratio</string>
     <string name="player_stat_broken">Broken</string>
     <string name="player_stat_done">Close</string>
-    <string name="player_stat_killRate_placeholder" formatted="false">%.2f %%</string>
+    <string name="player_stat_killRate_placeholder" formatted="false">%3.2f %%</string>
 
     <!-- Account -->
     <string name="account_statistics">Statistics</string>

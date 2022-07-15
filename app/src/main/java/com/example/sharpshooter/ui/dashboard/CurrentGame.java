@@ -67,9 +67,7 @@ public class CurrentGame extends Fragment {
 
         // Setup help button
         Button helpButton = binding.currentGameHelp;
-        helpButton.setOnClickListener(click -> {
-            Navigation.findNavController(root).navigate(R.id.action_navigation_dashboard_to_helpPointsFragment);
-        });
+        helpButton.setOnClickListener(click -> Navigation.findNavController(root).navigate(R.id.action_navigation_dashboard_to_helpPointsFragment));
 
         return root;
     }

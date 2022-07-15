@@ -1,6 +1,5 @@
 package com.example.sharpshooter.ui.account;
 
-import static android.app.Activity.RESULT_OK;
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
 import android.content.Intent;
@@ -14,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,7 +27,6 @@ import com.example.sharpshooter.WelcomeActivity;
 import com.example.sharpshooter.databinding.FragmentAccountBinding;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class AccountFragment extends Fragment {
 
@@ -61,10 +62,7 @@ public class AccountFragment extends Fragment {
         // Image Picker Button
         playerImage.setOnClickListener(view -> {
             // Start Image Picker Intent
-            Intent gallery = new Intent();
-            gallery.setType("image/*");
-            gallery.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(gallery, "Select Picture"), 6969);
+            mGetContent.launch("image/*");
         });
 
         // Statistics Button
@@ -91,26 +89,22 @@ public class AccountFragment extends Fragment {
         return root;
     }
 
-    // Handle Image Picker Result
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // If Image Picker was "successful"
-        if (resultCode == RESULT_OK && requestCode == 6969) {
-            // Set selected image
-            Uri img = data.getData();
-            playerImage.setImageURI(img);
+    // Callback for selected image from gallery
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            playerImage.setImageURI(result);
 
             // Upload image to firebase
-            FirebaseUtil.GetInstance().uploadAccountImage(img);
+            FirebaseUtil.GetInstance().uploadAccountImage(result);
 
             // Convert uri to bitmap -> Set picture for immediate feedback
             try {
-                FirebaseUtil.GetInstance().userProfilePicture = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(this.getActivity()).getContentResolver(), img);
-            } catch (IOException ignored) {}
+                FirebaseUtil.GetInstance().userProfilePicture = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), result);
+            } catch (IOException ignored) {
+            }
         }
-    }
+    });
 
     @Override
     public void onDestroyView() {

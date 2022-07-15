@@ -33,15 +33,15 @@ public class RegisterActivity extends AppCompatActivity
         // Authentication setup
         mAuth = FirebaseAuth.getInstance();
 
-        name_input = (EditText) findViewById(R.id.name);
-        email_input = (EditText) findViewById(R.id.email);
-        password_input = (EditText) findViewById(R.id.password);
-        password_repeat_input = (EditText) findViewById(R.id.password_repeat);
-        error = (TextView) findViewById(R.id.tv_error);
+        name_input = findViewById(R.id.name);
+        email_input = findViewById(R.id.email);
+        password_input = findViewById(R.id.password);
+        password_repeat_input = findViewById(R.id.password_repeat);
+        error = findViewById(R.id.tv_error);
 
         error.setVisibility(View.INVISIBLE);
 
-        Button btn_register = (Button) findViewById(R.id.btn_register);
+        Button btn_register = findViewById(R.id.btn_register);
         btn_register.setOnClickListener(view -> {
             // Get data from input fields
             String name = name_input.getText().toString();
@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity
             registerUser(name, email, password);
         });
 
-        ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
+        ImageButton btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(v -> finish());
     }
 
@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity
                 // Reset fields and show error
                 email_input.setText("");
 
-                if (Objects.requireNonNull(task.getException().getMessage()).contains("email"))
+                if (Objects.requireNonNull(Objects.requireNonNull(task.getException()).getMessage()).contains("email"))
                 {
                     showError(R.string.register_failed_auth_email_used);
                 }

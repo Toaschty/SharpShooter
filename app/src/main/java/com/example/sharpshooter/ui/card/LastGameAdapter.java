@@ -83,7 +83,7 @@ public class LastGameAdapter extends RecyclerView.Adapter<LastGameAdapter.Viewho
             lastGamePlayerCount = itemView.findViewById(R.id.idLastGamePlayerCount);
             lastGameTargetCount = itemView.findViewById(R.id.idLastGameTargetCount);
             lastGameIV = itemView.findViewById(R.id.idLastGameImage);
-            CardView cv = (CardView) itemView.findViewById(R.id.lastGameCV);
+            CardView cv = itemView.findViewById(R.id.lastGameCV);
 
             cv.setOnClickListener((view) -> {
                 if(Objects.equals(call, "game")) {

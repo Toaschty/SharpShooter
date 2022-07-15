@@ -11,6 +11,10 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
@@ -55,7 +59,7 @@ public class NewParkourImageDialog extends DialogFragment
         parkourImageView.setOnClickListener(view -> {
             // Start Image Picker Intent
             Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(Intent.createChooser(camera, "Take Picture"), 6969);
+            mTakePhoto.launch(camera);
         });
 
         // Add click listener
@@ -68,24 +72,25 @@ public class NewParkourImageDialog extends DialogFragment
         return dialog;
     }
 
-    // Handle Image Picker Result
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    // Callback for selected image from gallery
+    final ActivityResultLauncher<Intent> mTakePhoto = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            // If Image Picker was "successful"
+            if (result.getResultCode() == RESULT_OK) {
+                // Get Bitmap
+                assert result.getData() != null;
+                Bitmap parkourBitmap = (Bitmap) result.getData().getExtras().get("data");
+                parkourImageView.setImageBitmap(parkourBitmap);
 
-        // If Image Picker was "successful"
-        if (resultCode == RESULT_OK && requestCode == 6969) {
-            // Get Bitmap
-            Bitmap parkourBitmap = (Bitmap) data.getExtras().get("data");
-            parkourImageView.setImageBitmap(parkourBitmap);
-
-            // Save Bitmap as Uri
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            parkourBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-            String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), parkourBitmap, "ParkourImage", null);
-            parkourImage = Uri.parse(path);
+                // Save Bitmap as Uri
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                parkourBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), parkourBitmap, "ParkourImage", null);
+                parkourImage = Uri.parse(path);
+            }
         }
-    }
+    });
 
     public void setData(String parkourName, int playerCount, int targetCount)
     {

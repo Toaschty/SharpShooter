@@ -74,7 +74,7 @@ public class ImageLoader
     {
         for (Pair<String, Bitmap> parkour : parkourBitmaps) {
             if (parkour.first.equals(parkourId)) {
-                view.setImageBitmap((Bitmap)parkour.second);
+                view.setImageBitmap(parkour.second);
                 return true;
             }
         }

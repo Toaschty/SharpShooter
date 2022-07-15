@@ -16,8 +16,6 @@ import com.example.sharpshooter.R;
 import com.example.sharpshooter.databinding.FragmentAccountStatisticsBinding;
 import com.example.sharpshooter.template.UserTemplate;
 
-import java.text.DecimalFormat;
-
 public class StatisticsFragment extends Fragment
 {
     private FragmentAccountStatisticsBinding binding;
@@ -62,7 +60,7 @@ public class StatisticsFragment extends Fragment
         broken.setText(String.valueOf(tmpUser.getBroken()));
 
         // Setup close button
-        Button btn_close = (Button) binding.btnClose;
+        Button btn_close = binding.btnClose;
         btn_close.setOnClickListener(click -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_accountFragmentStatistics_to_navigation_account));
 
         return root;

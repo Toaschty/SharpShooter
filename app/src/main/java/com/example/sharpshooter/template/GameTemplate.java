@@ -57,6 +57,7 @@ public class GameTemplate {
     public String getPlayerTotalScore(String playerName)
     {
         Map<String, Object> player = (Map<String, Object>) FirebaseUtil.GetInstance().gameInstance.getPlayer().get(playerName);
+        assert player != null;
         return Objects.requireNonNull(player.get("totalScore")).toString();
     }
     public ArrayList<Long> getPlayerTargetScore(String playerName)

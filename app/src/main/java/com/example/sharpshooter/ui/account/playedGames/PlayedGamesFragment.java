@@ -68,9 +68,7 @@ public class PlayedGamesFragment extends Fragment {
 
         // Setup help button
         Button helpButton = binding.currentGameHelp;
-        helpButton.setOnClickListener(click -> {
-            Navigation.findNavController(root).navigate(R.id.action_playedGames_to_helpPlayedGamesFragment);
-        });
+        helpButton.setOnClickListener(click -> Navigation.findNavController(root).navigate(R.id.action_playedGames_to_helpPlayedGamesFragment));
 
         // Setup close button
         Button btn_close = binding.btnClose;

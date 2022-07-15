@@ -23,9 +23,7 @@ public class HelpStatisticsFragment extends Fragment {
 
         // Setup close button
         Button btnClose = binding.btnDone;
-        btnClose.setOnClickListener(click -> {
-            requireActivity().onBackPressed();
-        });
+        btnClose.setOnClickListener(click -> requireActivity().onBackPressed());
 
         return root;
     }
