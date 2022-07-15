@@ -2,7 +2,6 @@ package com.example.sharpshooter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,8 +33,8 @@ public class WelcomeActivity extends AppCompatActivity
         }
 
         // Get buttons
-        Button btn_login = (Button) findViewById(R.id.btn_login);
-        Button btn_register = (Button) findViewById(R.id.btn_register);
+        Button btn_login = findViewById(R.id.btn_login);
+        Button btn_register = findViewById(R.id.btn_register);
 
         // Button click -> Open new Intent
         btn_login.setOnClickListener(view -> {

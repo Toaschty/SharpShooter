@@ -8,12 +8,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -32,13 +28,13 @@ public class LoginActivity extends AppCompatActivity
         // Authentication setup
         mAuth = FirebaseAuth.getInstance();
 
-        email_input = (EditText) findViewById(R.id.email);
-        password_input = (EditText) findViewById(R.id.password);
-        error = (TextView) findViewById(R.id.tv_error);
+        email_input = findViewById(R.id.email);
+        password_input = findViewById(R.id.password);
+        error = findViewById(R.id.tv_error);
 
         error.setVisibility(View.INVISIBLE);
 
-        Button btn_login = (Button) findViewById(R.id.btn_login);
+        Button btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(view -> {
             // Get data from input fields
             String email = email_input.getText().toString();
@@ -58,7 +54,7 @@ public class LoginActivity extends AppCompatActivity
             loginUser(email, password);
         });
 
-        ImageButton btn_back = (ImageButton) findViewById(R.id.btn_back);
+        ImageButton btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(v -> finish());
     }
 

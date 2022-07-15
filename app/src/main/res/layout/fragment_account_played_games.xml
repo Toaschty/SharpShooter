@@ -7,6 +7,23 @@
     tools:context=".ui.account.AccountFragment">
 
     <Button
+        android:id="@+id/currentGameHelp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/button_selector"
+        android:fontFamily="@font/julius_sans_one"
+        android:text="@string/help_button"
+        android:textAlignment="center"
+        android:textColor="@color/button_selector"
+        android:textSize="18sp"
+        app:backgroundTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btn_close"
         android:layout_width="0dp"
         android:layout_height="50dp"

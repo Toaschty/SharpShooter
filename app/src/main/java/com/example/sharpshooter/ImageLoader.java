@@ -2,14 +2,9 @@ package com.example.sharpshooter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Pair;
 import android.widget.ImageView;
-
 import com.google.firebase.storage.StorageReference;
-
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -77,9 +72,9 @@ public class ImageLoader
 
     private boolean setLoadedImageIfExisting(ImageView view, String parkourId)
     {
-        for (Pair parkour : parkourBitmaps) {
+        for (Pair<String, Bitmap> parkour : parkourBitmaps) {
             if (parkour.first.equals(parkourId)) {
-                view.setImageBitmap((Bitmap)parkour.second);
+                view.setImageBitmap(parkour.second);
                 return true;
             }
         }

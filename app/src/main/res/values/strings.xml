@@ -24,7 +24,7 @@
     <string name="newParkour_continue">Continue</string>
     <string name="newParkour_start">Start</string>
     <string name="newPlayer_name">Name</string>
-    <string name="newPlayer_name_hint">Insert name...</string>
+    <string name="newPlayer_name_hint">Insert name…</string>
     <string name="newParkour_add_image">Add image</string>
 
     <!-- Current Game -->
@@ -54,6 +54,7 @@
     <string name="player_stat_killRate">Kill Ratio</string>
     <string name="player_stat_broken">Broken</string>
     <string name="player_stat_done">Close</string>
+    <string name="player_stat_killRate_placeholder" formatted="false">%3.2f %%</string>
 
     <!-- Account -->
     <string name="account_statistics">Statistics</string>
@@ -78,7 +79,15 @@
     <string name="register_failed_auth_unknown_error">Unknown error</string>
 
     <!-- Help -->
+    <string name="help_button">\?</string>
     <string name="help_title">Help</string>
+    <string name="help_dummyParkourName">Parkour #1</string>
+    <string name="help_dummyPlayerCount">3</string>
+    <string name="help_playerCountDescription">Player count</string>
+    <string name="help_dummyTargetCount">13</string>
+    <string name="help_targetCountDescription">Target count</string>
+
+    <!-- Help Points -->
     <string name="help_points_dummy_name">Player Name</string>
     <string name="help_points_markPoints">Mark your score of current target here</string>
     <string name="help_points_markBroken">Mark your broken / lost arrows here</string>
@@ -101,10 +110,22 @@
     <string name="help_leaderboard_points2">54</string>
 
     <!-- Help Statistics -->
-    <string name="help_statistics_helpText1">On this slide all players are listed as buttons</string>
-    <string name="help_statistics_helpText2">By clicking on a button a new window with detailed statistics will open</string>
+    <string name="help_statistics_helpText1">On this slide all players are listed</string>
+    <string name="help_statistics_helpText2">By clicking on a player a new window with detailed statistics will open</string>
     <string name="help_statistics_helpText3">This button saves the parkour as an template</string>
     <string name="help_statistics_helpText4">Saved parkours are visible on the account page</string>
     <string name="help_statistics_helpText5">Templates can be used to easily start a new game with the same settings</string>
     <string name="help_statistics_player">Player</string>
+
+    <!-- Help Played Games -->
+    <string name="help_playedGames_helpText1">This window shows all played games</string>
+    <string name="help_playedGames_helpText2">Games can be viewed by clicking on them</string>
+    <string name="help_playedGames_helpText3">By swiping a game to the left it will be deleted from the account</string>
+
+    <!-- Help Saved Games -->
+    <string name="help_savedGames_helpText1">This window shows all saved parkours</string>
+    <string name="help_savedGames_helpText2">Saved parkours can be used to start a new game with the same parkour settings</string>
+    <string name="help_savedGames_helpText3">Saved settings can be loaded by clicking on a parkour</string>
+    <string name="help_savedGames_helpText4">By swiping a parkour to the left it will be deleted from the account</string>
+
 </resources>

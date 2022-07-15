@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_playedGames_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <action
+            android:id="@+id/action_playedGames_to_helpPlayedGamesFragment"
+            app:destination="@id/helpPlayedGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedGameFragment"
@@ -75,6 +78,9 @@
         <action
             android:id="@+id/action_savedGameFragment_to_navigation_account"
             app:destination="@id/navigation_account" />
+        <action
+            android:id="@+id/action_savedGameFragment_to_helpSavedGamesFragment"
+            app:destination="@id/helpSavedGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/loadGame"
@@ -123,5 +129,21 @@
         <action
             android:id="@+id/action_helpStatisticsFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpPlayedGamesFragment"
+        android:name="com.example.sharpshooter.ui.help.HelpPlayedGamesFragment"
+        android:label="HelpPlayedGamesFragment" >
+        <action
+            android:id="@+id/action_helpPlayedGamesFragment_to_playedGames"
+            app:destination="@id/playedGames" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpSavedGamesFragment"
+        android:name="com.example.sharpshooter.ui.help.HelpSavedGamesFragment"
+        android:label="HelpSavedGamesFragment" >
+        <action
+            android:id="@+id/action_helpSavedGamesFragment_to_savedGameFragment"
+            app:destination="@id/savedGameFragment" />
     </fragment>
 </navigation>

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -65,9 +64,7 @@ public class HelpPointsFragment extends Fragment {
 
         // Setup close button
         Button btnClose = binding.btnDone;
-        btnClose.setOnClickListener(click -> {
-            requireActivity().onBackPressed();
-        });
+        btnClose.setOnClickListener(click -> requireActivity().onBackPressed());
 
         return root;
     }

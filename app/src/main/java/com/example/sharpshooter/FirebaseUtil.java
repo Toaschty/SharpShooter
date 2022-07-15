@@ -349,10 +349,15 @@ public class FirebaseUtil
 
     public void deleteGame(String gameId)
     {
+        // Delete game from user database
         database.collection("users")
                 .document(Objects.requireNonNull(authentication.getUid(), "instance uid must not be null (deleteGame)"))
                 .collection("games")
                 .document(gameId).delete();
+
+        // Delete parkours image if existing
+        StorageReference imageRef = storage.child("parkours/" + gameId);
+        imageRef.delete();
     }
 
 
