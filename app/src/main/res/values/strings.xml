@@ -89,6 +89,7 @@
 
     <!-- Help Points -->
     <string name="help_points_dummy_name">Player Name</string>
+    <string name="help_points_slide">Move to the next target by sliding to the left</string>
     <string name="help_points_markPoints">Mark your score of current target here</string>
     <string name="help_points_markBroken">Mark your broken / lost arrows here</string>
     <string name="help_points_score">Your current score</string>
