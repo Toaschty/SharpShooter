@@ -46,8 +46,6 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             holder.score.setText(String.valueOf(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(model.getPlayer_name())));
         });
 
-        Log.i("Static getCurrentItem", String.valueOf(DashboardFragment.currentGameViewPager.getCurrentItem()));
-
         switch (FirebaseUtil.GetInstance().gameInstance.getPlayerBrokenArrowsWithId(model.getPlayer_name(), model.getTargetId()))
         {
             case 1: holder.brokenArrow1.setChecked(true); break;

@@ -1,6 +1,7 @@
 package com.example.sharpshooter.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,7 @@ public class HomeFragment extends Fragment {
             }
 
 
-
             lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
-            lastGameModelArrayList.forEach(n -> System.out.println(n.getLastGame_name()));
-            System.out.println(lastGameModelArrayList.size());
 
             if (lastGameModelArrayList.size() > 5)
             {
@@ -77,7 +75,6 @@ public class HomeFragment extends Fragment {
                     lastGameModelArrayList.remove(5);
                 }
             }
-            lastGameModelArrayList.forEach(n -> System.out.println(n.getLastGame_name()));
 
             if(activeGameModelArrayList.size() != 0)
             {
