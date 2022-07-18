@@ -30,7 +30,6 @@ public class GameTemplate {
 
     public GameTemplate(){}
 
-
     private String getDateNow()
     {
         LocalDate myDateObj = LocalDate.now();

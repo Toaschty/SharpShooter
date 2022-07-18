@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
-
     private final MutableLiveData<String> newGameBtn;
 
     public HomeViewModel() {
@@ -14,5 +13,4 @@ public class HomeViewModel extends ViewModel {
     }
 
     public LiveData<String> getBtnName(){ return newGameBtn; }
-
 }

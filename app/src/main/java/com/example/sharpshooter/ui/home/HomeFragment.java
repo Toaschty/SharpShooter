@@ -65,7 +65,6 @@ public class HomeFragment extends Fragment {
                     lastGameModelArrayList.add(new LastGameModel(Objects.requireNonNull(value.getDocuments().get(i).get("gameName")).toString(), (String) value.getDocuments().get(i).get("date"), Objects.requireNonNull(playerCount).size(), Integer.parseInt(Objects.requireNonNull(value.getDocuments().get(i).get("targetCount")).toString()), value.getDocuments().get(i).getId()));
             }
 
-
             lastGameModelArrayList.sort(Comparator.comparing(LastGameModel::getLastGame_date));
 
             if (lastGameModelArrayList.size() > 5)

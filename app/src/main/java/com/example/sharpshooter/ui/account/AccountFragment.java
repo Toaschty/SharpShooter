@@ -42,8 +42,6 @@ public class AccountFragment extends Fragment {
     private Button btn_savedGames;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        AccountViewModel accountViewModel = new ViewModelProvider(this).get(AccountViewModel.class);
-
         binding = FragmentAccountBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -69,9 +67,7 @@ public class AccountFragment extends Fragment {
 
         // Statistics Button
         btn_statistics.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_accountFragmentStatistics));
-
         btn_playedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_playedGames));
-
         btn_savedGames.setOnClickListener(view -> Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main).navigate(R.id.action_navigation_account_to_savedGameFragment));
 
         // Logout Button

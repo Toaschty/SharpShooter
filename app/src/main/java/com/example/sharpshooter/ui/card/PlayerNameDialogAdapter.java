@@ -24,7 +24,6 @@ public class PlayerNameDialogAdapter extends RecyclerView.Adapter<PlayerNameDial
         this.playerNameDialogModelArrayList = playerNameDialogModelArrayList;
     }
 
-
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -59,6 +59,4 @@ public class CurrentGameWinAdapter extends RecyclerView.Adapter<CurrentGameWinAd
             });
         }
     }
-
-
 }

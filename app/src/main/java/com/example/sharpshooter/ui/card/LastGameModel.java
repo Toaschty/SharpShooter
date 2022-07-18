@@ -11,7 +11,6 @@ public class LastGameModel {
     private final int lastGame_image;
     private String gameId;
 
-    // Constructor
     public LastGameModel(String name, String date, int playerCount, int targetCount, String gameId) {
         this.lastGame_name = name;
         this.lastGame_date = date;
@@ -21,7 +20,6 @@ public class LastGameModel {
         this.lastGame_image = R.drawable.ic_no_image;
     }
 
-    // Getter and Setter
     public String getLastGame_name() {
         return lastGame_name;
     }

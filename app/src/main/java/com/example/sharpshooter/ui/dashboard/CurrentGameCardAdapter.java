@@ -63,7 +63,6 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
             case 4: holder.rg.check(R.id.currentGamePlayerPoint4); break;
             case 0: holder.zeroButton.setChecked(true); break;
         }
-
     }
 
     @Override
@@ -143,11 +142,9 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
 
                     score.setText(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(playerName.getText().toString()));
 
-
                     if (zeroButton.isChecked()) {
                         zeroButton.toggle();
                     }
-
                 }
             });
             zeroButton.setOnClickListener(view -> {
@@ -162,13 +159,8 @@ public class CurrentGameCardAdapter extends RecyclerView.Adapter<CurrentGameCard
                 FirebaseUtil.GetInstance().updateGameData("player", FirebaseUtil.GetInstance().gameInstance.getPlayer(), FirebaseUtil.GetInstance().activeGame);
                 score.setText(String.valueOf(FirebaseUtil.GetInstance().gameInstance.getPlayerTotalScore(playerName.getText().toString())));
 
-
                 zeroButton.setChecked(true);
             });
-
-
         }
     }
-
-
 }

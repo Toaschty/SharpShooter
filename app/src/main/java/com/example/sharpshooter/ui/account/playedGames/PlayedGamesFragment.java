@@ -29,13 +29,10 @@ public class PlayedGamesFragment extends Fragment {
 
     private ArrayList<LastGameModel> lastGameModelArrayList;
 
-
     private FragmentAccountPlayedGamesBinding binding;
 
     @SuppressWarnings("unchecked")
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         binding = FragmentAccountPlayedGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -43,7 +40,7 @@ public class PlayedGamesFragment extends Fragment {
         playedGamesRV = root.findViewById(R.id.saved_games_RecyclerView);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(playedGamesRV);
 
-        // dummy data.
+        // dummy data
         FirebaseUtil.GetInstance().getAllGames(value -> {
             lastGameModelArrayList = new ArrayList<>();
             if (value.getDocuments().size() > 0)

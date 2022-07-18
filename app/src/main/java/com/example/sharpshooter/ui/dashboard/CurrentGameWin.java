@@ -28,7 +28,6 @@ public class CurrentGameWin extends Fragment {
     private RecyclerView card_Leaderboard;
     private ArrayList<LeaderboardModel> leaderboardModelArrayList;
 
-
     public CurrentGameWin() {
         // Required empty public constructor
     }

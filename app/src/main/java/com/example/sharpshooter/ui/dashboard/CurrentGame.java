@@ -38,10 +38,8 @@ public class CurrentGame extends Fragment {
         this.targetId = targetId;
     }
 
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCurrentGameStatsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -83,7 +81,4 @@ public class CurrentGame extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
-
 }
