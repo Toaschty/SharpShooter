@@ -64,7 +64,6 @@ public class CurrentGameEnd extends Fragment {
             FirebaseUtil.GetInstance().updateUserData("savedGameConfig", FirebaseUtil.GetInstance().userInstance.getSavedGameConfig());
         });
 
-
         btnDone = binding.btnDone;
         btnDone.setOnClickListener(btn -> {
             if (Utils.GetInstance() == null)

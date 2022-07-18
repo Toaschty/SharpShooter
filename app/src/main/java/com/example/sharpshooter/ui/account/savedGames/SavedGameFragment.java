@@ -31,8 +31,6 @@ public class SavedGameFragment extends Fragment {
     private FragmentAccountSavedGamesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         binding = FragmentAccountSavedGamesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

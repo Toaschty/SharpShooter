@@ -22,13 +22,11 @@ public class DashboardFragment extends Fragment {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-
     private FragmentCurrentGameSliderBinding binding;
     public static ViewPager2 currentGameViewPager;
     private ArrayList<CurrentGameModel> currentGameModelArrayList;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCurrentGameSliderBinding.inflate(inflater, container, false);
         View root = binding.getRoot();

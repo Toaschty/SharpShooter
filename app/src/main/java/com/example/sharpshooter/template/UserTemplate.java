@@ -14,7 +14,6 @@ public class UserTemplate {
     private int shots;
     private ArrayList<Object> savedGameConfig;
 
-    // Constructor
     public UserTemplate(String name, int broken, int totalGames, int hits, int kills, double killRate, int misses, long points, int shots) {
         this.name = name;
         this.broken = broken;

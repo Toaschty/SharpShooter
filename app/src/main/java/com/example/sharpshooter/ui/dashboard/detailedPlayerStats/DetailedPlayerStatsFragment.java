@@ -51,6 +51,7 @@ public class DetailedPlayerStatsFragment extends Fragment {
             return root;
         if (Utils.GetInstance() == null)
             return root;
+
         GameTemplate gameTemplate = FirebaseUtil.GetInstance().gameInstance;
         String playerNameBuffer = Utils.GetInstance().getBufferPlayerStats();
         playerName.setText(playerNameBuffer);
