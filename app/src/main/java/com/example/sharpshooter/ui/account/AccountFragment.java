@@ -28,6 +28,8 @@ import com.example.sharpshooter.databinding.FragmentAccountBinding;
 
 import java.io.IOException;
 
+import kotlin.jvm.internal.Ref;
+
 public class AccountFragment extends Fragment {
 
     private FragmentAccountBinding binding;
@@ -93,6 +95,8 @@ public class AccountFragment extends Fragment {
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<>() {
         @Override
         public void onActivityResult(Uri result) {
+            if (result == null)
+                return;
             playerImage.setImageURI(result);
 
             // Upload image to firebase

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharpshooter.FirebaseUtil;
 import com.example.sharpshooter.R;
+import com.example.sharpshooter.Utils;
 import com.example.sharpshooter.databinding.FragmentAccountPlayedGamesBinding;
 import com.example.sharpshooter.ui.card.LastGameAdapter;
 import com.example.sharpshooter.ui.card.LastGameModel;
@@ -89,6 +90,8 @@ public class PlayedGamesFragment extends Fragment {
             // Delete swiped game from database
             int pos = viewHolder.getAdapterPosition();
             LastGameModel model = lastGameModelArrayList.get(pos);
+            if (Objects.equals(FirebaseUtil.GetInstance().activeGame, model.getGameId()))
+                Objects.requireNonNull(Utils.GetInstance()).setBottomNavVisibility(false);
             FirebaseUtil.GetInstance().deleteGame(model.getGameId());
         }
     };
